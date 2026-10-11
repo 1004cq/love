@@ -6,8 +6,8 @@ import { SkeletonBlock } from "@/components/SkeletonBlock";
 import { getSession } from "@/lib/auth";
 
 export const metadata = {
-  title: "管理员登录 · 模块栈",
-  description: "后台登录入口，登录后进入仪表盘",
+  title: "管理员登录 · Ours",
+  description: "隐藏管理入口，登录后进入仪表盘",
 };
 
 export default async function AdminLoginPage() {
@@ -18,14 +18,16 @@ export default async function AdminLoginPage() {
 
   return (
     <PageTransition>
-      <div className="mx-auto max-w-md px-4 py-10 sm:px-6">
+      <div className="mx-auto max-w-md px-4 py-6 sm:px-6">
         <div className="mb-8 text-center">
-          <p className="text-xs font-medium tracking-[0.16em] text-teal-ink">ADMIN</p>
-          <h1 className="mt-2 font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-blush">
+            Admin
+          </p>
+          <h1 className="mt-2 font-display text-3xl text-foreground sm:text-4xl">
             管理员登录
           </h1>
           <p className="section-desc mx-auto">
-            登录后进入仪表盘，查看数据概览与模块栈状态。
+            隐藏入口。登录后可管理相册、日记、一起做的事与留言。
           </p>
         </div>
         <Suspense fallback={<SkeletonBlock className="h-64 w-full" />}>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AdminPanel } from "@/components/AdminPanel";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { DashboardStats } from "@/components/admin/DashboardStats";
 import { PageTransition } from "@/components/PageTransition";
@@ -8,13 +9,12 @@ import { Button } from "@/components/ui/button";
 import { getSession } from "@/lib/auth";
 import { formatDateTime } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
-import { techModules } from "@/lib/tech-modules";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "仪表盘 · 后台 · 模块栈",
-  description: "后台仪表盘：数据概览、近期动态与模块栈状态",
+  title: "仪表盘 · Ours",
+  description: "情侣空间后台仪表盘：数据概览与近期动态",
 };
 
 export default async function AdminDashboardPage() {
@@ -22,6 +22,12 @@ export default async function AdminDashboardPage() {
   if (!session) {
     redirect("/admin?next=/admin/dashboard");
   }
+
+  const setting = await prisma.setting.findUnique({ where: { id: 1 } });
+  const startAt =
+    setting?.relationshipStartAt.toISOString() ||
+    process.env.RELATIONSHIP_START ||
+    "2023-05-20T00:00:00.000Z";
 
   const [
     photoCount,
@@ -31,7 +37,6 @@ export default async function AdminDashboardPage() {
     togetherCount,
     togetherDone,
     musicCount,
-    userCount,
     latestDiaries,
     latestMessages,
     latestPhotos,
@@ -44,7 +49,6 @@ export default async function AdminDashboardPage() {
     prisma.togetherItem.count(),
     prisma.togetherItem.count({ where: { isCompleted: true } }),
     prisma.musicTrack.count(),
-    prisma.user.count(),
     prisma.diaryEntry.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
@@ -72,7 +76,7 @@ export default async function AdminDashboardPage() {
   const stats = [
     {
       key: "diaries",
-      label: "日记",
+      label: "点滴",
       value: diaryCount,
       hint: "DiaryEntry",
       href: "/diary",
@@ -111,18 +115,12 @@ export default async function AdminDashboardPage() {
       value: musicCount,
       hint: "MusicTrack",
     },
-    {
-      key: "users",
-      label: "管理员",
-      value: userCount,
-      hint: "User",
-    },
   ];
 
   const activity = [
     ...latestDiaries.map((item) => ({
       id: `diary-${item.id}`,
-      kind: "日记",
+      kind: "点滴",
       title: item.title,
       meta: `${item.author.displayName} · ${formatDateTime(item.createdAt)}`,
       href: "/diary",
@@ -162,39 +160,35 @@ export default async function AdminDashboardPage() {
         <div className="space-y-8">
           <section className="space-y-4">
             <div>
-              <p className="text-xs font-medium tracking-[0.14em] text-teal-ink">
-                OVERVIEW
-              </p>
+              <p className="text-xs tracking-[0.14em] text-blush">OVERVIEW</p>
               <h2 className="mt-1 font-display text-2xl tracking-tight">数据概览</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                基于 Prisma + SQLite 的实时统计，点击卡片可跳转对应前台模块。
+                我们小世界的实时统计，点击卡片可跳到对应页面。
               </p>
             </div>
             <DashboardStats stats={stats} />
           </section>
 
-          <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+          <section className="grid gap-4 lg:grid-cols-[1.35fr_1fr]">
             <SoftCard padding="lg" className="space-y-4" hoverLift={false}>
               <div className="flex items-end justify-between gap-3">
                 <div>
-                  <p className="text-xs font-medium tracking-[0.14em] text-teal-ink">
-                    ACTIVITY
-                  </p>
+                  <p className="text-xs tracking-[0.14em] text-blush">ACTIVITY</p>
                   <h2 className="mt-1 font-display text-xl tracking-tight">近期动态</h2>
                 </div>
-                <Button asChild variant="secondary" size="sm" className="rounded-xl">
-                  <Link href="/">查看前台</Link>
+                <Button asChild variant="secondary" size="sm" className="rounded-full">
+                  <Link href="/">回到前台</Link>
                 </Button>
               </div>
               {activity.length === 0 ? (
-                <p className="text-sm text-muted-foreground">暂无内容，可先执行 seed。</p>
+                <p className="text-sm text-muted-foreground">还没有内容。</p>
               ) : (
                 <ul className="divide-y divide-border/60">
                   {activity.map((item) => (
                     <li key={item.id}>
                       <Link
                         href={item.href}
-                        className="flex items-start justify-between gap-3 py-3.5 transition-colors hover:text-teal-ink"
+                        className="flex items-start justify-between gap-3 py-3.5 transition-colors hover:text-blush"
                       >
                         <div className="min-w-0">
                           <p className="text-[11px] tracking-[0.12em] text-muted-foreground">
@@ -210,65 +204,15 @@ export default async function AdminDashboardPage() {
               )}
             </SoftCard>
 
-            <SoftCard padding="lg" className="space-y-4" hoverLift={false}>
-              <div>
-                <p className="text-xs font-medium tracking-[0.14em] text-teal-ink">
-                  STACK
-                </p>
-                <h2 className="mt-1 font-display text-xl tracking-tight">技术模块</h2>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  当前后台由下列七个模块支撑。
-                </p>
-              </div>
-              <ul className="space-y-2.5">
-                {techModules.map((m) => (
-                  <li key={m.slug}>
-                    <Link
-                      href={`/stack/${m.slug}`}
-                      className="flex items-baseline justify-between gap-2 rounded-xl border border-border/60 bg-card px-3.5 py-3 text-sm transition-colors hover:border-teal-ink/30"
-                    >
-                      <span>
-                        <span className="text-muted-foreground">{m.category}</span>
-                        <span className="ml-2 font-medium">{m.name}</span>
-                      </span>
-                      <span className="shrink-0 text-xs text-teal-ink">{m.tagline}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </SoftCard>
-          </section>
-
-          <section className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-ink px-6 py-8 text-background sm:px-8">
-            <p className="text-xs font-medium tracking-[0.16em] text-teal-soft">
-              QUICK ACTIONS
-            </p>
-            <h2 className="mt-2 font-display text-2xl tracking-tight">快捷操作</h2>
-            <p className="mt-2 max-w-lg text-sm text-white/70">
-              登录态已生效。可回到前台浏览模块说明，或继续完善数据示例。
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button
-                asChild
-                className="rounded-xl bg-background text-foreground hover:bg-white"
-              >
-                <Link href="/stack">模块说明</Link>
-              </Button>
-              <Button
-                asChild
-                variant="secondary"
-                className="rounded-xl border-white/20 bg-white/10 text-background hover:bg-white/20"
-              >
-                <Link href="/start">快速开始</Link>
-              </Button>
-              <Button
-                asChild
-                variant="secondary"
-                className="rounded-xl border-white/20 bg-white/10 text-background hover:bg-white/20"
-              >
-                <Link href="/">前台首页</Link>
-              </Button>
-            </div>
+            <AdminPanel
+              initialStartAt={startAt}
+              stats={{
+                photos: photoCount,
+                diaries: diaryCount,
+                anniversaries: anniversaryCount,
+                messages: messageCount,
+              }}
+            />
           </section>
         </div>
       </AdminShell>

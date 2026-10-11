@@ -37,7 +37,7 @@ export function DashboardStats({ stats }: { stats: DashboardStat[] }) {
   const reduce = useReducedMotion();
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {stats.map((stat, index) => {
         const Icon = icons[stat.key] || ListChecks;
         const body = (
@@ -48,13 +48,13 @@ export function DashboardStats({ stats }: { stats: DashboardStat[] }) {
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs tracking-[0.12em] text-teal-ink">{stat.label}</p>
+                <p className="text-xs tracking-[0.12em] text-blush">{stat.label}</p>
                 <p className="mt-3 font-num text-3xl font-semibold tracking-tight">
                   {stat.value}
                 </p>
                 <p className="mt-1.5 text-xs text-muted-foreground">{stat.hint}</p>
               </div>
-              <span className="rounded-xl bg-accent p-2.5 text-accent-foreground">
+              <span className="rounded-xl bg-blush-soft p-2.5 text-blush">
                 <Icon className="h-4 w-4" />
               </span>
             </div>

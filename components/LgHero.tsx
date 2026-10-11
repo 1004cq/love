@@ -85,7 +85,7 @@ function PartnerBlock({ partner }: { partner: Partner }) {
           </AvatarFallback>
         </Avatar>
       </div>
-      <span className="rounded-full bg-[#3f3f46] px-4 py-1.5 font-display text-base text-white shadow-xs">
+      <span className="rounded-full bg-[#3f3f46] px-4 py-1.5 font-script text-base text-white shadow-xs">
         {partner.displayName}
       </span>
     </motion.div>

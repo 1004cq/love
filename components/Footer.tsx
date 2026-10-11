@@ -2,25 +2,19 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border/50 bg-card/40 pb-28 md:pb-10">
+    <footer className="mt-auto border-t border-border/50 bg-white/50 pb-28 md:pb-10">
       <div className="mx-auto flex max-w-5xl flex-col gap-5 px-5 py-10 text-center sm:px-8">
-        <p className="font-display text-2xl tracking-tight text-foreground">模块栈</p>
+        <p className="font-script text-2xl text-foreground">Ours</p>
         <p className="text-sm text-muted-foreground">
-          Next.js 14+ · TypeScript · Tailwind · shadcn/ui · Motion · Prisma · Vercel
+          朝暮与年岁并往，与你行至天光。
         </p>
         <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-          <Link href="/stack" className="hover:text-foreground">
-            模块说明
-          </Link>
-          <Link href="/start" className="hover:text-foreground">
-            快速开始
-          </Link>
-          <Link href="/about" className="hover:text-foreground">
-            关于
-          </Link>
-          <Link href="/admin/dashboard" className="hover:text-foreground">
-            后台仪表盘
-          </Link>
+          <Link href="/diary" className="hover:text-foreground">点滴</Link>
+          <Link href="/album" className="hover:text-foreground">相册</Link>
+          <Link href="/together" className="hover:text-foreground">清单</Link>
+          <Link href="/anniversary" className="hover:text-foreground">轨迹</Link>
+          <Link href="/message" className="hover:text-foreground">留言</Link>
+          <Link href="/about" className="hover:text-foreground">关于</Link>
         </div>
       </div>
     </footer>

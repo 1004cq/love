@@ -3,22 +3,33 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { BookOpenText, Home, Layers3, Rocket } from "lucide-react";
+import {
+  BookOpenText,
+  Camera,
+  Clock,
+  Home,
+  ListChecks,
+  MessageCircleMore,
+  Notebook,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const items = [
+  { href: "/diary", label: "点滴", icon: Notebook },
+  { href: "/message", label: "留言", icon: MessageCircleMore },
+  { href: "/anniversary", label: "轨迹", icon: Clock },
   { href: "/", label: "首页", icon: Home },
-  { href: "/stack", label: "模块", icon: Layers3 },
-  { href: "/start", label: "开始", icon: Rocket },
+  { href: "/album", label: "相册", icon: Camera },
+  { href: "/together", label: "清单", icon: ListChecks },
   { href: "/about", label: "关于", icon: BookOpenText },
 ];
 
 function activeIndex(pathname: string) {
-  if (pathname === "/") return 0;
+  if (pathname === "/") return 3;
   const idx = items.findIndex(
     (item) => item.href !== "/" && pathname.startsWith(item.href)
   );
-  return idx >= 0 ? idx : 0;
+  return idx >= 0 ? idx : 3;
 }
 
 export function BottomNav() {
@@ -37,15 +48,18 @@ export function BottomNav() {
   }, [current]);
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] md:hidden">
+    <div className="lgnewui-mobile-nav-root pointer-events-none fixed inset-x-0 bottom-0 z-[60] md:hidden">
       <div
         ref={scrollerRef}
-        className="stack-glass pointer-events-auto absolute bottom-5 left-1/2 flex h-14 -translate-x-1/2 items-center rounded-[28px] px-1.5"
+        className="lg-glass pointer-events-auto absolute bottom-5 left-1/2 flex h-14 max-w-[calc(100%-2.5rem)] -translate-x-1/2 items-center overflow-x-auto rounded-[32px] px-1.5"
       >
         <span
           aria-hidden
-          className="pointer-events-none absolute top-1/2 z-[1] h-11 w-11 -translate-y-1/2 rounded-full bg-ink shadow-soft transition-[left] duration-500 ease-soft"
-          style={{ left: indicatorLeft }}
+          className="pointer-events-none absolute top-1/2 z-[1] h-11 w-11 -translate-y-1/2 rounded-full bg-[#1d1d1f] shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-[left] duration-500"
+          style={{
+            left: indicatorLeft,
+            transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          }}
         />
         {items.map((item, index) => {
           const Icon = item.icon;
@@ -58,8 +72,8 @@ export function BottomNav() {
               aria-label={item.label}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "relative z-[2] mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors duration-soft last:mr-0",
-                active ? "text-background" : "text-muted-foreground hover:text-foreground"
+                "relative z-[2] mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors duration-300 last:mr-0",
+                active ? "text-white" : "text-[#99999e] hover:text-[#555]"
               )}
             >
               <Icon className="h-[22px] w-[22px]" strokeWidth={active ? 2.2 : 1.8} />

@@ -44,10 +44,17 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "teal-ink": "hsl(var(--teal-ink))",
-        "teal-soft": "hsl(var(--teal-soft))",
+        blush: {
+          DEFAULT: "hsl(var(--blush))",
+          soft: "hsl(var(--blush-soft))",
+        },
+        sage: {
+          DEFAULT: "hsl(var(--sage))",
+          soft: "hsl(var(--sage-soft))",
+        },
+        // Keep short aliases used by existing pages
         ink: {
-          DEFAULT: "hsl(var(--ink))",
+          DEFAULT: "hsl(var(--foreground))",
           soft: "hsl(var(--muted-foreground))",
           mute: "hsl(210 8% 58%)",
         },
@@ -55,15 +62,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--muted))",
           deep: "hsl(210 14% 90%)",
           soft: "hsl(var(--background))",
-        },
-        // Legacy aliases used by remaining demo/admin pages
-        blush: {
-          DEFAULT: "hsl(var(--teal-ink))",
-          soft: "hsl(var(--accent))",
-        },
-        sage: {
-          DEFAULT: "hsl(var(--teal-ink))",
-          soft: "hsl(var(--accent))",
         },
       },
       borderRadius: {
@@ -74,10 +72,10 @@ const config: Config = {
         "2xl": "var(--radius-xl)",
       },
       fontFamily: {
-        display: ["var(--font-display)", "Fraunces", "Georgia", "serif"],
-        sans: ["var(--font-noto-sans)", "Noto Sans SC", "ui-sans-serif", "sans-serif"],
-        num: ["var(--font-mono)", "JetBrains Mono", "ui-monospace", "monospace"],
-        mono: ["var(--font-mono)", "JetBrains Mono", "ui-monospace", "monospace"],
+        display: ["var(--font-noto-serif)", "Noto Serif SC", "Georgia", "serif"],
+        sans: ["var(--font-noto-sans)", "Noto Sans SC", "Inter", "ui-sans-serif", "sans-serif"],
+        script: ["var(--font-niconne)", "Niconne", "cursive"],
+        num: ["var(--font-inter)", "Inter", "ui-sans-serif", "sans-serif"],
       },
       boxShadow: {
         xs: "var(--shadow-xs)",

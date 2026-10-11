@@ -1,18 +1,37 @@
-# 模块栈 · 技术说明框架
+# Ours · 情侣空间（LGNewUi 风格）
 
-把选型拆成七个模块说清楚，并给出可运行的 Next.js 前后端一体示例。
+基于 Next.js 14（App Router）+ TypeScript + Tailwind CSS + shadcn/ui + Framer Motion + Prisma + SQLite 的情侣小站。
 
-## 模块技术说明
+界面与模块结构参考：[love-really.kikiw.cn（LGNewUi）](https://love-really.kikiw.cn/)，语言保持中文。
 
-| 模块 | 选型 | 一句话 |
-|------|------|--------|
-| 框架 | **Next.js 14+ (App Router)** | 前后端一体 |
-| 语言 | **TypeScript** | 类型安全 |
-| 样式 | **Tailwind CSS** | 快速控制视觉 |
-| 组件库 | **shadcn/ui** | 可深度定制 |
-| 动效 | **Framer Motion** | 细腻动画 |
-| 数据库 | **Prisma + SQLite** | 简单够用 |
-| 部署 | **Vercel** | 一键上线 |
+## 功能
+
+- 首页：恋爱天数计时、情侣头像（中间爱心）、内容概览、底部导航
+- 点滴日记：大日期卡片（日期 / 月份年份 / DAY / 天气 / 心情 / 发布者）
+- 相册：公开浏览；登录后上传 / 删除
+- 清单（一起做的事）：已完成 / 全部 / 未完成筛选 + 搜索 + 勾选
+- 轨迹（纪念日）：列表 + 倒计时
+- 留言板：公开浏览；登录后发布 / 管理
+- 浮动音乐播放器：暖色半透明条（封面 / 歌名 / 歌手 / 播放）+ 可展开列表
+- 隐藏管理入口：`/admin`（双固定管理员，权限相同）
+- 后台仪表盘：`/admin/dashboard`（登录后数据概览与近期动态）
+
+## 权限
+
+| 角色 | 浏览 | 管理 |
+|------|------|------|
+| 游客 | 全部内容 | 无（不显示管理按钮） |
+| 管理员 | 全部 | 增删改（两人相同） |
+
+## 技术栈
+
+- Next.js 14 App Router + TypeScript
+- Tailwind CSS + shadcn/ui
+- Framer Motion（轻动效，尊重 `prefers-reduced-motion`）
+- Prisma + SQLite
+- jose + bcryptjs Cookie Session
+- HTML5 Audio
+- 部署友好（Vercel）
 
 ## 快速开始
 
@@ -23,12 +42,9 @@ npm run dev
 ```
 
 - 站点：[http://localhost:3000](http://localhost:3000)
-- 模块说明：`/stack`
-- 快速开始：`/start`
-- 后台登录（隐藏）：`/admin`
-- 后台仪表盘：`/admin/dashboard`（需登录）
+- 管理入口（隐藏）：[http://localhost:3000/admin](http://localhost:3000/admin)
 
-### 默认管理员（示例鉴权）
+### 默认管理员
 
 | 用户名 | 密码 | 显示名 |
 |--------|------|--------|
@@ -41,25 +57,43 @@ npm run dev
 
 ```text
 app/
-├── page.tsx                 # 首页（模块概览）
-├── stack/                   # 模块技术说明
-├── start/                   # 快速开始
-├── about/                   # 关于框架
-├── admin/                   # 鉴权与数据示例
+├── layout.tsx
+├── page.tsx                 # 首页
+├── admin/page.tsx           # 隐藏登录
+├── diary/page.tsx           # 点滴
+├── album/page.tsx           # 相册
+├── together/page.tsx        # 清单
+├── anniversary/page.tsx     # 轨迹
+├── message/page.tsx         # 留言
+├── about/page.tsx
 └── api/
 components/
-├── StackHero.tsx
-├── StackModuleCard.tsx / StackModuleGrid.tsx
 ├── Header.tsx / Footer.tsx / BottomNav.tsx
+├── Counter.tsx / CounterDisplay.tsx / DayFusionCard.tsx
+├── CoupleCard.tsx / LgHero.tsx
+├── DiaryCard.tsx / DiaryTimeline.tsx
+├── TogetherList.tsx / AlbumGrid.tsx
+├── AnniversaryList.tsx / MessageBoard.tsx
+├── MusicPlayer.tsx / MusicPlayerHost.tsx
 └── ui/
 lib/
-├── tech-modules.ts          # 模块说明数据
 ├── prisma.ts / auth.ts / session.ts
-└── motion.ts
+├── diary-meta.ts / motion.ts
 prisma/
 ├── schema.prisma
 └── seed.ts
+styles/
+└── globals.css
 ```
+
+## 数据模型（Prisma）
+
+- `User`：双管理员（含 `avatarUrl`）
+- `Setting`：恋爱开始日
+- `DiaryEntry`：标题 / 内容 / 图 / weather / mood
+- `AlbumPhoto` / `Anniversary` / `Message`
+- `TogetherItem`：清单待办
+- `MusicTrack`：歌名 / 歌手 / url / coverUrl
 
 ## 脚本
 
@@ -74,6 +108,6 @@ npm run db:setup
 
 ## 注意
 
+- 上传图片：`public/uploads/`
 - SQLite：`prisma/dev.db`（gitignore）
 - 生产环境请更换 `AUTH_SECRET` 与默认密码
-- 部署：连接 Vercel，配置环境变量后推送即可上线
