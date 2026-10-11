@@ -1,6 +1,7 @@
-import { LgHero } from "@/components/LgHero";
 import { PageTransition } from "@/components/PageTransition";
+import { SiteHero } from "@/components/SiteHero";
 import { SoftCard } from "@/components/SoftCard";
+import { WritingBar } from "@/components/WritingBar";
 import { getSiteConfig } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -18,24 +19,15 @@ export default async function AboutPage() {
     "花有重开日 人无再少年",
     `本站前端模块：${site.card1}、${site.card2}、${site.card3}、${site.card4}`,
     "技术栈：Next.js 14 App Router · TypeScript · Tailwind · shadcn/ui · Framer Motion · Prisma + SQLite · Vercel",
-    "源项目参考：LGNewUI（love.zip PHP 版）",
+    "视觉对齐：LGNewUI（love.zip PHP 版）轮播头图 / 四入口卡 / Love Day 倒计时",
   ];
 
   return (
     <div>
-      <LgHero
-        partnerA={{ displayName: site.boy, avatarUrl: site.boyAvatar || undefined }}
-        partnerB={{ displayName: site.girl, avatarUrl: site.girlAvatar || undefined }}
-      />
+      <SiteHero site={site} />
       <PageTransition>
-        <div className="mx-auto max-w-2xl px-4 pb-10 sm:px-6">
-          <div className="mb-6 text-center">
-            <p className="text-xs tracking-[0.14em] text-blush">ABOUT</p>
-            <h1 className="mt-2 font-display text-3xl tracking-tight">关于我们</h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              与 {site.title} 小站对话中…
-            </p>
-          </div>
+        <div className="mx-auto max-w-2xl space-y-6 px-4 pb-10 sm:px-6">
+          <WritingBar>关于我们 · {site.title}</WritingBar>
           <SoftCard padding="lg" className="space-y-4">
             {lines.map((line) => (
               <p

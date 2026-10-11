@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { LG_BOY_AVATAR, LG_GIRL_AVATAR } from "../lib/lg-assets";
 
 const prisma = new PrismaClient();
 
@@ -45,6 +46,8 @@ async function main() {
     update: {
       boy: partners[0].displayName,
       girl: partners[1].displayName,
+      boyAvatar: LG_BOY_AVATAR,
+      girlAvatar: LG_GIRL_AVATAR,
       title: "LG_NewUi",
       logo: "LG_Demo",
       writing: "小手一牵 岁岁年年～",
@@ -66,6 +69,8 @@ async function main() {
       id: 1,
       boy: partners[0].displayName,
       girl: partners[1].displayName,
+      boyAvatar: LG_BOY_AVATAR,
+      girlAvatar: LG_GIRL_AVATAR,
       title: "LG_NewUi",
       logo: "LG_Demo",
       writing: "小手一牵 岁岁年年～",

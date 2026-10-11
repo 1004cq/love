@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      { protocol: "https", hostname: "img.gejiba.com" },
+      { protocol: "https", hostname: "q1.qlogo.cn" },
+    ],
     unoptimized: true,
   },
   experimental: {

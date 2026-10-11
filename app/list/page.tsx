@@ -1,7 +1,8 @@
-import { LgHero } from "@/components/LgHero";
-import { TogetherList } from "@/components/TogetherList";
 import { PageTransition } from "@/components/PageTransition";
+import { SiteHero } from "@/components/SiteHero";
 import { SoftCard } from "@/components/SoftCard";
+import { TogetherList } from "@/components/TogetherList";
+import { WritingBar } from "@/components/WritingBar";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getSiteConfig } from "@/lib/site";
@@ -30,21 +31,12 @@ export default async function ListPage() {
 
   return (
     <div>
-      <LgHero
-        partnerA={{ displayName: site.boy, avatarUrl: site.boyAvatar || undefined }}
-        partnerB={{ displayName: site.girl, avatarUrl: site.girlAvatar || undefined }}
-        distanceKm="546.9 km"
-      />
+      <SiteHero site={site} />
       <PageTransition>
-        <div className="mx-auto max-w-3xl px-4 pb-10 sm:px-6">
-          <div className="mb-6 text-center">
-            <p className="text-xs tracking-[0.14em] text-blush">{site.card4}</p>
-            <h1 className="mt-2 font-display text-2xl tracking-tight sm:text-3xl">
-              {site.deci4}
-            </h1>
-          </div>
+        <div className="mx-auto max-w-3xl space-y-6 px-4 pb-10 sm:px-6">
+          <WritingBar>{site.deci4}</WritingBar>
 
-          <div className="mb-6 grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             <SoftCard padding="sm" className="text-center" hoverLift={false}>
               <p className="font-num text-2xl font-semibold">{items.length}</p>
               <p className="mt-1 text-xs text-muted-foreground">全部</p>

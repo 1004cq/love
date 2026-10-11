@@ -40,22 +40,37 @@ export function Header({ logo = "LG_Demo" }: { logo?: string }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 bg-transparent">
+    <header className="sticky top-0 z-40 border-b border-white/60 bg-[#f7f7fb]/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <Link href="/" className="min-w-0">
-          <p className="font-script text-[1.65rem] leading-none tracking-wide text-foreground">
+          <p className="font-script text-[1.75rem] leading-none tracking-wide text-[#181818]">
             {logo}
           </p>
         </Link>
 
+        <nav className="hidden items-center gap-1 md:flex">
+          {nav.map((link) => {
+            const active =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
+                  active
+                    ? "bg-[#ff6b8a] text-white shadow-sm"
+                    : "text-[#7d7888] hover:bg-white/80 hover:text-[#282531]"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+
         <div className="flex items-center gap-2">
-          <Link
-            href="/list"
-            className="inline-flex items-center gap-1.5 rounded-full bg-white/55 px-3 py-1.5 text-xs text-foreground/70 backdrop-blur-md transition-colors hover:bg-white/80"
-          >
-            <span aria-hidden>◎</span>
-            恋爱事件
-          </Link>
           {user ? (
             <>
               <Button asChild variant="secondary" size="sm" className="rounded-full">
@@ -65,31 +80,16 @@ export function Header({ logo = "LG_Demo" }: { logo?: string }) {
                 退出
               </Button>
             </>
-          ) : null}
+          ) : (
+            <Link
+              href="/admin"
+              className="text-xs text-[#7d7888] transition-colors hover:text-[#ff6b8a]"
+            >
+              管理
+            </Link>
+          )}
         </div>
       </div>
-
-      <nav className="mx-auto hidden max-w-5xl items-center justify-center gap-1 px-4 pb-2 md:flex">
-        {nav.map((link) => {
-          const active =
-            link.href === "/"
-              ? pathname === "/"
-              : pathname.startsWith(link.href);
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
-                active
-                  ? "bg-foreground text-background"
-                  : "text-muted-foreground hover:bg-white/70 hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          );
-        })}
-      </nav>
     </header>
   );
 }
