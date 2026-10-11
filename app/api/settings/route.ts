@@ -43,6 +43,15 @@ export async function PATCH(request: NextRequest) {
       create: { id: 1, relationshipStartAt: date },
     });
 
+    await prisma.siteConfig.upsert({
+      where: { id: 1 },
+      update: { startTime: date },
+      create: {
+        id: 1,
+        startTime: date,
+      },
+    });
+
     return jsonOk({ setting });
   } catch (error) {
     if (error instanceof z.ZodError) {

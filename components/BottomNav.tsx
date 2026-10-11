@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   BookOpenText,
   Camera,
-  Clock,
   Home,
   ListChecks,
   MessageCircleMore,
@@ -14,22 +13,22 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+/** PHP LGNewUI bottom tab order */
 const items = [
-  { href: "/diary", label: "点滴", icon: Notebook },
-  { href: "/message", label: "留言", icon: MessageCircleMore },
-  { href: "/anniversary", label: "轨迹", icon: Clock },
+  { href: "/little", label: "点点滴滴", icon: Notebook },
+  { href: "/leaving", label: "祝福留言", icon: MessageCircleMore },
   { href: "/", label: "首页", icon: Home },
-  { href: "/album", label: "相册", icon: Camera },
-  { href: "/together", label: "清单", icon: ListChecks },
-  { href: "/about", label: "关于", icon: BookOpenText },
+  { href: "/love-img", label: "恋爱相册", icon: Camera },
+  { href: "/list", label: "恋爱事件", icon: ListChecks },
+  { href: "/about", label: "关于我们", icon: BookOpenText },
 ];
 
 function activeIndex(pathname: string) {
-  if (pathname === "/") return 3;
+  if (pathname === "/") return 2;
   const idx = items.findIndex(
     (item) => item.href !== "/" && pathname.startsWith(item.href)
   );
-  return idx >= 0 ? idx : 3;
+  return idx >= 0 ? idx : 2;
 }
 
 export function BottomNav() {

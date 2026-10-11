@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
 import { MusicPlayerHost } from "@/components/MusicPlayerHost";
+import { getSiteConfig } from "@/lib/site";
 import "@/styles/globals.css";
 
 const notoSerif = Noto_Serif_SC({
@@ -34,17 +35,24 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Ours · 我们的小世界",
-  description:
-    "朝暮与年岁并往，与你行至天光。共享相册、点滴、清单、纪念日与留言。",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteConfig();
+  return {
+    title: `${site.title} — ${site.writing}`,
+    description: site.siteDescription || site.writing,
+    other: {
+      "love-theme": "LGNewUI-情侣小站",
+    },
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const site = await getSiteConfig();
+
   return (
     <html lang="zh-CN">
       <body
@@ -52,9 +60,13 @@ export default function RootLayout({
       >
         <MotionProvider>
           <div className="flex min-h-screen flex-col">
-            <Header />
+            <Header logo={site.logo} />
             <main className="w-full flex-1 pb-28 md:pb-16">{children}</main>
-            <Footer />
+            <Footer
+              logo={site.logo}
+              writing={site.writing}
+              copyright={site.copyright}
+            />
             <MusicPlayerHost />
             <BottomNav />
           </div>

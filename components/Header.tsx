@@ -11,7 +11,16 @@ type User = {
   displayName: string;
 };
 
-export function Header() {
+const nav = [
+  { href: "/", label: "首页" },
+  { href: "/little", label: "点点滴滴" },
+  { href: "/leaving", label: "祝福留言" },
+  { href: "/love-img", label: "恋爱相册" },
+  { href: "/list", label: "恋爱事件" },
+  { href: "/about", label: "关于我们" },
+];
+
+export function Header({ logo = "LG_Demo" }: { logo?: string }) {
   const pathname = usePathname();
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
@@ -35,21 +44,17 @@ export function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <Link href="/" className="min-w-0">
           <p className="font-script text-[1.65rem] leading-none tracking-wide text-foreground">
-            Ours
+            {logo}
           </p>
         </Link>
 
         <div className="flex items-center gap-2">
-          <span className="hidden items-center gap-1.5 rounded-full bg-white/55 px-3 py-1.5 text-xs text-foreground/70 backdrop-blur-md sm:inline-flex">
-            <span aria-hidden>☾</span>
-            晴
-          </span>
           <Link
-            href="/anniversary"
+            href="/list"
             className="inline-flex items-center gap-1.5 rounded-full bg-white/55 px-3 py-1.5 text-xs text-foreground/70 backdrop-blur-md transition-colors hover:bg-white/80"
           >
             <span aria-hidden>◎</span>
-            足迹
+            恋爱事件
           </Link>
           {user ? (
             <>
@@ -65,15 +70,7 @@ export function Header() {
       </div>
 
       <nav className="mx-auto hidden max-w-5xl items-center justify-center gap-1 px-4 pb-2 md:flex">
-        {[
-          { href: "/", label: "首页" },
-          { href: "/diary", label: "点滴" },
-          { href: "/album", label: "相册" },
-          { href: "/together", label: "清单" },
-          { href: "/anniversary", label: "轨迹" },
-          { href: "/message", label: "留言" },
-          { href: "/about", label: "关于" },
-        ].map((link) => {
+        {nav.map((link) => {
           const active =
             link.href === "/"
               ? pathname === "/"

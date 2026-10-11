@@ -40,7 +40,7 @@ export function AdminPanel({
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "保存失败");
-      setMessage("已更新恋爱开始日期");
+      setMessage("已更新 Love Day 起始日期");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "保存失败");
@@ -52,17 +52,17 @@ export function AdminPanel({
   return (
     <SoftCard>
       <h2 className="font-display text-xl tracking-tight text-foreground">
-        简单后台
+        基本设置
       </h2>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-        仅登录后可见，用于调整恋爱起点与查看概览。
+        调整 Love Day 起点（对齐 PHP `text.startTime`）。
       </p>
 
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
           ["相册", stats.photos],
-          ["日记", stats.diaries],
-          ["纪念日", stats.anniversaries],
+          ["点滴", stats.diaries],
+          ["日期", stats.anniversaries],
           ["留言", stats.messages],
         ].map(([label, value]) => (
           <div
@@ -76,7 +76,7 @@ export function AdminPanel({
       </div>
 
       <form onSubmit={onSave} className="mt-6 space-y-3">
-        <Label htmlFor="relationship-start">恋爱开始日期</Label>
+        <Label htmlFor="relationship-start">Love Day 起始日期</Label>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Input
             id="relationship-start"

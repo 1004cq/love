@@ -9,12 +9,13 @@ import { Button } from "@/components/ui/button";
 import { getSession } from "@/lib/auth";
 import { formatDateTime } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
+import { getSiteConfig } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "仪表盘 · Ours",
-  description: "情侣空间后台仪表盘：数据概览与近期动态",
+  title: "后台首页 · LG_NewUi",
+  description: "LGNewUI 后台仪表盘",
 };
 
 export default async function AdminDashboardPage() {
@@ -23,11 +24,7 @@ export default async function AdminDashboardPage() {
     redirect("/admin?next=/admin/dashboard");
   }
 
-  const setting = await prisma.setting.findUnique({ where: { id: 1 } });
-  const startAt =
-    setting?.relationshipStartAt.toISOString() ||
-    process.env.RELATIONSHIP_START ||
-    "2023-05-20T00:00:00.000Z";
+  const site = await getSiteConfig();
 
   const [
     photoCount,
@@ -36,10 +33,8 @@ export default async function AdminDashboardPage() {
     messageCount,
     togetherCount,
     togetherDone,
-    musicCount,
     latestDiaries,
     latestMessages,
-    latestPhotos,
     latestTogether,
   ] = await Promise.all([
     prisma.albumPhoto.count(),
@@ -48,7 +43,6 @@ export default async function AdminDashboardPage() {
     prisma.message.count(),
     prisma.togetherItem.count(),
     prisma.togetherItem.count({ where: { isCompleted: true } }),
-    prisma.musicTrack.count(),
     prisma.diaryEntry.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
@@ -59,11 +53,6 @@ export default async function AdminDashboardPage() {
       take: 5,
       include: { author: { select: { displayName: true } } },
     }),
-    prisma.albumPhoto.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 4,
-      include: { uploadedBy: { select: { displayName: true } } },
-    }),
     prisma.togetherItem.findMany({
       orderBy: { updatedAt: "desc" },
       take: 5,
@@ -73,81 +62,61 @@ export default async function AdminDashboardPage() {
   const togetherPct =
     togetherCount === 0 ? 0 : Math.round((togetherDone / togetherCount) * 100);
 
+  /** PHP admin/index.php 四卡片 */
   const stats = [
     {
-      key: "diaries",
-      label: "点滴",
-      value: diaryCount,
-      hint: "DiaryEntry",
-      href: "/diary",
-    },
-    {
-      key: "photos",
-      label: "相册",
-      value: photoCount,
-      hint: "AlbumPhoto",
-      href: "/album",
-    },
-    {
       key: "messages",
-      label: "留言",
+      label: "留言数量",
       value: messageCount,
-      hint: "Message",
-      href: "/message",
+      hint: site.card2,
+      href: "/leaving",
+    },
+    {
+      key: "diaries",
+      label: "点点滴滴",
+      value: diaryCount,
+      hint: site.card1,
+      href: "/little",
     },
     {
       key: "together",
-      label: "清单",
+      label: "恋爱清单",
       value: togetherCount,
       hint: `完成 ${togetherDone} · ${togetherPct}%`,
-      href: "/together",
+      href: "/list",
     },
     {
-      key: "anniversaries",
-      label: "轨迹",
-      value: anniversaryCount,
-      hint: "Anniversary",
-      href: "/anniversary",
-    },
-    {
-      key: "music",
-      label: "曲目",
-      value: musicCount,
-      hint: "MusicTrack",
+      key: "photos",
+      label: "相册数量",
+      value: photoCount,
+      hint: site.card3,
+      href: "/love-img",
     },
   ];
 
   const activity = [
     ...latestDiaries.map((item) => ({
       id: `diary-${item.id}`,
-      kind: "点滴",
+      kind: "点点滴滴",
       title: item.title,
       meta: `${item.author.displayName} · ${formatDateTime(item.createdAt)}`,
-      href: "/diary",
+      href: "/little",
       at: item.createdAt.getTime(),
     })),
     ...latestMessages.map((item) => ({
       id: `msg-${item.id}`,
-      kind: "留言",
+      kind: "祝福留言",
       title: item.content.slice(0, 48) + (item.content.length > 48 ? "…" : ""),
       meta: `${item.author.displayName} · ${formatDateTime(item.createdAt)}`,
-      href: "/message",
-      at: item.createdAt.getTime(),
-    })),
-    ...latestPhotos.map((item) => ({
-      id: `photo-${item.id}`,
-      kind: "相册",
-      title: item.caption || "未命名照片",
-      meta: `${item.uploadedBy.displayName} · ${formatDateTime(item.createdAt)}`,
-      href: "/album",
+      href: "/leaving",
       at: item.createdAt.getTime(),
     })),
     ...latestTogether.map((item) => ({
       id: `todo-${item.id}`,
-      kind: item.isCompleted ? "清单·完成" : "清单",
+      kind: item.isCompleted ? "恋爱事件·完成" : "恋爱事件",
       title: item.title,
       meta: formatDateTime(item.updatedAt),
-      href: "/together",
+      href: "/list",
       at: item.updatedAt.getTime(),
     })),
   ]
@@ -163,7 +132,7 @@ export default async function AdminDashboardPage() {
               <p className="text-xs tracking-[0.14em] text-blush">OVERVIEW</p>
               <h2 className="mt-1 font-display text-2xl tracking-tight">数据概览</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                我们小世界的实时统计，点击卡片可跳到对应页面。
+                对齐 PHP LGNewUI 后台首页四卡片：留言 / 点滴 / 清单 / 相册。
               </p>
             </div>
             <DashboardStats stats={stats} />
@@ -205,7 +174,7 @@ export default async function AdminDashboardPage() {
             </SoftCard>
 
             <AdminPanel
-              initialStartAt={startAt}
+              initialStartAt={site.startTime.toISOString()}
               stats={{
                 photos: photoCount,
                 diaries: diaryCount,

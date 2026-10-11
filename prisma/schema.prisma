@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// Fixed dual admins (no public registration). Both have equal manage rights.
+/// Dual admins — PHP `login` 男主/女主
 model User {
   id           String         @id @default(cuid())
   username     String         @unique
@@ -21,12 +21,40 @@ model User {
   together     TogetherItem[]
 }
 
+/// PHP `text` 站点/情侣配置
+model SiteConfig {
+  id              Int      @id @default(1)
+  boy             String   @default("My Name")
+  girl            String   @default("My Name")
+  title           String   @default("LG_NewUi")
+  logo            String   @default("LG_Demo")
+  writing         String   @default("小手一牵 岁岁年年～")
+  boyAvatar       String?
+  girlAvatar      String?
+  startTime       DateTime
+  loveDayTitle    String   @default("这是我们一起走过的")
+  card1           String   @default("点点滴滴")
+  card2           String   @default("祝福留言")
+  card3           String   @default("恋爱相册")
+  card4           String   @default("恋爱事件")
+  deci1           String   @default("记录生活点点滴滴")
+  deci2           String   @default("书写下你的留言祝福～")
+  deci3           String   @default("记录下美好瞬间～")
+  deci4           String   @default("总有些惊奇的际遇")
+  icp             String?
+  copyright       String   @default("LG_NewUi Web")
+  siteDescription String?
+  updatedAt       DateTime @updatedAt
+}
+
+/// Keep Setting for backward-compatible start date sync
 model Setting {
   id                  Int      @id @default(1)
   relationshipStartAt DateTime
   updatedAt           DateTime @updatedAt
 }
 
+/// PHP `loveImg` / Photolist 简化
 model AlbumPhoto {
   id           String   @id @default(cuid())
   url          String
@@ -36,6 +64,7 @@ model AlbumPhoto {
   createdAt    DateTime @default(now())
 }
 
+/// PHP `article` — 点点滴滴
 model DiaryEntry {
   id        String   @id @default(cuid())
   title     String
@@ -49,6 +78,7 @@ model DiaryEntry {
   updatedAt DateTime @updatedAt
 }
 
+/// PHP `loveday`
 model Anniversary {
   id          String   @id @default(cuid())
   title       String
@@ -59,6 +89,7 @@ model Anniversary {
   createdAt   DateTime @default(now())
 }
 
+/// PHP `leaving` — 祝福留言
 model Message {
   id        String   @id @default(cuid())
   content   String
@@ -67,6 +98,7 @@ model Message {
   createdAt DateTime @default(now())
 }
 
+/// PHP `lovelist` — 恋爱事件
 model TogetherItem {
   id          String    @id @default(cuid())
   title       String

@@ -13,7 +13,13 @@ function calc(startAt: string) {
   };
 }
 
-export function DayFusionCard({ startAt }: { startAt: string }) {
+export function DayFusionCard({
+  startAt,
+  title = "这是我们一起走过的",
+}: {
+  startAt: string;
+  title?: string;
+}) {
   // Start at zeros on server/first paint to avoid SSR/client second mismatches.
   const [parts, setParts] = useState({
     days: 0,
@@ -44,9 +50,7 @@ export function DayFusionCard({ startAt }: { startAt: string }) {
       <div className="relative grid gap-6 sm:grid-cols-[1.2fr_0.8fr] sm:items-end">
         <div>
           <h2 className="font-display text-[1.55rem] leading-snug tracking-tight text-foreground sm:text-[1.85rem]">
-            朝暮与年岁并往，
-            <br />
-            与你行至天光。
+            {title}
           </h2>
           <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5">
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blush text-[10px] text-white">
