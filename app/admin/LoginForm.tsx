@@ -30,7 +30,7 @@ export function LoginForm() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "登录失败");
-      const next = search.get("next") || "/";
+      const next = search.get("next") || "/admin/dashboard";
       router.push(next);
       router.refresh();
     } catch (err) {
@@ -70,7 +70,7 @@ export function LoginForm() {
           transition={{ duration: duration.fast, ease: easeOutSoft }}
         >
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "登录中…" : "进入空间"}
+            {loading ? "登录中…" : "进入仪表盘"}
           </Button>
         </motion.div>
       </form>

@@ -18,8 +18,8 @@ export function Footer() {
           <Link href="/about" className="hover:text-foreground">
             关于
           </Link>
-          <Link href="/admin" className="hover:text-foreground">
-            管理示例
+          <Link href="/admin/dashboard" className="hover:text-foreground">
+            后台仪表盘
           </Link>
         </div>
       </div>

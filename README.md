@@ -25,7 +25,8 @@ npm run dev
 - 站点：[http://localhost:3000](http://localhost:3000)
 - 模块说明：`/stack`
 - 快速开始：`/start`
-- 管理示例（隐藏）：`/admin`
+- 后台登录（隐藏）：`/admin`
+- 后台仪表盘：`/admin/dashboard`（需登录）
 
 ### 默认管理员（示例鉴权）
 

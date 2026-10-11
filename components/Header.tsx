@@ -69,9 +69,14 @@ export function Header() {
             })}
           </nav>
           {user ? (
-            <Button variant="secondary" size="sm" onClick={logout} className="rounded-xl">
-              退出
-            </Button>
+            <>
+              <Button asChild variant="secondary" size="sm" className="rounded-xl">
+                <Link href="/admin/dashboard">后台</Link>
+              </Button>
+              <Button variant="secondary" size="sm" onClick={logout} className="rounded-xl">
+                退出
+              </Button>
+            </>
           ) : null}
         </div>
       </div>
