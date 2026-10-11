@@ -6,7 +6,7 @@ import { SkeletonBlock } from "@/components/SkeletonBlock";
 import { getSession } from "@/lib/auth";
 
 export const metadata = {
-  title: "管理员登录 · Ours",
+  title: "管理员登录 · LG_NewUi",
   description: "隐藏管理入口，登录后进入仪表盘",
 };
 
