@@ -14,9 +14,16 @@ function calc(startAt: string) {
 }
 
 export function DayFusionCard({ startAt }: { startAt: string }) {
-  const [parts, setParts] = useState(() => calc(startAt));
+  // Start at zeros on server/first paint to avoid SSR/client second mismatches.
+  const [parts, setParts] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
+    setParts(calc(startAt));
     const id = window.setInterval(() => setParts(calc(startAt)), 1000);
     return () => window.clearInterval(id);
   }, [startAt]);
