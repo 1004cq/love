@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Fixed dual admins (no public registration). Both have equal manage rights.
+model User {
+  id           String         @id @default(cuid())
+  username     String         @unique
+  passwordHash String
+  displayName  String
+  avatarUrl    String?
+  createdAt    DateTime       @default(now())
+  photos       AlbumPhoto[]
+  diaries      DiaryEntry[]
+  messages     Message[]
+  together     TogetherItem[]
+}
+
+model Setting {
+  id                  Int      @id @default(1)
+  relationshipStartAt DateTime
+  updatedAt           DateTime @updatedAt
+}
+
+model AlbumPhoto {
+  id           String   @id @default(cuid())
+  url          String
+  caption      String?
+  uploadedById String
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+}
+
+model DiaryEntry {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  imageUrl  String?
+  weather   String   @default("sunny")
+  mood      String   @default("happy")
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Anniversary {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime
+  note        String?
+  isImportant Boolean  @default(false)
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model TogetherItem {
+  id          String    @id @default(cuid())
+  title       String
+  note        String?
+  isCompleted Boolean   @default(false)
+  createdById String?
+  createdBy   User?     @relation(fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+}
+
+model MusicTrack {
+  id        String   @id @default(cuid())
+  title     String
+  artist    String?
+  url       String
+  coverUrl  String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
