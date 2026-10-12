@@ -253,10 +253,10 @@ if ($open_pw) {
 
     console.log("%c 未经授权 盗版必究 禁止抄袭 感谢配合", "color:#fadfa3;background:#333;padding:8px 15px;");
     console.log(
-        "%c 购买地址: https://blog.kikiw.cn/index.php/archives/65/",
+        "%c 购买地址: https://example.com/",
         "color: #fff; background-image:linear-gradient(to right, #1FA2FF 0%, #fdfdfd  21%, #fafafa  100%); padding: 8px 15px; border-radius: 5px;"
     );
-    console.log("%c Contact Me: 3439780232 | mail@kikiw.cn", "color:#fff;background:#000;padding:8px 15px;border-radius:10px");
+    console.log("%c LG_NewUi", "color:#fff;background:#000;padding:8px 15px;border-radius:10px");
     console.log("%c LG_NewUi <?php echo $version ?> | Powered by Ki", "color:#fff;background:linear-gradient(to right, hsl(206.57deg 100% 61.11%) 0%, hsl(57deg 100% 85.15%) 100%);padding:8px 15px;border-radius:15px");
 </script>
 

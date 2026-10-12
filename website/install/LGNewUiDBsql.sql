@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `LGNewUiDBsql 2024 冬至限定-20241221 By Ki 3439780232`
+-- 数据库： `LGNewUiDBsql 2024 冬至限定-20241221 By Ki`
 --
 
 -- --------------------------------------------------------
@@ -376,7 +376,7 @@ CREATE TABLE `MailSet` (
 --
 
 INSERT INTO `MailSet` (`id`, `host`, `port`, `mail_ssl`, `title`, `from_name`, `mail_user`, `mail_pw`, `admin_mail`, `admin_name`, `user_mail`, `user_name`, `SendingSwitch`, `LoginMailSwitch`, `LoginSendlMinute`) VALUES
-(1, 'smtp.qq.com', '465', 'true', 'Love_Li', '情侣小站', '123456@qq.com', 'qseeqbwwpsumcjjc', 'Boy@qq.com', '男主昵称', 'Girl@qq.com', '女主昵称', 'false', 0, 10);
+(1, 'smtp.example.com', '465', 'true', 'Love', '情侣小站', '', '', '', '男主昵称', '', '女主昵称', 'false', 0, 10);
 
 -- --------------------------------------------------------
 
@@ -427,8 +427,8 @@ CREATE TABLE `text` (
   `bgimg` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '首页背景图片地址',
   `Animation` int(1) NOT NULL COMMENT '动画开关',
   `if_aiv` int(1) NOT NULL COMMENT '判断头像自定义',
-  `Moelicp` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '20248288',
-  `policeICP` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '粤公网安备 1112223334455号',
+  `Moelicp` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `policeICP` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `ml_frame` int(11) NOT NULL,
   `fl_frame` int(11) NOT NULL,
   `seo_switch` int(11) NOT NULL DEFAULT '1',
@@ -443,7 +443,7 @@ CREATE TABLE `text` (
 --
 
 INSERT INTO `text` (`id`, `boy`, `girl`, `title`, `logo`, `writing`, `boyimg`, `girlimg`, `diyb_url`, `diyg_url`, `startTime`, `icp`, `Copyright`, `card1`, `card2`, `card3`, `card4`, `deci1`, `deci2`, `deci3`, `deci4`, `bgimg`, `Animation`, `if_aiv`, `Moelicp`, `policeICP`, `ml_frame`, `fl_frame`, `seo_switch`, `site_description`, `global_keywords`, `loveDayTitle`, `loveIconLink`) VALUES
-(1, 'My Name', 'My Name', 'LG_NewUi', 'LG_Demo', '小手一牵 岁岁年年～', '3439780232', '647159607', 'https://img.gejiba.com/images/57bc92dc7b60fd50f1649bad2c6429e7.jpg', 'https://img.gejiba.com/images/9575cb9cb22a30fe70795792431f2a96.jpg', '2023-07-19T00:00', '粤ICP备20240531999号', 'LG_NewUi Web', '点点滴滴', '祝福留言', '恋爱相册', '恋爱事件', '记录生活点点滴滴', '书写下你的留言祝福～', '记录下美好瞬间～', '总有些惊奇的际遇', 'https://img.gejiba.com/images/b0d44ed67e25235f552aacbe32d81b5c.jpg', 1, 1, '20248288', '粤公网安备 1112223334455号', 0, 0, 1, 'LGNewUI是一个专注于情侣和爱情的网站，提供了多种功能来帮助用户记录和分享他们的恋爱故事。该网站具有丰富的互动性和个性化设置选项，旨在为情侣用户提供一个温馨、浪漫的程序。', '情侣网站, 恋爱记录, 祝福留言, 情侣相册, 恋爱清单, 爱情纪念, 情侣头像框, 祝福语句, 情侣互动, 爱情相册, 情侣事件记录, 情侣留言, 爱情故事, 情感交流, 用户互动, 祝福卡片, 音乐分享, 甜蜜瞬间, 情侣活动, 爱情动态, LGNewUI', '这是我们一起走过的', '../Style/img/like.svg');
+(1, 'My Name', 'My Name', 'LG_NewUi', 'LG_Demo', '小手一牵 岁岁年年～', '10001', '10002', 'https://img.gejiba.com/images/57bc92dc7b60fd50f1649bad2c6429e7.jpg', 'https://img.gejiba.com/images/9575cb9cb22a30fe70795792431f2a96.jpg', '2023-07-19T00:00', '', 'LG_NewUi Web', '点点滴滴', '祝福留言', '恋爱相册', '恋爱事件', '记录生活点点滴滴', '书写下你的留言祝福～', '记录下美好瞬间～', '总有些惊奇的际遇', 'https://img.gejiba.com/images/b0d44ed67e25235f552aacbe32d81b5c.jpg', 1, 1, '', '', 0, 0, 1, 'LGNewUI是一个专注于情侣和爱情的网站，提供了多种功能来帮助用户记录和分享他们的恋爱故事。该网站具有丰富的互动性和个性化设置选项，旨在为情侣用户提供一个温馨、浪漫的程序。', '情侣网站, 恋爱记录, 祝福留言, 情侣相册, 恋爱清单, 爱情纪念, 情侣头像框, 祝福语句, 情侣互动, 爱情相册, 情侣事件记录, 情侣留言, 爱情故事, 情感交流, 用户互动, 祝福卡片, 音乐分享, 甜蜜瞬间, 情侣活动, 爱情动态, LGNewUI', '这是我们一起走过的', '../Style/img/like.svg');
 
 -- --------------------------------------------------------
 

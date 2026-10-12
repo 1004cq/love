@@ -1,13 +1,15 @@
-# Runtime / install (keep vendor committed for full extract)
-website/install/install.lock
+# Secrets / runtime privacy
 website/admin/Config_DB.php
+website/install/install.lock
 website/Lovefolder/*
 !website/Lovefolder/.gitkeep
+website/api/*.local.json
+.env
+.env.*
 
-# OS / IDE
+# Dependencies / junk
+wxapp/node_modules/
 .DS_Store
 .idea/
 .vscode/
 *.log
-.env
-.env.*

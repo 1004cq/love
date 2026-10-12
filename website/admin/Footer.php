@@ -1032,7 +1032,7 @@ include_once 'ajax.php';
     });
 
     console.log("%c LG_NewUi <?php echo $version ?> | Powered by Ki", "color:#fff;background:linear-gradient(270deg,#986fee,#8695e6,#68b7dd,#18d7d3);padding:8px 15px;border-radius:15px");
-    console.log("%c Q | 3439780232", "color:#fff;background:#000;padding:8px 15px;border-radius:15px");
+    console.log("%c LG_NewUi Admin", "color:#fff;background:#000;padding:8px 15px;border-radius:15px");
 </script>
 
 

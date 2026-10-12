@@ -1,7 +1,7 @@
 // Designed by:  Mauricio Bucardo
 // Original image:
 // https://dribbble.com/shots/5619509-Animated-Tab-Bar
-// @Project: LG_NewUi 3439780232
+// @Project: LG_NewUi 
 
 const body = document.body;
 const menu = body.querySelector(".menu");
