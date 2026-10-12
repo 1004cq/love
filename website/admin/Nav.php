@@ -159,9 +159,10 @@ $AdminAvatarAddress = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Coderthemes" name="LGNewUi" />
     <meta content="Author" name="Ki" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;family=Pacifico&amp;display=swap">
     <link rel="stylesheet" href="../icon/iconfont.css">
     <!-- App css -->
     <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -175,9 +176,6 @@ $AdminAvatarAddress = [
     <link href="/admin/assets/css/vendor/select.bootstrap4.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/Style/login/remixicon.css">
     <link rel="stylesheet" href="/admin/assets/css/modern-2026.css?v=<?php echo $versionCode ?>">
-    <style>
-        body { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; }
-    </style>
 
     <script src="../Style/Font/OsBr/OsBr.js"></script>
     <script src="../Style/jquery/jquery.min.js"></script>

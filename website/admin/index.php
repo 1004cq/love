@@ -6,7 +6,7 @@ require_once __DIR__ . '/VisitStats.php';
 $Behavior_sql = "select * from Behavior order by id desc limit 6";
 $resBehavior = mysqli_query($connect, $Behavior_sql);
 $visitStats = lg_visit_dashboard_stats($connect);
-$recentVisits = lg_visit_recent($connect, 8);
+$recentVisits = lg_visit_recent($connect, 12);
 ?>
 <div class="center_alert" style="text-align: center">
     <?php if ($login['user'] == $default_info['admin']) { ?>
@@ -29,174 +29,238 @@ $recentVisits = lg_visit_recent($connect, 8);
     <?php } ?>
 </div>
 
-<div class="lg-admin-page-head">
-    <div>
-        <h2>仪表盘</h2>
-        <p>访问概况、内容数据与最近登录行为</p>
-    </div>
-    <div>
-        <a href="/admin/VisitLog.php" class="btn btn-sm btn-outline-primary">访问统计</a>
-        <a href="/admin/system_status.php" class="btn btn-sm btn-outline-dark">系统状态</a>
-    </div>
-</div>
-
-<div class="lg-metric-grid">
-    <div class="lg-metric">
-        <p class="label">今日访问人数</p>
-        <div class="value"><?php echo (int) $visitStats['today']; ?><i>人</i></div>
-        <p class="hint">今日浏览 <?php echo (int) $visitStats['today_pv']; ?> 次</p>
-    </div>
-    <div class="lg-metric is-yesterday">
-        <p class="label">昨日访问人数</p>
-        <div class="value"><?php echo (int) $visitStats['yesterday']; ?><i>人</i></div>
-        <p class="hint">昨日浏览 <?php echo (int) $visitStats['yesterday_pv']; ?> 次</p>
-    </div>
-    <div class="lg-metric is-total">
-        <p class="label">总访问人数</p>
-        <div class="value"><?php echo (int) $visitStats['total']; ?><i>人</i></div>
-        <p class="hint">累计浏览 <?php echo (int) $visitStats['total_pv']; ?> 次</p>
-    </div>
-</div>
-
-<div class="lg-admin-section">
-    <div class="lg-admin-section-title">
-        <h4>内容数据</h4>
-    </div>
-    <div class="lg-stat-grid">
-        <div class="lg-stat">
-            <div class="lg-stat-icon">
-                <img draggable="false" src="../Style/img/AdminIcon/card4.png" alt="">
-            </div>
-            <div class="meta">
-                <p class="label">留言数量</p>
-                <div class="value"><?php echo (int) $shu; ?><i>条</i></div>
+<div class="row">
+    <div class="col-md-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted font-weight-normal mt-0 text-truncate">今日访问人数</h5>
+                <h3 class="my-2 py-1"><?php echo (int) $visitStats['today']; ?><i>人</i></h3>
+                <p class="mb-0 text-muted"><small>今日浏览 <?php echo (int) $visitStats['today_pv']; ?> 次</small></p>
             </div>
         </div>
-        <div class="lg-stat">
-            <div class="lg-stat-icon">
-                <img draggable="false" src="../Style/img/AdminIcon/card1.png" alt="">
-            </div>
-            <div class="meta">
-                <p class="label">点点滴滴</p>
-                <div class="value"><?php echo (int) $diannub; ?><i>条</i></div>
-            </div>
-        </div>
-        <div class="lg-stat">
-            <div class="lg-stat-icon">
-                <img draggable="false" src="../Style/img/AdminIcon/card3.png" alt="">
-            </div>
-            <div class="meta">
-                <p class="label">恋爱清单</p>
-                <div class="value"><?php echo (int) $listnub; ?><i>条</i></div>
+    </div>
+    <div class="col-md-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted font-weight-normal mt-0 text-truncate">昨日访问人数</h5>
+                <h3 class="my-2 py-1"><?php echo (int) $visitStats['yesterday']; ?><i>人</i></h3>
+                <p class="mb-0 text-muted"><small>昨日浏览 <?php echo (int) $visitStats['yesterday_pv']; ?> 次</small></p>
             </div>
         </div>
-        <div class="lg-stat">
-            <div class="lg-stat-icon">
-                <img draggable="false" src="../Style/img/AdminIcon/card2.png" alt="">
-            </div>
-            <div class="meta">
-                <p class="label">相册数量</p>
-                <div class="value"><?php echo (int) $imgnub; ?><i>个</i></div>
+    </div>
+    <div class="col-md-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted font-weight-normal mt-0 text-truncate">总访问人数</h5>
+                <h3 class="my-2 py-1"><?php echo (int) $visitStats['total']; ?><i>人</i></h3>
+                <p class="mb-0 text-muted"><small>累计浏览 <?php echo (int) $visitStats['total_pv']; ?> 次</small></p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="lg-panel-grid">
-    <section class="lg-panel">
-        <div class="lg-panel-head">
-            <h4>最近访问（精确到市级）</h4>
-            <a href="/admin/VisitLog.php" class="btn btn-sm btn-outline-primary">查看全部</a>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="header-title mb-0 size_18">最近访问（IP / 国家 / 省市）</h4>
+                    <a href="/admin/VisitLog.php" class="btn btn-sm btn-outline-primary">查看全部</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-centered mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>时间</th>
+                                <th>访问 IP</th>
+                                <th>国家</th>
+                                <th>省份</th>
+                                <th>城市</th>
+                                <th>页面</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!$recentVisits): ?>
+                                <tr>
+                                    <td colspan="6" class="text-muted">暂无访问记录（访客打开前台页面后会自动统计）</td>
+                                </tr>
+                            <?php endif; ?>
+                            <?php foreach ($recentVisits as $visit): ?>
+                                <tr>
+                                    <td>
+                                        <small class="text-muted">
+                                            <?php echo htmlspecialchars(date('Y-m-d H:i:s', (int) $visit['visit_time']), ENT_QUOTES, 'UTF-8'); ?>
+                                        </small>
+                                    </td>
+                                    <td><code><?php echo htmlspecialchars((string) $visit['ip'], ENT_QUOTES, 'UTF-8'); ?></code></td>
+                                    <td><?php echo htmlspecialchars((string) ($visit['country'] ?: '未知'), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php echo htmlspecialchars((string) ($visit['province'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php echo htmlspecialchars((string) ($visit['city'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td class="text-truncate" style="max-width: 220px;">
+                                        <?php echo htmlspecialchars((string) $visit['page'], ENT_QUOTES, 'UTF-8'); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="lg-panel-body table-responsive">
-            <table class="table table-centered mb-0">
-                <thead>
-                    <tr>
-                        <th>时间</th>
-                        <th>IP</th>
-                        <th>国家</th>
-                        <th>省份</th>
-                        <th>城市</th>
-                        <th>页面</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!$recentVisits): ?>
-                        <tr>
-                            <td colspan="6"><div class="lg-empty">暂无访问记录，访客打开前台后会自动统计</div></td>
-                        </tr>
-                    <?php endif; ?>
-                    <?php foreach ($recentVisits as $visit): ?>
-                        <tr>
-                            <td>
-                                <small class="text-muted">
-                                    <?php echo htmlspecialchars(date('m-d H:i', (int) $visit['visit_time']), ENT_QUOTES, 'UTF-8'); ?>
-                                </small>
-                            </td>
-                            <td><span class="lg-ip"><?php echo htmlspecialchars((string) $visit['ip'], ENT_QUOTES, 'UTF-8'); ?></span></td>
-                            <td><?php echo htmlspecialchars((string) ($visit['country'] ?: '未知'), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars((string) ($visit['province'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars((string) ($visit['city'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td class="text-truncate" style="max-width: 160px;">
-                                <?php echo htmlspecialchars((string) $visit['page'], ENT_QUOTES, 'UTF-8'); ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section class="lg-panel">
-        <div class="lg-panel-head">
-            <h4>最近登录</h4>
-            <a href="/admin/LoginInfo.php" class="btn btn-sm btn-outline-dark">登录行为</a>
-        </div>
-        <div class="lg-panel-body table-responsive">
-            <table class="table table-centered mb-0">
-                <thead>
-                    <tr>
-                        <th>管理员</th>
-                        <th>时间</th>
-                        <th>归属地</th>
-                        <th>设备</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $loginRows = 0;
-                    while ($info = mysqli_fetch_array($resBehavior)) {
-                        $loginRows++;
-                        ?>
-                        <tr>
-                            <td>
-                                <span class="badge badge-success-lighten">
-                                    <i class="mdi mdi-account-circle mr-1"></i>
-                                    <?php echo htmlspecialchars((string) $info['L_name'], ENT_QUOTES, 'UTF-8'); ?>
-                                </span>
-                            </td>
-                            <td>
-                                <small class="text-muted">
-                                    <?php echo htmlspecialchars(date('m-d H:i', (int) $info['L_date']), ENT_QUOTES, 'UTF-8'); ?>
-                                    <div><?php echo htmlspecialchars(time_tran($info['L_date']) . '登录', ENT_QUOTES, 'UTF-8'); ?></div>
-                                </small>
-                            </td>
-                            <td><?php echo htmlspecialchars((string) $info['L_city'], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td>
-                                <small><?php echo GetOsIcon($info['L_os']) . ' ' . htmlspecialchars((string) $info['L_os'], ENT_QUOTES, 'UTF-8'); ?></small>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    if ($loginRows === 0) {
-                        echo '<tr><td colspan="4"><div class="lg-empty">暂无登录记录</div></td></tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    </div>
 </div>
+
+<div class="row">
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="AminIndexCardIcon">
+                    <img draggable="false" src="../Style/img/AdminIcon/card4.png" alt="留言数量">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h5 class="text-muted font-weight-normal mt-0 text-truncate">留言数量</h5>
+                        <h3 class="my-2 py-1">
+                            <?php echo $shu ?><i>条</i>
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div> <!-- end row-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="AminIndexCardIcon">
+                    <img draggable="false" src="../Style/img/AdminIcon/card1.png" alt="点点滴滴">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h5 class="text-muted font-weight-normal mt-0 text-truncate" title="New Leads">点点滴滴</h5>
+                        <h3 class="my-2 py-1">
+                            <?php echo $diannub ?><i>条</i>
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div> <!-- end row-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="AminIndexCardIcon">
+                    <img draggable="false" src="../Style/img/AdminIcon/card3.png" alt="恋爱清单">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h5 class="text-muted font-weight-normal mt-0 text-truncate" title="Deals">恋爱清单</h5>
+                        <h3 class="my-2 py-1">
+                            <?php echo $listnub ?><i>条</i>
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div> <!-- end row-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="AminIndexCardIcon">
+                    <img draggable="false" src="../Style/img/AdminIcon/card2.png" alt="相册数量">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h5 class="text-muted font-weight-normal mt-0 text-truncate" title="Campaign Sent">相册数量</h5>
+                        <h3 class="my-2 py-1">
+                            <?php echo $imgnub ?><i>个</i>
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div> <!-- end row-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+
+</div>
+<!-- end row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-lg-4">
+                        <div class="text-lg-right">
+                            <button type="button" class="btn btn-danger mb-2 mr-2"><i class="mdi mdi-basket mr-1"></i>
+                                登录行为
+                            </button>
+                        </div>
+                    </div><!-- end col-->
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-centered mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>管理员昵称</th>
+                                <th>登录时间</th>
+                                <th style="white-space: nowrap;">登录地址</th>
+                                <th style="white-space: nowrap;">设备/浏览器</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($info = mysqli_fetch_array($resBehavior)) {
+                            ?>
+                                <tr>
+                                    <td>
+                                        <h5><span class="badge badge-success-lighten"><i
+                                                    class="mdi mdi-account-circle mr-1 rihjt-0"></i>
+                                                <?php echo $info['L_name'] ?>
+                                            </span>
+                                        </h5>
+
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">
+                                            <?php echo date('Y-m-d H:i:s', $info['L_date']) ?>
+                                            <div class="color">
+                                                <?php echo time_tran($info['L_date']) . "登录" ?>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <?php echo $info['L_city'] ?>
+                                    </td>
+                                    <td>
+                                        <button type="button" style="margin-top: 0.2rem;white-space: nowrap;"
+                                            class="btn btn-outline-dark btn-rounded btn-sm">
+                                            <?php echo GetOsIcon($info['L_os']) . $info['L_os'] . " ｜ " . GetBrIcon($info['L_br']) . $info['L_br'] ?>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <?php
 include_once 'Footer.php';
