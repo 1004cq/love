@@ -1,0 +1,24 @@
+
+.LoveTitle {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+}
+
+.LoveTitle text {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 10rpx 30rpx;
+  border-radius: 100rpx;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2rpx solid #fff;
+  box-shadow: 0 0 24rpx rgba(0, 0, 0, .06);
+  background: rgb(255 255 255 / 0.85);
+  color: #403f3f;
+  font-weight: bold;
+  font-size: 28rpx;
+}

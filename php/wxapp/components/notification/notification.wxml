@@ -1,0 +1,4 @@
+<view class="notification-container" wx:if="{{visible}}" animation="{{animation}}" style="background-color: {{backgroundColor}};top:{{TopPx}}">
+  <view class="iconfont mr-sm {{icon}}"></view>
+  <text class="message">{{message}}</text>
+</view>

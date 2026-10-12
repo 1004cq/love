@@ -1,0 +1,136 @@
+<loading isLoading="{{isLoading}}" catchtouchmove="true"></loading>
+
+<view class="popup-mask {{animationClassMask}}" wx:if="{{showPopup}}" catchtap="closePopup" catchtouchmove="true"></view>
+<view class="popup-content {{animationClass}}" wx:if="{{showPopup}}" catchtouchmove="true">
+   <text class="iconfont icon-cuowu Closebtn" bindtap="closePopup"></text>
+   <view class="popup-inner">
+      <view class="DayTitle"><text class="iconfont icon-jiantouarrow591 margin-right-xs"></text>{{DayCompleteData.title}}</view>
+      <view class="FooterCont">
+         <view wx:if="{{DayCompleteData.Type}}" class="Distance">过了{{DayCompleteData.LovePast}}天</view>
+         <view wx:else="{{!DayCompleteData.Type}}" class="Distance">还有{{DayCompleteData.LoveFuture}}天</view>
+         <view wx:if="{{DayCompleteData.Type}}" class="ActualDays">{{DayCompleteData.Loveday}}</view>
+         <view wx:else="{{!DayCompleteData.Type}}" class="ActualDays">{{DayCompleteData.FutureLoveday}}</view>
+      </view>
+   </view>
+</view>
+
+<block wx:if="{{like && like.audit_mode == 1}}">
+   <cTplOne LoversData="{{like}}" wx:if="{{like && like.template_id == 1}}"></cTplOne>
+   <cTplTwo LoversData="{{like}}" wx:if="{{like && like.template_id == 2}}"></cTplTwo>
+   <cTplThree binditemTap="handleItemTap" LoversData="{{like}}" wx:if="{{like && like.template_id == 3}}"></cTplThree>
+</block>
+
+<view class="main-wrapper" wx:else="{{like && like.audit_mode == 0}}">
+   <LGNavBar title="{{like.title}}"></LGNavBar>
+   <love></love>
+
+   <view class="Page_mian">
+      <view class="flex">
+         <view class="flex_1 nav_url margin-xs shadow-blur">
+            <view class="cuIcon-notice icon_max"></view>
+            <view class="writ_ti"><text class="writ">{{like.writing}}</text></view>
+         </view>
+      </view>
+      <info info="LoveDay"></info>
+      <view class="card ZindexMax">
+         <view class="padding">
+            <view class="time flex_x">
+               <!-- <view class="cuIcon-time ink"></view> -->
+               {{like.loveDayTitle}}
+            </view>
+            <view class="time flex_x Pd-0 Pd-t-10">第<text class="tian">{{like.startTime}}</text> 天</view>
+         </view>
+      </view>
+
+      <block wx:for="{{LoveDaydata}}" wx:key="index">
+         <view class="loveDayCard padding-sm padding-left radius {{item.day_type?'Anniversary':'CountDown'}}" bindtap="showPopupLayer" data-daytext="{{item.day_title}}" data-daytype="{{item.day_type}}" data-lovepast="{{item.LovePast}}" data-lovefuture="{{item.LoveFuture}}" data-loveday="{{item.Loveday}}" data-futureloveday="{{item.FutureLoveday}}">
+            <view class="time flex_x">
+               <view class="left_Text">
+                  <text class="cuIcon-{{item.day_type?'favorfill':'discover'}}"></text>
+                  {{item.day_title}}
+               </view>
+               <view class="Lday">
+                  <view wx:if="{{item.day_type}}">
+                     过了{{item.LovePast}}天
+                  </view>
+                  <view wx:else="{{!item.day_type}}">
+                     还有{{item.LoveFuture}}天
+                  </view>
+                  <view wx:if="{{item.day_type}}" class="Ldate">
+                     {{item.Loveday}}
+                  </view>
+                  <view wx:else="{{!item.day_type}}" class="Ldate">
+                     {{item.FutureLoveday}}
+                  </view>
+               </view>
+            </view>
+         </view>
+      </block>
+
+      <info info="最新留言"></info>
+      <view class="card">
+         <view class="padding">
+            <view class="cu-avatar-group">
+               <view class="cu-avatar round lg" wx:for="{{leaving}}" wx:if="{{index < like.index_leav_num}}" wx:key="index" style="background-image:url({{item.qq}});"></view>
+            </view>
+         </view>
+      </view>
+      <view class="card">
+         <view class="cu-list menu-avatar">
+            <view class="cu-item top_30" wx:for="{{leaving}}" wx:if="{{index < like.index_leav_num}}" wx:key="index">
+               <view class="cu-avatar radius lg radius_20" style="background-image:url({{item.qq}});"></view>
+               <view class="content">
+                  <view>
+                     <text class="text-cut">{{item.name}}</text>
+                     <view class="cu-tag round bg-orange sm">{{item.city == ''?'未知':item.city}}</view>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                     <rich-text class="text-cut" nodes="{{item.HideText}}" />
+                  </view>
+               </view>
+               <view class="action">
+                  <view class="text-grey text-xs">{{item.time}}</view>
+               </view>
+            </view>
+         </view>
+      </view>
+      <info info="最新文章"></info>
+      <view class="card" wx:for="{{wenz}}" wx:key="index" wx:if="{{index < like.index_essay_num && !item.encryptionSwitch}}">
+         <view class="cu-card dynamic">
+            <text bindtap="getPage" class="icon-gengduo ClickRight" data-id="{{item.id}}" data-name="{{item.articlename}}" data-time="{{item.articletime}}" data-title="{{item.articletitle}}"></text>
+            <view class="cu-item shadow">
+               <view class="cu-list menu-avatar">
+                  <view class="cu-item">
+                     <block wx:if="{{like.if_aiv == 0}}">
+                        <view class="cu-avatar round lg" wx:if="{{item.articlename == like.boy}}" style="background-image:url({{like.boyimg}});"></view>
+                        <view class="cu-avatar round lg" wx:else="" style="background-image:url({{like.girlimg}});"></view>
+                     </block>
+                     <block wx:else="{{like.if_aiv == 1}}">
+                        <view class="cu-avatar round lg" wx:if="{{item.articlename == like.boy}}" style="background-image:url({{like.diyb_url}});"></view>
+                        <view class="cu-avatar round lg" wx:else="" style="background-image:url({{like.diyg_url}});"></view>
+                     </block>
+                     <view class="content flex-sub">
+                        <view>{{item.articlename}}</view>
+                        <view class="text-gray text-sm flex justify-between">
+                           {{item.articletime}}
+                        </view>
+                     </view>
+                  </view>
+               </view>
+               <view class="text-content">
+                  {{item.articletitle}}
+               </view>
+               <!-- <view class="grid flex-sub padding-lr col-1">
+            <view class="bg-img only-img" style="background-image:url({{like.bgimg}});">
+            </view>
+          </view> -->
+               <view class="cont_text">
+                  <view class="xianzhi">
+                     {{item.arttext}}
+                  </view>
+               </view>
+            </view>
+         </view>
+      </view>
+   </view>
+</view>

@@ -1,0 +1,108 @@
+.lxy-nav-bar__button{
+  opacity: 0;
+}
+.imgtime{
+  font-size: 30rpx!important;
+  margin-right: 10rpx;
+}
+.title{
+  font-size: 30rpx;
+  color: #555;
+}
+
+.mr_15-20{
+   margin: 15rpx 20rpx;
+   margin-top: 5rpx;
+ }
+
+.radius_20{
+  border-radius: 15rpx;
+}
+
+.in_block{
+   display: inline-block;
+   margin-left: 20rpx;
+   margin-right: 20rpx;
+}
+
+.width100{
+   width: 100rpx!important;
+}
+
+.imgCard{
+   position: relative;
+   z-index: 1;
+}
+.imgCard image{
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   border-radius: 15rpx;
+}
+
+.imgCard .imgBg{
+   position: absolute;
+   left: 50%;
+   top: 0;
+   transform: translate(-50%,15rpx);
+   width: 90%;
+   height: 100%;
+   z-index: -1;
+   background: #e1e2e2;
+   border-radius: 15rpx;
+}
+
+.text-right{
+   text-align: right;
+}
+
+.imgCard .encrypInfo{
+   background: #f2f2f2 repeating-linear-gradient(-45deg, #fff, #fff 1.125rem, transparent 1.125rem, transparent 2.25rem);
+   width: 100%;
+   height: 100%;
+   border-radius: 15rpx;
+   text-align: center;
+   padding: 20rpx;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.imgCard .encrypInfo view{
+   margin: 5rpx auto;
+   letter-spacing: 3rpx;
+   font-size: 30rpx;
+   color: #8e9192;
+}
+
+.imgCard .encrypInfo view .cuIcon-lock{
+   font-size: 100rpx;
+}
+
+.imgCard .imgBgk{
+   position: absolute;
+   left: 50%;
+   top: 0;
+   transform: translate(-50%,26rpx);
+   width: 80%;
+   height: 100%;
+   z-index: -2;
+   background: #F1F2F3;
+   border-radius: 15rpx;
+}
+
+.PhotoTimeNew{
+   background: rgba(51, 51, 51, .05);
+   color: #666;
+   padding: 10rpx 20rpx;
+   border-radius: 50rpx;
+   display: flex;
+   align-items: center;
+   font-size: .9em;
+}
+
+.right_btn{
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+}

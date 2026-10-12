@@ -1,0 +1,169 @@
+/*!
+ * Project: LG_NewUi
+ * Author: Ki
+ * Last Updated: 2024-10-18
+ * Description: 小手一牵 岁岁年年
+ * 
+ * Copyright (c) 2022-2024 by Ki. All Rights Reserved.
+ * 
+ * License: This software is licensed for both personal and commercial use under specific terms.
+ * Redistribution, modification, or resale without explicit written permission is strictly prohibited.
+ * Unauthorized use, copying, or redistribution will result in immediate termination of support and updates.
+ * 
+ * Documentation and License: https://lguiy.kikiw.cn/wiki
+ * 
+ * * Warning: This is an original work, and all copyright belongs to LG_NewUi.
+ * Any attempt to scrape, copy, sell, or redistribute this software without permission is strictly forbidden.
+ * Violators will face immediate legal action, blacklisting, and permanent cessation of future updates.
+ * 
+ * Development requires substantial time and effort. We appreciate your respect for the work involved and your support.
+ */
+
+.central .list_texts {
+  background: #fff;
+  padding: 2rem 0;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 12px #ebedf0;
+  border: 1px solid rgba(208, 206, 206, 0.6) !important;
+}
+.central .list_texts .top-title {
+  font-size: 1.5rem;
+  line-height: 4rem;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+}
+.list_texts img{
+  width: 100%;
+  height: 100%;
+    box-shadow: 0 4px 8px 0 rgb(28 31 33 / 15%);
+    border-radius: 12px;
+  border: 1px solid rgba(208, 206, 206, 0.6) !important;
+  margin: 1.5rem 0;
+}
+.list_texts img:hover{
+    /*cursor: pointer;*/
+    cursor:url(../cur/hover.cur), pointer;
+}
+.row .card .list_texts {
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+}
+.row .card .list_texts .lovelist {
+  transition: height 2s;
+  width: 100%;
+  line-height: 3rem;
+}
+.row .card .list_texts .lovelist .open {
+  border-bottom: 1px solid rgba(208, 206, 206, 0.6) !important;
+  cursor: pointer;
+}
+.row .card .list_texts .lovelist .open .hied {
+  display: none;
+  width: 100%;
+  height: 100%;
+  transition: all 0.1s linear;
+}
+.row .card .list_texts i {
+  font-style: normal;
+  margin-right: 0.8rem;
+  font-size: 1.8rem;
+}
+.row .card .list_texts .air {
+  color: #ddd;
+}
+.row .card .list_texts .com {
+  color: #19ffa0;
+}
+.row .card .list_texts span {
+  font-size: 1.3rem;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+}
+.open img{
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px #ebedf07a;
+  border: 1px solid rgba(208, 206, 206, 0.6) !important;
+  margin: 1.5rem 0;
+}
+
+.ding_icon {
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+}
+
+.ding_icon svg {
+  width: 4rem;
+  height: 4rem;
+}
+
+.list_env {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.list_env .list_num {
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  display: inline-block;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  color: #fa5c7c;
+  border: 1px solid #fa5c7c;
+}
+
+.list_env .list_num:hover {
+  color: #fff;
+  background-color: #fa5c7c;
+  border-color: #fa5c7c;
+  cursor: pointer;
+}
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.3em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+li.cike {
+  border-bottom: none !important;
+  position: relative;
+}
+
+li {
+  list-style-type: none;
+}
+
+.cike:hover {
+  cursor: pointer;
+  cursor: url(../../Style/cur/hover.cur), pointer;
+}
+
+.img_list .content_a {
+  background: #f5f5f5!important;
+  padding: 0.8rem 1rem;
+}
+
+span.weisc {
+  padding: 0.4rem 1rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-align: center;
+  margin: 0.5rem 0;
+  margin-top: 1rem;
+  color: #ffbc00;
+  border: 1px solid #ffbc00;
+}

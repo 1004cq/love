@@ -1,0 +1,244 @@
+/*!
+ * Project: LG_NewUi
+ * Author: Ki
+ * Last Updated: 2024-10-18
+ * Description: 小手一牵 岁岁年年
+ * 
+ * Copyright (c) 2022-2024 by Ki. All Rights Reserved.
+ * 
+ * License: This software is licensed for both personal and commercial use under specific terms.
+ * Redistribution, modification, or resale without explicit written permission is strictly prohibited.
+ * Unauthorized use, copying, or redistribution will result in immediate termination of support and updates.
+ * 
+ * Documentation and License: https://lguiy.kikiw.cn/wiki
+ * 
+ * * Warning: This is an original work, and all copyright belongs to LG_NewUi.
+ * Any attempt to scrape, copy, sell, or redistribute this software without permission is strictly forbidden.
+ * Violators will face immediate legal action, blacklisting, and permanent cessation of future updates.
+ * 
+ * Development requires substantial time and effort. We appreciate your respect for the work involved and your support.
+ */
+
+ * {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
+    transition: .2s
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%
+}
+
+#homePage,
+.Width_limit_10re.lg_20rem,
+.div_marb_7rem {
+    display: none;
+}
+
+input,
+button {
+    font-size: 1em;
+    border-radius: 3px;
+    -webkit-appearance: none
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #e5e9ef;
+    background-color: #f4f5f7;
+    resize: vertical;
+}
+
+input:focus {
+    background-color: #fff;
+    outline: none
+}
+
+button {
+    border: 0;
+    background: #ee4261;
+    color: #fff;
+    cursor: pointer;
+    opacity: 1;
+    user-select: none
+}
+
+button:hover,
+button:focus {
+    opacity: .7
+}
+
+button:active {
+    opacity: 1
+}
+
+input::-webkit-input-placeholder {
+    color: #888787;
+    font-size: 14px;
+}
+
+.main {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    padding: 30px;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    background: #ffffff66;
+    border-radius: 18px;
+    box-shadow: 0 10px 60px 0 rgba(29, 29, 31, 0.09);
+    transition: all .12s ease-out;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+
+.alert {
+    width: 80px
+}
+
+.mk-side-form {
+    margin-bottom: 28px
+}
+
+.mk-side-form input {
+    padding: 2px 20px;
+    width: 77%;
+    height: 37px;
+    border: 1px solid #ebebeb;
+    border-right-color: transparent;
+    border-radius: 20px;
+    line-height: 37px;
+}
+
+.mk-side-form button {
+    position: absolute;
+    height: 30px;
+    border-radius: 20px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    right: 55px;
+    top: 0;
+    margin-top: 4px;
+}
+
+.import {
+    position: relative;
+}
+
+.pw-tip {
+    font-size: 26px;
+    text-align: center;
+    margin: 25px auto;
+    color: #383838;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    text-shadow: 0 2px 2px rgb(0 0 0 / 25%);
+    letter-spacing: 3px;
+}
+
+#pw-error {
+    color: red;
+    margin-top: 15px;
+    margin-bottom: -20px;
+}
+
+.return-home {
+    text-decoration: none;
+    color: #b1b1b1;
+    font-size: 16px
+}
+
+.topInfo .itps {
+    padding: 0.4rem 1rem;
+    background: #2196F3;
+    color: #fff;
+    border-radius: 0 0.5rem 0 0.5rem;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: 'Noto Serif SC', serif;
+    letter-spacing: 2px;
+}
+
+.return-home:hover {
+    color: #1E9FFF;
+    letter-spacing: 5px
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        width: 95%;
+        height: 300px;
+        padding: 30px;
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        background: #ffffff66;
+        border-radius: 18px;
+        box-shadow: 0 10px 60px 0 rgba(29, 29, 31, 0.09);
+        transition: all .12s ease-out;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+    }
+
+    .mk-side-form button {
+        position: absolute;
+        height: 30px;
+        border-radius: 20px;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        right: 5px;
+        top: 0;
+        margin-top: 5px;
+    }
+
+    .mk-side-form input {
+        padding: 2px 20px;
+        width: 100%;
+        height: 40px;
+        border: 1px solid #ebebeb;
+        border-right-color: transparent;
+        border-radius: 20px;
+        line-height: 37px;
+    }
+}
+
+#ToPage {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.toast-title{
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+}
+
+.toast-message{
+    line-height: 1.5em;
+}
+
+#LGNewUI-Tab-Page-Wrap{
+ display: none !important;       
+}

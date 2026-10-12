@@ -1,0 +1,86 @@
+<View class='nav'>
+   <navBar background='transparent' back="{{true}}" home="{{true}}" iconTheme='white' bindback="handlerGobackClick" bindhome="handlerGohomeClick"></navBar>
+</View>
+
+<loading isLoading="{{isLoading}}" catchtouchmove="true"></loading>
+
+<view class="PhotoCover">
+   <image class="CoverImage" src="{{Cover}}" mode="aspectFill" />
+   <view class="PhotoDataHead">
+      <view class="PhotoItem avatarStyle">
+         <image src="{{avatar}}" mode="widthFix" />
+      </view>
+      <view class="PhotoItem-warp">
+         <view class="PhotoItem userName">
+            <view>
+               {{pname}}
+            </view>
+         </view>
+         <view class="PhotoItem Title">
+            <view>
+               {{ptitle}}
+            </view>
+         </view>
+
+      </view>
+
+   </view>
+</view>
+
+<view class="mian">
+   <block wx:if="{{ShowCard}}">
+      <block wx:if="{{TopRefresh}}">
+         <view class="TopRefresh" bindtap="RefreshStorage">
+            <text class="icon-cuowu"></text>
+         </view>
+      </block>
+      <view class="err fadeIn" wx:if="{{(photo_data == 0|| photo_data == null) && !isLoading}}">
+         <text class="cuIcon-evaluate_fill lg"></text>
+         <view>本相册暂未上传图片</view>
+      </view>
+   </block>
+
+   <view wx:if="{{photo_data}}" class="PhotoCont-Warp">
+      <view class="left-column">
+         <block wx:for="{{leftColumnData}}" wx:key="id">
+            <view class="container">
+               <block wx:if="{{item.photo_type == 1}}">
+                  <video class="photo_video" poster="{{item.VideoCover}}" src="{{item.photo_url}}" />
+               </block>
+               <block wx:if="{{item.photo_type == 0}}">
+                  <image bindtap='previewimg' class="photo_img" src="{{item.photo_url}}" data-src="{{item.photo_url}}" mode="widthFix" lazy-load />
+               </block>
+               <view class="text">
+                  <view class="desc">{{item.photo_text}}</view>
+               </view>
+               <view class="photo_footer">
+                  <view class="date">{{item.photo_date}}</view>
+                  <view class="byname"><text> By: {{item.photo_byname}}</text></view>
+                  <image src="{{item.up_avatar}}" mode="widthFix" class="up_avatar"/>
+               </view>
+            </view>
+         </block>
+      </view>
+
+      <view class="right-column">
+         <block wx:for="{{rightColumnData}}" wx:key="id">
+            <view class="container">
+               <block wx:if="{{item.photo_type == 1}}">
+                  <video class="photo_video" poster="{{item.VideoCover}}" src="{{item.photo_url}}" />
+               </block>
+               <block wx:if="{{item.photo_type == 0}}">
+                  <image bindtap='previewimg' class="photo_img" src="{{item.photo_url}}" data-src="{{item.photo_url}}" mode="widthFix" lazy-load />
+               </block>
+               <view class="text">
+                  <view class="desc">{{item.photo_text}}</view>
+               </view>
+               <view class="photo_footer">
+                  <view class="date">{{item.photo_date}}</view>
+                  <view class="byname"><text>By: {{item.photo_byname}}</text></view>
+                  <image src="{{item.up_avatar}}" mode="widthFix" class="up_avatar"/>
+               </view>
+            </view>
+         </block>
+      </view>
+   </view>
+</view>

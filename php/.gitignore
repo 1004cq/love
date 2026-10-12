@@ -1,0 +1,5 @@
+website/vendor/
+website/install/install.lock
+website/admin/Config_DB.php
+website/Lovefolder/*
+!website/Lovefolder/.gitkeep

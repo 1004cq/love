@@ -1,0 +1,59 @@
+<view class="animation_wrapper">
+   <view class="animation animation_center"></view>
+   <view class="animation animation_left"></view>
+   <view class="animation animation_right"></view>
+</view>
+
+<view class="headArea-warp">
+   <view class="loversInfo-Area">
+      <view class="boyInfo">
+         <image class="Info-avatar" src="{{LoversData.if_aiv == 1 ? LoversData.diyb_url : LoversData.boyimg}}" mode="widthFix" />
+         <view class="Info-name">{{LoversData.boy}}</view>
+      </view>
+      <view class="girlInfo">
+         <image class="Info-avatar" src="{{LoversData.if_aiv == 1 ? LoversData.diyg_url : LoversData.girlimg}}" mode="widthFix" />
+         <view class="Info-name">{{LoversData.girl}}</view>
+      </view>
+   </view>
+</view>
+
+<view class="mainContentArea">
+
+   <view class="warningInfo">
+      <text class="iconfont icon-mima"></text>
+      本页面展示的所有数据均为静态演示内容，无法进行编辑、生成操作。
+   </view>
+   <view class="Time-Card">
+      <view class="Time-Cont">
+         <view class="Time-Title">
+            <text class="iconfont icon-jiantouarrow591"></text>
+            {{LoversData.loveDayTitle}}
+         </view>
+         <view class="Time-Text"> 第<text class="Time-Day">{{LoversData.startTime}}</text>天</view>
+      </view>
+   </view>
+
+   <view class="List-Card" wx:for="{{6}}" wx:for-index="index" wx:key="*this">
+      <view class="List-Cont">
+         <view class="List-Cover" style="background: url({{LoversData.test_cover}}) no-repeat center;background-size: cover;">
+         </view>
+         <view class="List-Info">
+            <view class="List-Info-Title">
+               {{LoversData.sample_title}}
+            </view>
+            <view class="List-Info-Desc">
+               {{LoversData.sample_description}}
+            </view>
+            <view class="List-Footer-Info">
+               <view class="Author">
+                  <image class="Author-avatar" src="{{index % 2 === 0  ? (LoversData.if_aiv == 1 ? LoversData.diyb_url : LoversData.boyimg) : (LoversData.if_aiv == 1 ? LoversData.diyg_url : LoversData.girlimg) }}" mode="widthFix" />
+                  <text class="Author-name">{{index % 2 === 0 ? LoversData.boy : LoversData.girl}}</text>
+               </view>
+               <view class="ReleaseTime">
+                  {{currentTime}}
+               </view>
+            </view>
+         </view>
+      </view>
+   </view>
+</view>

@@ -1,0 +1,8 @@
+<!-- <view class="loading-container" wx:if="{{isLoading}}">
+  <view class="loading-circle"></view>
+</view> -->
+
+<view class="loading-mask {{isLoading ? 'show' : ''}}">
+  <view class="loading-container">
+  </view>
+</view>

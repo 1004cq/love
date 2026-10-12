@@ -1,0 +1,14 @@
+:root { --lg-admin-accent: #6f61ff; --lg-admin-accent-2: #ff6d91; }
+body { background: #f5f6fa !important; }
+.navbar-custom { box-shadow: 0 8px 30px rgba(33, 29, 52, .08); }
+.card, .modal-content, .ImageUploadDiy {
+  border: 1px solid rgba(44, 39, 67, .08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 14px 42px rgba(49, 41, 80, .08) !important;
+}
+.btn-primary, .bg-primary {
+  border-color: transparent !important;
+  background: linear-gradient(135deg, var(--lg-admin-accent), var(--lg-admin-accent-2)) !important;
+}
+.form-control { border-radius: 10px; }
+@media (max-width: 767px) { .content-page { padding: 0 10px; } .card { border-radius: 13px !important; } }

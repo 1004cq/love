@@ -1,0 +1,235 @@
+/*!
+ * Project: LG_NewUi
+ * Author: Ki
+ * Last Updated: 2024-10-18
+ * Description: 小手一牵 岁岁年年
+ * 
+ * Copyright (c) 2022-2024 by Ki. All Rights Reserved.
+ * 
+ * License: This software is licensed for both personal and commercial use under specific terms.
+ * Redistribution, modification, or resale without explicit written permission is strictly prohibited.
+ * Unauthorized use, copying, or redistribution will result in immediate termination of support and updates.
+ * 
+ * Documentation and License: https://lguiy.kikiw.cn/wiki
+ * 
+ * * Warning: This is an original work, and all copyright belongs to LG_NewUi.
+ * Any attempt to scrape, copy, sell, or redistribute this software without permission is strictly forbidden.
+ * Violators will face immediate legal action, blacklisting, and permanent cessation of future updates.
+ * 
+ * Development requires substantial time and effort. We appreciate your respect for the work involved and your support.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  box-sizing: content-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+#bg {
+  width: 100%;
+  min-width: 250px;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0000008f;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+
+.container {
+  width: 100%;
+  min-width: 250px;
+  min-height: 100%;
+  position: relative;
+  z-index: 10;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .headText {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container .headText .InfoImg {
+  /* margin-top: 2rem; */
+  width: 100%;
+}
+
+.container .headText .InfoImg img {
+  max-width: 230px;
+  margin: auto;
+}
+
+
+.container .maintainTitle {
+  font-size: 2rem;
+  /* margin-top: 20px; */
+  letter-spacing: 2px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 5rem;
+  display: block;
+  background-image: linear-gradient(270deg, #ff4500, #ffa500, #ffd700, #90ee90, #00ffff, #1e90ff, #9370db, #ff69b4, #ff4500);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #0000;
+  animation: jianbian 60s linear infinite, maintainTitle-shadow 2s ease-in-out infinite alternate;
+}
+
+@keyframes maintainTitle-shadow {
+  from {
+    text-shadow: 0 0 0px #dddddd60;
+  }
+
+  to {
+    text-shadow: 1px 1px 15px #ffffffb3;
+  }
+}
+
+@keyframes jianbian {
+  to {
+    background-position: -800rem;
+  }
+}
+
+.container .introduce {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  padding: 0 28px;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 28px;
+}
+
+
+.container .quote {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  padding: 0 28px;
+  letter-spacing: 1px;
+  text-align: center;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 400;
+  line-height: 28px;
+  min-height: 100px;
+  transition: all 0.5s ease-in-out;
+}
+
+.container .quote::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1rem;
+  line-height: 1.5rem;
+  border-radius: 2px;
+  background-color: #fff;
+  animation: blink 0.8s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.BottomContent {
+  position: fixed;
+  bottom: 3rem;
+  left: 0;
+  width: 100%;
+}
+
+footer {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+footer .copyright {
+  color: #bfbfbf;
+  font-size: 1rem;
+  margin-top: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media screen and (min-width:768px) {
+
+  .container .maintainTitle {
+    font-size: 2rem;
+    /* margin-top: 28px; */
+  }
+
+  .container .introduce {
+    font-size: 1.5rem;
+    margin-top: 28px;
+    padding: 0 40px;
+  }
+
+  .container .quote::after {
+    height: 1rem;
+  }
+
+}
+
+@media screen and (min-width:992px) {
+
+  .container .maintainTitle {
+    font-size: 2rem;
+    /* margin-top: 32px; */
+  }
+
+  .container .introduce {
+    font-size: 18px;
+    margin-top: 36px;
+    padding: 0 80px;
+  }
+
+  .container .quote {
+    font-size: 1.2rem;
+    margin-top: 36px;
+    padding: 0 80px;
+  }
+
+
+  .container .quote::after {
+    height: 1rem;
+  }
+
+}

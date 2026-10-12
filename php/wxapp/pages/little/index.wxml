@@ -1,0 +1,78 @@
+<loading isLoading="{{isLoading}}" catchtouchmove="true"></loading>
+
+<LGNavBar title="{{AppLoveData.card1}}"></LGNavBar>
+<love></love>
+
+<view class="Page_mian">
+   <view class="flex">
+      <view class="flex_1 nav_url margin-xs shadow-blur">
+         <view class="cuIcon-notice icon_max mgr_r"></view>
+         <view class="writ_ti"><text class="writ">{{AppLoveData.deci1}}</text></view>
+      </view>
+   </view>
+
+   <view class="cu-modal {{ShowPwCard?'show':''}}" catchtouchmove="true">
+      <view class="cu-dialog">
+         <view class="cu-bar bg-white justify-end">
+            <view class="content">请输入密码解锁当前内容</view>
+            <view class="action" bindtap="hideModal">
+               <text class="cuIcon-close text-red"></text>
+            </view>
+         </view>
+         <view class="padding-xl">
+            <input type="text" bindinput="inputChange" value="{{inputValue}}" placeholder="请先输入密码"></input>
+         </view>
+         <button class="cu-btn bg-blue shadow margin-bottom-xl dialogBtn" bindtap="CheckPw"> 
+         <view class="icon-a-mima1 margin-right-xs"></view>认证密码</button>
+      </view>
+   </view>
+
+   <!-- <import src="../wxParse/wxParse.wxml" /> -->
+   <view wx:for="{{list}}" wx:key="index">
+      <view class="card">
+         <view class="cu-card dynamic">
+            <view class="cu-item shadow">
+               <view class="cu-list menu-avatar">
+                  <view class="cu-item">
+                     <block wx:if="{{AppLoveData.if_aiv == 0}}">
+                        <view class="cu-avatar round lg" wx:if="{{item.articlename == AppLoveData.boy}}" style="background-image:url({{AppLoveData.boyimg}});"></view>
+                        <view class="cu-avatar round lg" wx:else="" style="background-image:url({{AppLoveData.girlimg}});"></view>
+                     </block>
+                     <block wx:else="{{AppLoveData.if_aiv == 1}}">
+                        <view class="cu-avatar round lg" wx:if="{{item.articlename == AppLoveData.boy}}" style="background-image:url({{AppLoveData.diyb_url}});"></view>
+                        <view class="cu-avatar round lg" wx:else="" style="background-image:url({{AppLoveData.diyg_url}});"></view>
+                     </block>
+                     <view class="content flex-sub">
+                        <view>{{item.articlename}}</view>
+                        <view class="text-gray margin-top-xs text-sm flex justify-between">
+                           {{item.articletime}}
+                        </view>
+                     </view>
+                  </view>
+               </view>
+               <view class="text-content">
+                  {{!item.encryptionSwitch?item.articletitle:'*请输入密码后查看*'}}
+               </view>
+               <view class="cont_text">
+                  <view class="xianzhi">
+                     {{!item.encryptionSwitch?item.arttext:'管理员已加密当前内容 请输入密码后查看'}}
+                  </view>
+               </view>
+               <view class="right_btn margin-top-lg">
+                  <button bindtap="getPage" class="cu-btn round bg-blue" data-id="{{item.id}}" data-name="{{item.articlename}}" data-time="{{item.articletime}}" data-encryptionSwitch="{{item.encryptionSwitch}}" data-title="{{item.articletitle}}">
+                     <block wx:if="{{!item.encryptionSwitch}}">
+                        <view class="icon-gengduo yanji"></view>查看详情
+                     </block>
+                     <block wx:else="{{item.encryptionSwitch}}">
+                        <view class="icon-mima yanji"></view>密码认证
+                     </block>
+                  </button>
+               </view>
+            </view>
+         </view>
+      </view>
+   </view>
+
+
+
+</view>

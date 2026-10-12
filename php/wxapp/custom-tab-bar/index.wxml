@@ -1,0 +1,23 @@
+<view class="cu-bar tabbar bg-white" wx:if="{{isTabShow == 0}}">
+    <view class="action {{selected === 0 ? 'active' : 'default'}}" data-index="0" bindtap="switchTab">
+      <view class="iconfont icon-bijibenjilutongxunlu fontIconSize Font-min"></view> 
+    </view>
+    
+    <view class="action {{selected === 1 ? 'active' : 'default'}}" data-index="1" bindtap="switchTab">
+      <view class="iconfont icon-xinxi fontIconSize"></view> 
+    </view>
+    
+    <view class="action {{selected === 2 ? 'active' : 'default'}}" data-index="2" bindtap="switchTab">
+      <view class="iconfont icon-home-f fontIconSize Font-max"></view>
+    </view>
+
+    <view class="action {{selected === 3 ? 'active' : 'default'}}" data-index="3" bindtap="switchTab">
+      <view class="iconfont icon-mphoto-copy fontIconSize Font-mdie">
+      </view>
+    </view>
+
+    <view class="action {{selected === 4 ? 'active' : 'default'}}" data-index="4" bindtap="switchTab">
+      <view class="iconfont icon-yuyuejilu fontIconSize">
+      </view>
+    </view>
+  </view>

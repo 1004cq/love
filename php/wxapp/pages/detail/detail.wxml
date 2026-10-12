@@ -1,0 +1,19 @@
+<View class='nav'>
+  <navBar background='transparent' back="{{true}}" home="{{true}}" iconTheme='white' bindback="handlerGobackClick" bindhome="handlerGohomeClick"></navBar>
+</View>
+<view class="details_cover">
+  <image src="{{cover}}" mode="widthFix" />
+</view>
+<view class="detailsPage">
+  <view class="details_title">
+    <text class="iconfont icon-jiantouarrow591"></text>
+    <text>{{title}}</text>
+  </view>
+  <view class="details_content">
+    <text>{{content}}</text>
+  </view>
+  <view class="details_date">
+    记录于：
+    <text>{{time}}</text>
+  </view>
+</view>

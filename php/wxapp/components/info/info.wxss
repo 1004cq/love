@@ -1,0 +1,14 @@
+@import "../../ColorUI/main.wxss";
+@import "../../ColorUI/icon.wxss";
+.bg-whiteyy{
+  background: #fff;
+  border-radius: 10rpx;
+	background-image: var(--gradualBlue);
+	color: var(--white);
+}
+.text-orange{
+  color: #fff;
+}
+.bot{
+  margin: 50rpx 0;
+}

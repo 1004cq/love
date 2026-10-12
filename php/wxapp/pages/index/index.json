@@ -1,0 +1,8 @@
+{
+   "usingComponents": {
+      "cTplOne": "/components/cTplOne/cTplOne",
+      "cTplTwo": "/components/cTplTwo/cTplTwo",
+      "cTplThree": "/components/cTplThree/cTplThree"
+   },
+   "navigationBarTextStyle": "white"
+}
