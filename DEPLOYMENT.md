@@ -15,12 +15,14 @@
 4. 安装完成会自动创建 `install/install.lock`。请勿删除该文件。
 5. 登录 `/admin/` 后可在“系统状态”检查 PHP、MySQL、上传目录和扩展。
 
-## 小程序端配置
+## 小程序端配置（uni-app，推荐）
 
-1. 用微信开发者工具打开 `wxapp`。
-2. 编辑 `wxapp/config/env.js`：把 `https://example.com/` 改为网页端 HTTPS 域名。
-3. 在微信公众平台“开发管理 → 开发设置 → 服务器域名”添加该域名为 request 合法域名。
-4. 在 `project.config.json` 中填入自己的小程序 AppID，再上传代码审核/发布。
+1. 进入 `uniapp/`，执行 `npm install`。
+2. 编辑 `uniapp/src/config/env.js`：把 `https://example.com/` 改为网页端 HTTPS 域名。
+3. 运行 `npm run dev:mp-weixin`（或 `build:mp-weixin`），用微信开发者工具打开 `uniapp/dist/dev/mp-weixin`（或 `dist/build/mp-weixin`）。
+4. 在微信公众平台添加 request 合法域名；在 `src/manifest.json` → `mp-weixin.appid` 填入 AppID 后上传审核。
+
+旧版原生小程序仍在 `wxapp/`，仅作对照。
 
 小程序继续使用既有的 `api/data.json`、留言、文章、相册、恋爱清单等接口；新增 `api/health.php` 和 `api/version.json` 用于连接状态与版本确认。
 

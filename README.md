@@ -5,7 +5,8 @@ PHP 情侣小站（LGNewUI），含网页端与微信小程序端。
 | 路径 | 说明 |
 |------|------|
 | `website/` | 网页端（含 `vendor/`） |
-| `wxapp/` | 微信小程序端 |
+| `uniapp/` | 微信小程序端（uni-app · Vue 3，推荐） |
+| `wxapp/` | 旧版原生小程序（参考） |
 | `love.zip` | 脱敏后的打包副本 |
 | `DEPLOYMENT.md` | 部署说明 |
 

@@ -13,3 +13,8 @@ wxapp/node_modules/
 .idea/
 .vscode/
 *.log
+
+# uni-app
+uniapp/node_modules/
+uniapp/dist/
+uniapp/unpackage/
