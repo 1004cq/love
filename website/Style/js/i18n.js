@@ -108,7 +108,7 @@
         if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA' || tag === 'CODE' || tag === 'PRE') {
           return NodeFilter.FILTER_REJECT;
         }
-        if (parent.closest('[data-i18n-skip], .lg-lang-switch, .lg-theme-toggle')) {
+        if (parent.closest('[data-i18n], [data-i18n-placeholder], [data-i18n-skip], .lg-lang-switch, .lg-theme-toggle')) {
           return NodeFilter.FILTER_REJECT;
         }
         // Skip user content areas
