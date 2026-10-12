@@ -99,6 +99,27 @@ CREATE TABLE `Behavior` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `VisitLog`（访客统计）
+--
+
+CREATE TABLE `VisitLog` (
+  `id` int(11) NOT NULL,
+  `ip` varchar(64) NOT NULL COMMENT '访问IP',
+  `country` varchar(64) NOT NULL COMMENT '国家/地区',
+  `province` varchar(64) NOT NULL COMMENT '省份',
+  `city` varchar(64) NOT NULL COMMENT '城市（市级）',
+  `region` varchar(128) NOT NULL COMMENT '省市区完整归属地',
+  `page` varchar(255) NOT NULL COMMENT '访问路径',
+  `method` varchar(16) NOT NULL DEFAULT 'GET',
+  `user_agent` varchar(512) NOT NULL DEFAULT '',
+  `referer` varchar(512) NOT NULL DEFAULT '',
+  `visit_date` date NOT NULL COMMENT '访问日期',
+  `visit_time` int(11) NOT NULL COMMENT '访问时间戳'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `CloudStorageConfig`
 --
 
@@ -508,6 +529,15 @@ ALTER TABLE `Behavior`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 表的索引 `VisitLog`
+--
+ALTER TABLE `VisitLog`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_visit_date` (`visit_date`),
+  ADD KEY `idx_ip_date` (`ip`,`visit_date`),
+  ADD KEY `idx_city` (`city`);
+
+--
 -- 表的索引 `CloudStorageConfig`
 --
 ALTER TABLE `CloudStorageConfig`
@@ -624,6 +654,12 @@ ALTER TABLE `article`
 -- 使用表AUTO_INCREMENT `Behavior`
 --
 ALTER TABLE `Behavior`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用表AUTO_INCREMENT `VisitLog`
+--
+ALTER TABLE `VisitLog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

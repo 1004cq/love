@@ -347,6 +347,13 @@ $AdminAvatarAddress = [
                     </li>
 
                     <li class="side-nav-item">
+                        <a href="/admin/VisitLog.php" class="side-nav-link">
+                            <i class="dripicons-graph-line"></i>
+                            <span> 访问统计 </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
                         <a href="/admin/LoginInfo.php" class="side-nav-link">
                             <i class="dripicons-graph-bar"></i>
                             <span> 登录行为 </span>

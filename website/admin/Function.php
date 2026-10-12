@@ -114,9 +114,28 @@ function get_ips($ip)
     echo Get_City($ip);
 }
 
-//IP归属地获取 B （返回值模式）
-function Get_City($ip)
+/**
+ * Structured geo lookup for an IP (country / province / city).
+ * @return array{country:string,province:string,city:string,region:string,label:string}
+ */
+function Get_CityInfo($ip)
 {
+    static $cache = [];
+    $ip = trim((string) $ip);
+    $empty = [
+        'country' => '未知',
+        'province' => '',
+        'city' => '',
+        'region' => '',
+        'label' => '未知',
+    ];
+    if ($ip === '') {
+        return $empty;
+    }
+    if (isset($cache[$ip])) {
+        return $cache[$ip];
+    }
+
     $API_URL = 'https://api.nsmao.net/api/ipip/query';
     $get_post_data = array(
         'ip' => $ip,
@@ -124,14 +143,79 @@ function Get_City($ip)
     @$resdata = api::send($API_URL, $get_post_data, 'GET', false, '');
     @$CityArr = json_decode($resdata, true);
     if (@$CityArr['code'] == 200) {
-        if ((@$CityArr['data']['province'] == @$CityArr['data']['city']) ||  @$CityArr['data']['city'] == '') {
-            return @$CityArr['data']['country'] . " · " . @$CityArr['data']['province'];
-        } else {
-            return @$CityArr['data']['province'] . " · " . @$CityArr['data']['city'];
+        $country = trim((string) (@$CityArr['data']['country'] ?? ''));
+        $province = trim((string) (@$CityArr['data']['province'] ?? ''));
+        $city = trim((string) (@$CityArr['data']['city'] ?? ''));
+        // Some providers put district in "area" / "district"
+        $district = trim((string) (@$CityArr['data']['area'] ?? $CityArr['data']['district'] ?? ''));
+
+        if ($country === '') {
+            $country = '未知';
         }
+        // Normalize municipality / duplicate values (e.g. 北京 · 北京)
+        if ($city === '' && $province !== '') {
+            $city = $province;
+        }
+        if ($city !== '' && $province === '') {
+            $province = $city;
+        }
+
+        $parts = [];
+        if ($country !== '' && $country !== '未知') {
+            $parts[] = $country;
+        }
+        if ($province !== '' && $province !== $country) {
+            $parts[] = $province;
+        }
+        if ($city !== '' && $city !== $province) {
+            $parts[] = $city;
+        } elseif ($city !== '' && count($parts) < 2) {
+            // Keep city visible even for municipalities
+            if (!in_array($city, $parts, true)) {
+                $parts[] = $city;
+            }
+        }
+        if ($district !== '' && $district !== $city && $district !== $province) {
+            $parts[] = $district;
+        }
+
+        $regionParts = [];
+        if ($province !== '') {
+            $regionParts[] = $province;
+        }
+        if ($city !== '' && $city !== $province) {
+            $regionParts[] = $city;
+        } elseif ($city !== '' && $province === '') {
+            $regionParts[] = $city;
+        }
+        if ($district !== '' && $district !== $city) {
+            $regionParts[] = $district;
+        }
+
+        $region = implode(' · ', $regionParts);
+        $label = implode(' · ', $parts);
+        if ($label === '') {
+            $label = $country !== '' ? $country : '未知';
+        }
+
+        $info = [
+            'country' => $country,
+            'province' => $province,
+            'city' => $city !== '' ? $city : ($province !== '' ? $province : ''),
+            'region' => $region,
+            'label' => $label,
+        ];
     } else {
-        return "未知";
+        $info = $empty;
     }
+    $cache[$ip] = $info;
+    return $info;
+}
+
+//IP归属地获取 B （返回值模式）
+function Get_City($ip)
+{
+    return Get_CityInfo($ip)['label'];
 }
 
 function Get_QQData($qq)
