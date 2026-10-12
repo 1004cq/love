@@ -1,0 +1,245 @@
+@import "../../static/iconfont.wxss";
+
+@keyframes animation-left {
+   0% {
+      transform: translateY(-10%) translateX(-30%) rotate(-5deg);
+   }
+
+   25% {
+      transform: translateY(-15%) translateX(-15%) rotate(0deg);
+   }
+
+   50% {
+      transform: translateY(0%) translateX(0%) rotate(5deg);
+   }
+
+   75% {
+      transform: translateY(15%) translateX(-20%) rotate(0deg);
+   }
+
+   100% {
+      transform: translateY(-10%) translateX(-30%) rotate(-5deg);
+   }
+}
+
+@keyframes animation-right {
+   0% {
+      transform: translateY(-5%) translateX(30%) rotate(5deg);
+   }
+
+   25% {
+      transform: translateY(10%) translateX(15%) rotate(0deg);
+   }
+
+   50% {
+      transform: translateY(-10%) translateX(0%) rotate(-5deg);
+   }
+
+   75% {
+      transform: translateY(5%) translateX(20%) rotate(0deg);
+   }
+
+   100% {
+      transform: translateY(-5%) translateX(30%) rotate(5deg);
+   }
+}
+
+.animation {
+   animation-duration: 10s;
+   animation-iteration-count: infinite;
+   animation-timing-function: cubic-bezier(0.1, 0, 0.9, 1);
+   position: absolute;
+   border-radius: 100%;
+   opacity: .4;
+   height: 700rpx;
+}
+
+.animation_left {
+   width: 350rpx;
+   height: 700rpx;
+   z-index: -1;
+   left: -5%;
+   top: -10%;
+   animation-name: animation-left;
+   animation-direction: reverse;
+   background: #ffa602;
+}
+
+.animation_right {
+   width: 350rpx;
+   height: 700rpx;
+   z-index: -3;
+   right: -5%;
+   top: -10%;
+   animation-name: animation-right;
+   background: #2cff7d;
+}
+
+.animation_wrapper {
+   filter: blur(130rpx);
+   -webkit-filter: blur(130rpx);
+   z-index: -4;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   margin: 0 auto;
+   position: absolute;
+   width: 100%;
+   overflow: hidden;
+}
+
+
+.headArea-warp {
+   width: 100%;
+   height: 700rpx;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.headArea-warp .loversInfo-Area {
+   display: flex;
+   justify-content: space-around;
+}
+
+.headArea-warp .loversInfo-Area .boyInfo,
+.headArea-warp .loversInfo-Area .girlInfo {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 20rpx;
+}
+
+.headArea-warp .loversInfo-Area .boyInfo .Info-name,
+.headArea-warp .loversInfo-Area .girlInfo .Info-name {
+   font-size: 1.1em;
+   border: 1rpx solid rgb(255, 255, 255);
+   padding: 6rpx 30rpx;
+   border-radius: 50rpx;
+   background: #71717178;
+   color: #fff;
+   min-width: 150rpx;
+   text-align: center;
+}
+
+.headArea-warp .loversInfo-Area .Info-avatar {
+   width: 160rpx;
+   border-radius: 100rpx;
+}
+
+.mainContentArea {
+   padding: 0 50rpx;
+   padding-bottom: 50rpx;
+}
+
+.mainContentArea .Time-Card {
+   background: #eeeeee;
+   padding: 40rpx 20rpx;
+   border-radius: 20rpx;
+   box-shadow: 0px 0px 15px 0px rgba(59, 59, 59, 0.07);
+}
+
+.mainContentArea .Time-Card .Time-Cont {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: 1.2em;
+   color: #828282;
+}
+
+.mainContentArea .Time-Card .Time-Cont .Time-Text {
+   display: flex;
+   align-items: flex-end;
+}
+
+.mainContentArea .Time-Card .Time-Cont .Time-Day {
+   font-size: 2em;
+   margin: 0 20rpx;
+   transform: translateY(15rpx);
+   font-family: 'Impact';
+   letter-spacing: 5rpx;
+   color: #333;
+}
+
+.List-Card {
+   padding: 30rpx 20rpx;
+   box-shadow: 5rpx 0rpx 30rpx 0rpx rgba(163, 160, 160, 0.151);
+   margin: 30rpx 0;
+   border-radius: 20rpx;
+   border: thin solid hsl(0deg 0% 15% / .1);
+
+}
+
+.List-Card .List-Cont{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.List-Card .List-Cont .List-Cover{
+   width: 35%;
+   height: 200rpx;
+   border-radius: 20rpx;
+   box-shadow: 5rpx 5rpx 30rpx 0rpx rgba(34, 34, 34, 0.295);
+}
+
+.List-Card .List-Cont .List-Info{
+   max-width: 60%;
+}
+
+.List-Card .List-Cont .List-Info .List-Info-Title{
+   font-size: 1.2em;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   margin-bottom: 10rpx;
+   color: #555;
+}
+
+.List-Card .List-Cont .List-Info .List-Info-Desc{
+   display: -webkit-box; 
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   -webkit-line-clamp: 1;
+   font-size: .9em;
+   margin-bottom: 30rpx;
+   color: #999
+}
+
+.List-Card .List-Cont .List-Info .List-Footer-Info .Author{
+   display: flex;
+   align-items: center;
+   gap: 10rpx;
+}
+
+.List-Card .List-Cont .List-Info .List-Footer-Info{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   gap: 10rpx;
+   color: rgb(167, 167, 167)
+}
+
+.List-Card .List-Cont .List-Info .List-Footer-Info .Author .Author-avatar{
+   width: 50rpx;
+   border-radius: 100rpx;
+}
+
+.List-Card .List-Cont .List-Info .List-Footer-Info .ReleaseTime{
+   font-size: .8em;
+}
+
+.warningInfo{
+   line-height: 1.5em;
+   text-align: center;
+   margin: 0 20rpx 30rpx;
+   letter-spacing: 6rpx;
+   color: #ff6161;
+}
+
+.warningInfo .iconfont{
+   font-size: 1.2em;
+   letter-spacing: 0;
+}

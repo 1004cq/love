@@ -1,0 +1,117 @@
+/*!
+ * Project: LG_NewUi
+ * Author: Ki
+ * Last Updated: 2024-10-18
+ * Description: 小手一牵 岁岁年年
+ * 
+ * Copyright (c) 2022-2024 by Ki. All Rights Reserved.
+ * 
+ * License: This software is licensed for both personal and commercial use under specific terms.
+ * Redistribution, modification, or resale without explicit written permission is strictly prohibited.
+ * Unauthorized use, copying, or redistribution will result in immediate termination of support and updates.
+ * 
+ * Documentation and License: https://lguiy.kikiw.cn/wiki
+ * 
+ * * Warning: This is an original work, and all copyright belongs to LG_NewUi.
+ * Any attempt to scrape, copy, sell, or redistribute this software without permission is strictly forbidden.
+ * Violators will face immediate legal action, blacklisting, and permanent cessation of future updates.
+ * 
+ * Development requires substantial time and effort. We appreciate your respect for the work involved and your support.
+ */
+
+
+.article_list .content_a {
+    background: #ffffff66;
+    color: #787878;
+    box-shadow: 3px 4px 10px #fdfdfde8;
+    border: 1px solid #fff;
+}
+
+.article_list .title_a {
+    text-shadow: 0 2px 2px rgb(0 0 0 / 25%);
+}
+
+.article_list .article_list_head .aiv {
+    border: 1px solid #fff;
+}
+
+.time_card {
+    background: #a67cff;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 0.4rem;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+}
+
+.time_card:nth-child(8n+1) {
+    background: #fc5d79;
+}
+
+.time_card:nth-child(8n+2) {
+    background: #a67cff;
+}
+
+.time_card:nth-child(8n+3) {
+    background: #49d4a2;
+}
+
+.time_card:nth-child(8n+4) {
+    background: #ffa87c;
+}
+
+.time_card:nth-child(8n+5) {
+    background: #03a9f4;
+}
+
+.time_card:nth-child(8n+6) {
+    background: #19c0b0;
+}
+
+.time_card:nth-child(8n+7) {
+    background: #737576;
+}
+
+.time_card:nth-child(8n+8) {
+    background: #0fcaee;
+}
+
+.time_card .day_cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time_card .day_cont .day_title {
+    width: 100%;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time_card .day_cont .time_m {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 30%;
+}
+
+.time_card .day_cont .time_m .format {
+    margin-top: 0.6rem;
+    font-size: 1.1rem;
+}
+
+.day_cont .left_info {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    line-height: 2em;
+    cursor: pointer;
+}
+
+.day_cont .left_info .icon-fabiaowenzhang {
+    font-size: 20px;
+    margin-right: 0.2rem;
+}

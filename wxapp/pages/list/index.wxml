@@ -1,0 +1,63 @@
+<loading isLoading="{{isLoading}}" catchtouchmove="true"></loading>
+
+<LGNavBar title="{{AppLoveData.card4}}"></LGNavBar>
+
+<notification id="notification"></notification>
+
+<block wx:if="{{showPop}}">
+   <view class="LoveListSeeMore" animation="{{animationData}}" catchtouchmove="true">
+      <view class="CardCloseBtn" bindtap="hideModal">
+         <text class="iconfont icon-shanchu"></text>
+      </view>
+      <CardSwiper data="{{currentUrl}}" bindloadmore="loadMore"> </CardSwiper>
+   </view>
+</block>
+
+<love></love>
+
+<view class="Page_mian">
+   <view class="flex">
+      <view class="flex_1 nav_url margin-xs shadow-blur">
+         <view class="cuIcon-notice icon_max mgr_r"></view>
+         <view class="writ_ti"><text class="writ">{{AppLoveData.deci4}}</text></view>
+      </view>
+   </view>
+
+   <view class="tab-container">
+      <view class="tab-item {{activeTab === 'Success' ? 'active' : ''}}" bindtap="switchTab" data-id="Success">
+         <text>已完成</text>
+      </view>
+      <view class="tab-item {{activeTab === 'All' ? 'active' : ''}}" bindtap="switchTab" data-id="All">
+         <text>全部</text>
+      </view>
+      <view class="tab-item {{activeTab === 'Fail' ? 'active' : ''}}" bindtap="switchTab" data-id="Fail">
+         <text>未完成</text>
+      </view>
+   </view>
+
+   <view class="searchModule">
+      <input class="searchStyle" type="text" value="{{searchValue}}"  bindinput="onInputSearch" placeholder="请输入关键词..." />
+      <text class="iconfont icon-jiantouarrow591 searchBtn" bindtap="SubmitQuery"></text>
+   </view>
+
+
+   <view wx:for="{{lovelist}}" wx:key="index">
+      <view class="card">
+         <view class="cu-card dynamic">
+            <view class="cu-item shadow">
+               <view class="cont_text flex-row-center {{item.icon !== 0 ? 'pd-r-100' : ''}}" bindtap="{{item.listurl[0].url !== '0' ?'showModal':''}}" data-url="{{item.listurl}}">
+                  <!-- <text class="cuIcon-roundcheckfill max_icon {{item.icon == 0?'iconx':'icons'}}"></text> -->
+                  <text class="iconfont icon-zhengque max_icon {{item.icon == 0?'iconx':'icons'}}"></text>
+                  <text class="{{item.icon == 0?'err':'suee'}}">{{item.title || item.eventname }}</text>
+               </view>
+               <block wx:if="{{item.icon !== 0 && item.listurl[0].url !== '0'}}">
+                  <view class="seeMore">
+                     <text class="iconfont icon-gengduo" bindtap="showModal" data-url="{{item.listurl}}"></text>
+                  </view>
+               </block>
+
+            </view>
+         </view>
+      </view>
+   </view>
+</view>

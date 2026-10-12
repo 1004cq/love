@@ -1,0 +1,4 @@
+<!-- components/NavBar/NavBar.wxml -->
+<view class="LoveTitle" style="padding-top: {{navBarHeight}}px;">
+  <text>{{title}}</text>
+</view>

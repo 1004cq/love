@@ -1,0 +1,81 @@
+<loading isLoading="{{isLoading}}" catchtouchmove="true"></loading>
+
+<LGNavBar title="{{AppLoveData.card3}}"></LGNavBar>
+<love></love>
+<view class="Page_mian">
+   <view class="flex">
+      <view class="flex_1 nav_url margin-xs shadow-blur">
+         <view class="cuIcon-notice icon_max mgr_r"></view>
+         <view class="writ_ti"><text class="writ">{{AppLoveData.deci3}}</text></view>
+      </view>
+   </view>
+
+   <view class="cu-modal {{ShowPwCard?'show':''}}" catchtouchmove="true">
+      <view class="cu-dialog">
+         <view class="cu-bar bg-white justify-end">
+            <view class="content">请输入密码解锁当前内容</view>
+            <view class="action" bindtap="hideModal">
+               <text class="cuIcon-close text-red"></text>
+            </view>
+         </view>
+         <view class="padding-xl">
+            <input type="text" bindinput="inputChange" value="{{inputValue}}" placeholder="请先输入密码"></input>
+         </view>
+         <button class="cu-btn bg-blue shadow margin-bottom-xl dialogBtn" bindtap="CheckPw"> 
+         <view class="icon-a-mima1 margin-right-xs"></view>认证密码</button>
+      </view>
+   </view>
+
+   <view wx:for="{{xcimg}}" wx:key="index">
+      <view class="card">
+         <view class="cu-card dynamic">
+            <view class="cu-item shadow">
+               <view class="cu-list menu-avatar">
+                  <view class="cu-item">
+                     <view class="cu-avatar round lg" style="background-image:url({{item.Avatar}});"></view>
+                     <view class="content flex-sub">
+                        <view>{{item.name}}</view>
+                        <view class="text-gray margin-top-xs text-sm flex justify-between">
+                           {{item.title}}
+                        </view>
+                     </view>
+                  </view>
+               </view>
+
+               <view class="grid flex-sub col-1 mr_15-20">
+                  <view class="imgCard bg-img only-img radius_20" bindtap='previewimg' data-src="{{item.imgurl}}">
+                     <block wx:if="{{item.encryptionSwitch}}">
+                        <view class="encrypInfo">
+                           <view>
+                              <text class="icon-mima" style="font-size:100rpx;"></text>
+                           </view>
+                           <view>
+                              当前相册管理员已加密
+                           </view>
+                           <view>
+                              请解锁后查看...
+                           </view>
+                        </view>
+                     </block>
+                     <block wx:else="{{!item.encryptionSwitch}}">
+                        <image src="{{item.imgurl}}" mode="aspectFill" lazy-load />
+                     </block>
+                     <view class="imgBg"></view>
+                     <view class="imgBgk"></view>
+                  </view>
+               </view>
+               <view class="right_btn">
+                  <view class="PhotoTimeNew">
+                     <text class="icon-morenliulanqi margin-right-xs"></text>{{item.time}}
+                  </view>
+                  <view class="margin-tb-sm text-center in_block">
+                     <button bindtap="goPhotoList" data-code="{{item.code}}" data-cover="{{item.imgurl}}" data-ptitle="{{item.title}}" data-pname="{{item.name}}" data-pavatar="{{item.Avatar}}" data-encryptionSwitch="{{item.encryptionSwitch}}" class="cu-btn round bg-black width100 shadow-blur">
+                        <text class="icon-{{item.encryptionSwitch?'mima':'gengduo'}}"></text>
+                     </button>
+                  </view>
+               </view>
+            </view>
+         </view>
+      </view>
+   </view>
+</view>

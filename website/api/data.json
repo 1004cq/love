@@ -1,0 +1,157 @@
+{
+
+	"id":"1",
+
+	"boy":"Boy",
+
+	"girl":"Gril",
+
+	"title":"LG_NewUi",
+
+	"logo":"LG_Demo",
+
+	"writing":"小手一牵 岁岁年年～",
+
+	"boyimg":"10001",
+
+	"girlimg":"10002",
+
+	"diyb_url":"https:\/\/img.gejiba.com\/images\/57bc92dc7b60fd50f1649bad2c6429e7.jpg",
+
+	"diyg_url":"https:\/\/img.gejiba.com\/images\/9575cb9cb22a30fe70795792431f2a96.jpg",
+
+	"startTime":"2023-07-19T00:00",
+
+	"icp":"",
+
+	"Copyright":"LG_NewUi Web",
+
+	"card1":"点点滴滴",
+
+	"card2":"祝福留言",
+
+	"card3":"恋爱相册",
+
+	"card4":"恋爱事件",
+
+	"deci1":"记录生活点点滴滴",
+
+	"deci2":"书写下你的留言祝福～",
+
+	"deci3":"记录下美好瞬间～",
+
+	"deci4":"总有些惊奇的际遇",
+
+	"bgimg":"https:\/\/img.gejiba.com\/images\/b0d44ed67e25235f552aacbe32d81b5c.jpg",
+
+	"Animation":"1",
+
+	"if_aiv":"1",
+
+	"Moelicp":"20248288",
+
+	"policeICP":"",
+
+	"ml_frame":"0",
+
+	"fl_frame":"0",
+
+	"seo_switch":"1",
+
+	"site_description":"",
+
+	"global_keywords":"",
+
+	"loveDayTitle":"这是我们一起走过的",
+
+	"loveIconLink":"..\/Style\/img\/like.svg",
+
+	"Blurkg":"2",
+
+	"aiv_name_show":"1",
+
+	"index_essay_num":"3",
+
+	"index_leav_num":"15",
+
+	"carousel":[{
+
+		"url":"https:\/\/img.gejiba.com\/images\/47021e4863f21d29426bae3e1c037796.jpg"
+
+	},
+
+	{
+
+		"url":"https:\/\/img.gejiba.com\/images\/c7bb0fc9ab8aaf00588062f502382864.jpg"
+
+	},
+
+	{
+
+		"url":"https:\/\/img.gejiba.com\/images\/8cc6b86af3a169db11cfd9dc59d2079d.jpg"
+
+	},
+
+	{
+
+		"url":"https:\/\/img.gejiba.com\/images\/ded5a377126ff86db78bc17008f20e6f.jpg"
+
+	},
+
+	{
+
+		"url":"https:\/\/img.gejiba.com\/images\/a529aa2a8960dd5d181dc01e4ea8fc1c.jpg"
+
+	}],
+
+	"Fullscreen":"1",
+
+	"StationMaintenanceSwitch":"0",
+
+	"SmTitie":"站点正在维护中 请稍后访问！",
+
+	"SmText":"花开花落终有时，相逢相聚本无意。《LGNewUI》--Ki",
+
+	"SmBgUrl":"https:\/\/img.gejiba.com\/images\/46df62a621b0f0a256ea4a5ac47c3087.jpg",
+
+	"BackgroundMask":"2",
+
+	"RandomSort":"1",
+
+	"audit_mode":"1",
+
+	"template_id":"3",
+
+	"custom_font_url":"https:\/\/lovers.kikiw.cn\/Style\/Font\/TengXiangJiaLiDaYuanJian.ttf",
+
+	"swiperHeight":"700",
+
+	"sample_title":"正在读这篇文章的你是正在经历着青春岁月？",
+
+	"test_cover":"https:\/\/loveli.kikiw.cn\/Lovefolder\/20241030162713_6721ede1be872.webp",
+
+	"sample_description":"在时光的长河中，青春如同一颗璀璨而又转瞬即逝的流星，划过我们生命的夜空。它是一个短暂的美梦，当我们从梦中醒来，却发现它早已消失得无影无踪。那么，正在读这篇文章的你，是正在经历着如梦似幻的青春岁月，还是那一段段青春往事早已沉淀为心中难以言说的遗憾呢？",
+
+	"share_title":"LGNewUi",
+
+	"share_cover":"https:\/\/loveli.kikiw.cn\/uploads\/20240729105819_3.jpeg",
+
+	"jiequ":"30",
+
+	"anonymousArr":"https:\/\/img.gejiba.com\/images\/a3464b68829c65c86726f6d9b1da1984.jpg\nhttps:\/\/img.gejiba.com\/images\/d5de7616a13b063f165dce236c39b42b.jpg\nhttps:\/\/img.gejiba.com\/images\/f49926e0c49348b6d3203e8a22084954.jpg\nhttps:\/\/img.gejiba.com\/images\/017a15b9bb054ce5cf7f11cc2d0c38ca.jpg\nhttps:\/\/img.gejiba.com\/images\/4d898720377b0fa656e34c4a047a4bd2.png\nhttps:\/\/img.gejiba.com\/images\/e33fe0d2aa8854766cf26245f099bbf4.png\nhttps:\/\/img.gejiba.com\/images\/0c24f25f6fc543a60a82f2fd74ac19de.png\nhttps:\/\/img.gejiba.com\/images\/25f128c999a132d2fc34683a45294827.png\nhttps:\/\/img.gejiba.com\/images\/2e4c04dd573604d8967835cf6a5b8f29.png\nhttps:\/\/img.gejiba.com\/images\/33124c61d6db0e1cdf688d644d018d99.png\nhttps:\/\/img.gejiba.com\/images\/e18e0954745be0a7bc1c826a46e00f86.png",
+
+	"lanjiezf":"操傻屌",
+
+	"leav_day_num":"5",
+
+	"MsgSwitch":"1",
+
+	"MsgVerify":"1",
+
+	"CutOffSwitch":"1",
+
+	"EmojiSwitch":"1",
+
+	"randomWord":"情定今生 爱如繁星闪耀 永恒璀璨\n鸳鸯比翼飞 恩爱两不疑 情长岁月久\n携手同行 看遍世间美景 爱意永不渝\n琴瑟和鸣 奏响爱情乐章 相伴到天荒\n花开并蒂 情连一心 共赴美好前程\n愿君心似我心 定不负相思意 情久长\n比翼连枝 恩爱缠绵 岁月温柔相伴\n情牵一世 缘定三生 携手走过春秋\n两心相悦 爱意绵绵 共筑温馨港湾\n执手相伴 风雨同舟 情比金坚如初\n良缘由凤缔 佳偶自天成 恩爱永相随\n爱意深似海 情绵无尽期 白首永相伴\n心心相印 情情相连 一生一世一双人\n共赏烟霞 同度风雨 情路漫漫亦甜蜜\n佳偶天成心相印 情丝万缕永相连\n携手共赴红尘路 恩爱相伴到永远\n情投意合两情悦 相濡以沫伴一生\n愿得一人心 白首不相离 爱情永保鲜\n花前月下情无尽 携手同行到白头\n一世情长 两心相悦 三生有幸遇君\n比目连枝情似火 鸳鸯戏水爱如潮\n情丝缠绕 爱意交融 共谱恋曲悠扬\n红尘相伴情愈浓 岁月相守爱更深\n与君共执手 相伴岁月长 情暖人间路\n爱意悠悠情切切 携手同行乐融融\n同心同德情不断 相亲相爱到永远\n情定此生永不悔 爱伴一世常相随\n携手走过风雨路 共赏晴空万里云\n一眼万年情已定 一生相伴爱无尽\n情在时光里沉淀 爱在岁月中永恒\n比翼双飞情似蜜 连理同枝爱如花\n共赴爱河情无尽 同享人生乐无边\n情牵彼此心相守 爱满人间岁无忧\n执子之手情愈暖 与子偕老爱更浓\n爱意如诗韵悠长 情丝似画美未央\n两情相悦共欢颜 携手同行谱新篇\n情似春风拂面暖 爱如冬阳照心田\n红尘作伴情无尽 岁月为歌爱永恒\n愿君与卿情长久 朝朝暮暮共欢颜\n比翼齐飞情浪漫 同心共筑爱家园\n情在岁月中沉淀 爱于时光里升华\n携手相伴情路远 爱意绵延岁月长\n一眼定情心相印 终生相伴爱永恒\n情丝万缕系君心 爱意千般伴卿身\n共赴爱河情似海 同修姻缘爱如山\n情暖春秋冬夏 爱伴日月星辰\n执手相看情脉脉 倾心相守爱悠悠\n两情相悦春常在 一世恩爱梦也甜\n情定今生缘不尽 爱满人间福永恒\n携手同行情路畅 相濡以沫爱悠扬\n你们的爱似星辰璀璨 每一刻都盈满温暖与幸福 愿99哦\n岁月长河悠悠 携手相伴的你们定能共创美好回忆 祝福99\n爱情如春花绚烂盛放 两颗心永远相依相偎 愿你们长长久久\n祝福你们的心像潺潺溪水 涓涓流淌而永不干涸 情意悠悠绵长 99呀\n于彼此陪伴之时 你们定能发掘生活的每一帧美好瞬间 愿爱情99\n你们的爱情如同浩渺海洋 宽广无垠 彼此倾心守护 愿长长久久\n心 于每个清晨相互唤醒 每个夜晚相互依偎 愿你们爱情久久\n祝福在爱的旅途上并肩携手的你们 共历风雨沧桑 爱情99哦\n未来洒满阳光 盈满希望 爱意如初 岁月安然静好 愿你们99\n你们的爱情仿若美酒醇厚 随着时光流转 愈发香浓 永不失色 祝福99\n心像花朵欣然绽放 每日都弥漫着甜蜜的芬芳 愿你们爱情长长久久\n在岁月的轮回交替间 要永远珍视彼此相伴的时光 祝福你们99\n祝福你们的爱如涓涓细流 岁月悠悠 亦能经得住时光的考验 愿爱情久久\n生活宛如音乐和谐美妙 两颗心彼此印合 祝福你们长长久久\n你们的爱情像阳光般和煦温暖 驱散生活中的重重阴霾 愿99\n未来如同绚丽画卷 由你们共同绘就美好 祝福爱情长长久久\n祝福你们的心灵似广袤天空般辽阔 彼此成就不凡 愿你们99\n在每一个日出日落间 体悟爱的纯粹真谛 愿你们爱情久久\n爱情宛如晨露般澄澈晶莹 纯净而无瑕 祝福你们长长久久\n双手永远紧紧相握 在生活的各个角落 愿你们爱情99\n祝福你们的心如同繁星闪耀 永远相伴不离 愿长长久久\n你们的爱情像大海一样宽广无垠 包容所有风浪波折 愿99\n相伴的每一刻 都成为幸福的深深印记 祝福你们爱情长长久久\n未来充满欢声笑语 爱意浓郁满盈 愿你们99\n祝福你们的心仿若灯塔明亮闪耀 引领彼此走向幸福彼岸 愿爱情久久\n你们的爱如阳光遍洒 使生活处处充满温暖 祝福长长久久\n心灵似繁花盛绽的花海般绚烂 永远芬芳满溢 愿你们99\n在爱的旅途中 坚守初心 一路相伴同行 祝福你们爱情长长久久\n祝福你们的爱情如同彩虹般绚丽多彩 斑斓如画 愿99\n生活如同星空璀璨 彼此相互依存 愿你们爱情久久"
+
+}

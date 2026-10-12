@@ -1,0 +1,5 @@
+<view class="cu-bar bg-whiteyy margin-top shadow-blur bot">
+      <view class='action'>
+        <text class='cuIcon-titles text-orange'></text> {{info}}
+      </view>
+    </view>

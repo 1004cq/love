@@ -1,0 +1,9 @@
+{
+  "name": "LGNewUI",
+  "edition": "2026-upgraded",
+  "api_version": "3.1",
+  "minimum_php": "8.2",
+  "tested_target_php": "8.5",
+  "minimum_mysql": "5.7",
+  "mini_program_compatible": true
+}

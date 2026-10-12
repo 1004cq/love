@@ -1,0 +1,15 @@
+# Secrets / runtime privacy
+website/admin/Config_DB.php
+website/install/install.lock
+website/Lovefolder/*
+!website/Lovefolder/.gitkeep
+website/api/*.local.json
+.env
+.env.*
+
+# Dependencies / junk
+wxapp/node_modules/
+.DS_Store
+.idea/
+.vscode/
+*.log

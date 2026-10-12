@@ -1,0 +1,311 @@
+/*!
+ * Project: LG_NewUi
+ * Author: Ki
+ * Last Updated: 2024-10-18
+ * Description: 小手一牵 岁岁年年
+ * 
+ * Copyright (c) 2022-2024 by Ki. All Rights Reserved.
+ * 
+ * License: This software is licensed for both personal and commercial use under specific terms.
+ * Redistribution, modification, or resale without explicit written permission is strictly prohibited.
+ * Unauthorized use, copying, or redistribution will result in immediate termination of support and updates.
+ * 
+ * Documentation and License: https://lguiy.kikiw.cn/wiki
+ * 
+ * * Warning: This is an original work, and all copyright belongs to LG_NewUi.
+ * Any attempt to scrape, copy, sell, or redistribute this software without permission is strictly forbidden.
+ * Violators will face immediate legal action, blacklisting, and permanent cessation of future updates.
+ * 
+ * Development requires substantial time and effort. We appreciate your respect for the work involved and your support.
+ */
+
+
+.central .card {
+  margin: 0.5rem 0;
+}
+
+.central .title {
+  text-align: center;
+}
+
+.central .title h1 {
+  font-size: 2em;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+}
+
+.central .little_texts {
+  background: #fff;
+  padding: 2rem 0;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  word-break: break-all;
+  align-items: center;
+  box-shadow: 0px 0px 30px #c4c4c436;
+}
+
+.central .little_texts .top-title {
+  font-size: 1.5rem;
+  line-height: 4rem;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+}
+
+.central .little_texts .info {
+  color: #a1a1a1;
+}
+
+.central .little_texts .info span {
+  font-size: 1.2rem;
+}
+
+.central .little_texts .info i {
+  font-style: normal;
+  margin: 0 0.3rem;
+}
+
+.little_icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.file {
+  width: 100%;
+  margin: 1rem 0 0rem;
+  text-align: left;
+  font-size: 1.3rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.1rem;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 400;
+  color: #6f6666;
+  box-sizing: border-box;
+  padding-right: 1rem;
+  
+}
+
+.f2 {
+  font-size: 2rem !important;
+  line-height: 6rem !important;
+  width: 100%;
+  text-align: center;
+}
+
+.little_texts img {
+  width: 100%;
+  /* height: 100%; */
+  box-shadow: 2px 3px 12px 0 rgb(220 211 211 / 15%);
+  border-radius: 12px;
+  border: 1px solid rgba(208, 206, 206, 0.6) !important;
+  margin: 1.5rem 0;
+}
+
+.little_texts img:hover {
+  /*cursor: pointer;*/
+  cursor: url(../cur/hover.cur), pointer;
+}
+
+.little_texts a {
+  width: 100%;
+  text-align: center;
+}
+
+.line {
+  margin-top: 1.5rem;
+  width: 90%;
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #b5b5b5;
+}
+
+.line-top {
+  /*margin: 2rem 0;*/
+  border-top: 1px solid #e3e3e3;
+  width: 90%;
+}
+
+#md-view h1 {
+  font-size: 1.6rem;
+  line-height: 2rem;
+  margin: 1rem 0;
+  color: #03A9F4;
+  padding: 1rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  border-left: 4px solid #03A9F4;
+  border-radius: 0.3rem;
+  background: #f8f8f8;
+}
+
+.ios_page.article:last-child {
+  margin-bottom: 0;
+}
+
+.little_texts h2 {
+  font-size: 1.45rem;
+  line-height: 2rem;
+  margin: 1rem 0;
+  font-weight: 700;
+  color: #ff9554;
+  letter-spacing: 1px;
+  position: relative;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  background: #f8f8f8;
+}
+
+.little_texts h2::before {
+  content: "";
+  display: inline-block;
+  width: 3rem;
+  height: 0.4rem;
+  position: absolute;
+  top: 0.2rem;
+  border-radius: 1rem;
+  left: 2px;
+  background-color: #FF820C;
+  box-shadow: 1px 1px 10px #ffa34c66;
+}
+
+.little_texts h3 {
+  font-size: 1.45rem;
+  line-height: 2rem;
+  margin: 1rem 0;
+  font-weight: 700;
+  color: #373737;
+  letter-spacing: 1px;
+  position: relative;
+  padding-left: 0.5rem;
+  border-bottom: 1px solid #c1bcbc;
+}
+
+.little_texts h4 {
+  font-size: 1.45rem;
+  line-height: 2.3rem;
+  margin: 1.5rem 0;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #726d6d;
+  border-bottom: 1px dashed #c9c9c9;
+  letter-spacing: 1px;
+  padding-left: 0.5rem;
+}
+
+.little_texts h5 {
+  font-size: 1.35rem;
+  line-height: 1.5rem;
+  margin: 1rem 0;
+  color: #423e3e;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.little_texts h6 {
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  margin: 1rem 0;
+  color: #656262;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.little_texts b {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: bold;
+  color: #3c3c3c;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.little_texts s {
+  color: #777;
+}
+
+.little_texts i {
+  color: #b2b2b2;
+  font-style: italic;
+}
+
+iframe {
+  width: 100%;
+  height: 350px;
+  border-radius: 25px;
+  border: 2px solid #d9d9d9d1;
+  box-shadow: 2px 1px 15px rgb(36 37 38 / 44%);
+  margin: 20px 0;
+}
+
+pre {
+  display: none;
+}
+
+default-Code {
+  display: none;
+}
+
+quote {
+  background-image: linear-gradient(to right, #29cfdd 0%, #ffafe3 100%);
+  border-radius: 1rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.3rem 1rem;
+  font-size: 1.3rem;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  margin: 2rem 0;
+  padding-left: 2rem;
+}
+
+hr {
+  border: none;
+  border-top: 2px dashed #dedede;
+  text-align: center;
+  width: 100%;
+  margin: 35px auto;
+}
+
+quote.shadow-blur::after {
+  content: "";
+  width: 4px;
+  height: 40%;
+  background: #fff;
+  display: inline-block;
+  border-radius: 1rem;
+  position: absolute;
+  left: 10px
+}
+
+#md-view {
+  padding: 0 2rem;
+}
+
+#md-view desc {
+  position: relative;
+  padding: 1rem;
+  line-height: 1.7em;
+  background: #f5f5f5;
+  border-radius: 10px;
+  color: #747474;
+  display: block;
+  margin: 1rem 0;
+  text-indent:2em;
+}
+
+#md-view desc::before{
+  content: "“";
+  position: absolute;
+  font-size: 6rem;
+  color: #b9b9b9;
+  top: .8rem;
+  left: .5rem;
+  font-family: Georgia, serif;
+  text-indent:0;
+}

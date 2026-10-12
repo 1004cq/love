@@ -1,0 +1,7 @@
+{
+    "require": {
+        "aws/aws-sdk-php": "^3.321",
+        "aliyuncs/oss-sdk-php": "^2.7",
+        "qiniu/php-sdk": "^7.12"
+    }
+}

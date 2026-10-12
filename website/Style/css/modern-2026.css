@@ -1,0 +1,84 @@
+:root {
+  --lg-accent: #ff6b8a;
+  --lg-accent-2: #7c6cff;
+  --lg-bg: #f7f7fb;
+  --lg-surface: rgba(255, 255, 255, .82);
+  --lg-text: #282531;
+  --lg-muted: #7d7888;
+  --lg-border: rgba(62, 52, 78, .10);
+  --lg-shadow: 0 18px 50px rgba(68, 54, 91, .11);
+}
+
+html[data-lg-theme="dark"] {
+  color-scheme: dark;
+  --lg-bg: #15131b;
+  --lg-surface: rgba(35, 31, 44, .88);
+  --lg-text: #f6f1fa;
+  --lg-muted: #b9b0c3;
+  --lg-border: rgba(255, 255, 255, .10);
+  --lg-shadow: 0 20px 55px rgba(0, 0, 0, .30);
+}
+
+body {
+  background-color: var(--lg-bg) !important;
+  color: var(--lg-text);
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.card, .ios_page, .leav_card, .MessageCard, .article-card,
+.nav_url, .photo_content, .about_info, .left_info {
+  border: 1px solid var(--lg-border) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--lg-shadow) !important;
+  backdrop-filter: blur(16px);
+}
+
+.nav_url {
+  background: linear-gradient(135deg, var(--lg-accent), var(--lg-accent-2)) !important;
+  color: #fff !important;
+}
+
+html[data-lg-theme="dark"] .card,
+html[data-lg-theme="dark"] .ios_page,
+html[data-lg-theme="dark"] .leav_card,
+html[data-lg-theme="dark"] .MessageCard,
+html[data-lg-theme="dark"] .article-card,
+html[data-lg-theme="dark"] .photo_content,
+html[data-lg-theme="dark"] .about_info,
+html[data-lg-theme="dark"] .left_info {
+  background: var(--lg-surface) !important;
+  color: var(--lg-text) !important;
+}
+
+html[data-lg-theme="dark"] p,
+html[data-lg-theme="dark"] h1,
+html[data-lg-theme="dark"] h2,
+html[data-lg-theme="dark"] h3,
+html[data-lg-theme="dark"] span:not(.iconfont) { color: inherit; }
+
+.lg-theme-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 20px;
+  z-index: 9998;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--lg-border);
+  border-radius: 50%;
+  background: var(--lg-surface);
+  color: var(--lg-text);
+  box-shadow: var(--lg-shadow);
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .Width_limit_10rem, .maxW95 { width: min(94%, 720px) !important; }
+  .card, .ios_page, .leav_card, .MessageCard { border-radius: 16px !important; }
+  .lg-theme-toggle { right: 14px; bottom: 82px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; }
+}

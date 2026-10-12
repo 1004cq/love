@@ -1,0 +1,261 @@
+/*!
+ * Project: LG_NewUi
+ * Author: Ki
+ * Last Updated: 2024-10-18
+ * Description: 小手一牵 岁岁年年
+ * 
+ * Copyright (c) 2022-2024 by Ki. All Rights Reserved.
+ * 
+ * License: This software is licensed for both personal and commercial use under specific terms.
+ * Redistribution, modification, or resale without explicit written permission is strictly prohibited.
+ * Unauthorized use, copying, or redistribution will result in immediate termination of support and updates.
+ * 
+ * Documentation and License: https://lguiy.kikiw.cn/wiki
+ * 
+ * * Warning: This is an original work, and all copyright belongs to LG_NewUi.
+ * Any attempt to scrape, copy, sell, or redistribute this software without permission is strictly forbidden.
+ * Violators will face immediate legal action, blacklisting, and permanent cessation of future updates.
+ * 
+ * Development requires substantial time and effort. We appreciate your respect for the work involved and your support.
+ */
+
+#pjax-container {
+    width: 100% !important;
+}
+
+.photo_content {
+    /*-webkit-column-break-inside: avoid;*/
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    font-family: 'Noto Serif SC', serif;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.photo_content:hover {
+    background: #514e4e;
+    cursor: pointer;
+}
+
+.photo_content:hover img {
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.photo_content:hover video {
+    box-shadow: none;
+}
+
+
+.photo_content:hover .photo_text, .by_name, .by_name, .by_name b {
+    color: #d2d2d2 !important;
+}
+
+.photo_text, .by_name, .by_name, .by_name b {
+    color:#f4f4f4 !important;
+}
+
+.photo_content video {
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 12px #bcbec19e;
+}
+
+.photo_content .photo_info {
+    padding: 1rem 1rem 0.8rem;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all .3s;
+    transform: translateY(100%);
+    border-radius: 0 0 1rem 1rem;
+}
+
+
+.photo_content:hover .photo_info {
+    transform: translateY(0);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent); /* 使用渐变背景 */
+}
+
+.photo_content .photo_info .photo_le {
+    display: flex;
+    align-items: center;
+}
+
+.photo_content .photo_info .photo_rg {
+    text-align: right;
+    color: #a7a0a0;
+    margin-top: 0.3rem;
+    border-top: 1px dashed #ffffffa3;
+    padding: 0.5rem 0.5rem 0;
+}
+
+.photo_content .photo_info .photo_text {
+    margin-top: 0.3rem;
+    color: #949494;
+    text-indent: 2em;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.photo_content .photo_info .photo_le .by_img {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 5rem;
+    border: 1px solid #fff;
+}
+
+.photo_content .photo_info .photo_le .by_name {
+    margin-left: 0.5rem;
+    color: #9e9e9e;
+    font-weight: 400;
+}
+
+.photo_content .photo_info .photo_le .by_name b {
+    font-weight: 700;
+    color: #393839;
+}
+
+.photo_content:hover img{
+    transform: scale(1.13);
+}
+
+.photo_bg {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
+    position: relative;
+}
+
+.photo_bg .Photo_Data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem;
+    margin: 2rem 1rem;
+}
+
+.photo_bg .Photo_Data .Ftext{
+    font-family: 'Noto Serif SC', serif;
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    background: #e1e1e175;
+    position: relative;
+    z-index: 1;
+    padding: .3rem 1rem;
+    border: 1px solid #fff;
+    border-radius: 10rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+}
+
+.photo_bg .Photo_Data .Ftext .icon{
+    margin-right: .3rem !important;
+}
+
+.photo_bg .photo_title {
+    position: relative;
+    font-size: 1.8rem;
+    color: #fff;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 2px rgb(0 0 0 / 42%);
+    display: inline-block;
+}
+
+.photo_bg .photo_title::before {
+    position: absolute;
+    content: "";
+    width: 95%;
+    height: 2px;
+    background: #fff;
+    bottom: -6px;
+    border-radius: 10rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.photo_bg::after {
+    content: '';
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to top, #fff, transparent);
+}
+
+.mar_top2 {
+    margin-top: 2rem;
+}
+
+body {
+    background: #fff url(../../Style/img/rud.svg);
+}
+
+#homePage {
+    display: none;
+}
+
+
+.row.central.nav_k,
+.Width_limit_10re.lg_20rem {
+    display: none;
+}
+
+.gallery {
+    column-count: 4;
+    column-gap: 10px;
+    margin-bottom: 3rem;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 3px 12px #bcbec19e;
+    transition: all .5s;
+    min-height: 260px;
+    object-fit: cover;
+    background: #f6f6f6;
+}
+
+
+
+.TitleStyle{
+    width: 100%;
+    text-align: center;
+    font-size: 2.3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.photo_bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAKUlEQVQImU3IMREAIAgAwJfNkQCEsH8cijjpMf6vnXlQaIiJFx+omEBfmqIEZLe2jzcAAAAASUVORK5CYII=);
+}
+
+.img_date{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: #c9c0c0;
+}

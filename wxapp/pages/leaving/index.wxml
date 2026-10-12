@@ -1,0 +1,118 @@
+<loading isLoading="{{isLoading}}" catchtouchmove="true"></loading>
+
+<LGNavBar title="{{AppLoveData.card2}}"></LGNavBar>
+<love></love>
+<notification id="notification"></notification>
+<view class="Page_mian">
+
+   <block wx:if="{{AppLoveData.MsgSwitch == 1}}">
+      <view class="MsgFloatBtn" bindtap="showModal">
+         <text class="iconfont icon-bianqiantianjia"></text>
+      </view>
+   </block>
+
+   <view class="flex">
+      <view class="flex_1 nav_url margin-xs shadow-blur" bindtap="showModal">
+         <view class="cuIcon-notice icon_max mgr_r"></view>
+         <view class="writ_ti"><text class="writ">{{AppLoveData.deci2}}</text></view>
+      </view>
+   </view>
+
+   <view wx:for="{{leaving}}"  wx:key="index">
+      <view class="card">
+         <view class="cu-card dynamic">
+            <view class="cu-item shadow">
+               <view class="cu-list menu-avatar">
+                  <view class="cu-item">
+                     <view class="cu-avatar round lg" style="background-image:url({{item.qq}});"></view>
+                     <view class="content flex-sub">
+                        <view>{{item.name}}</view>
+                        <view class="text-gray margin-top-xs text-sm flex justify-between">
+                           {{item.time}}
+                        </view>
+                     </view>
+                  </view>
+               </view>
+
+               <view class="cont_text">
+                  <rich-text nodes="{{item.text}}" />
+               </view>
+
+               <view class="MsgFooter">
+                  <view class="UserInfoFooter">
+                     <view class="UserInfoItem">
+                        <text class="iconfont icon-liulanqi"></text>
+                        {{item.Br_info}}
+                     </view>
+                     <view class="UserInfoItem">
+                        <text class="iconfont icon-shebeizu"></text>
+                        {{item.Os_info}}
+                     </view>
+                     <view class="UserInfoItem" bindtap="showNotification" data-city=" {{item.city == ''?'外太空':item.city}}">
+                        <text class="iconfont icon-guishudi"></text>
+                        {{item.city == ''?'外太空':item.city}}
+                     </view>
+                  </view>
+
+               </view>
+
+               <!-- <view class="margin-tb-sm text-right">
+                  <button class="cu-btn round  bg-black osbr">{{item.Os_info}} | {{item.Br_info}}</button>
+               </view>
+
+               <view class="right_btn">
+                  <view class="cu-tag bg-cyan light round">
+                     <text class="cuIcon-locationfill ipdz"></text>{{item.city == ''?'未知':item.city}}
+                  </view>
+               </view> -->
+
+            </view>
+         </view>
+      </view>
+   </view>
+</view>
+
+<view class="pop" wx:if="{{showPop}}">
+   <view class="popbg {{bgOpTime ? 'opacity0' : ''}}" catchtouchmove="true"></view>
+   <view class="popup" animation="{{animationData}}" catchtouchmove="true">
+      <view class="popCloseBtn">
+         <text class="iconfont icon-xiahua" bindtap="hideModal"></text>
+      </view>
+      <view class="pop_Title"><text class="iconfont icon-yuanquan"></text>祝福留言</view>
+      <view class="pop_Form">
+         <view class="MsgHead margin-top">
+            <view class="UserAvatar margin-right-sm">
+               <image src="{{MsgUserPic}}" mode="widthFix" />
+            </view>
+            <view class="theme-switch" bindtap="toggleSwitch" data-select="{{isSelected}}">
+               <view class="switch"></view>
+               <view class="left_text fadeIn" wx:if="{{isSelected}}">匿名</view>
+               <view class="right_text fadeIn" wx:else="{{!isSelected}}">QQ</view>
+            </view>
+         </view>
+
+         <view class="get_qqInfo" wx:if="{{!isSelected}}">
+            <input type="text" placeholder="请输入QQ" value="{{MsgQQ}}" bindinput="onInputQQ" />
+            <text class="getqqInfoBtn iconfont icon-nicheng1" bindtap="getQQData"></text>
+         </view>
+         <input type="nickname" value="{{nickname}}" bindinput="onInputNickname" placeholder="请输入昵称" />
+         <textarea placeholder="留言内容..." value="{{message}}" bindinput="onInputMessage"></textarea>
+         <view class="Msg_Footer">
+            <view class="UserInfoItem {{MsgCity ? 'fadeIn':'hide'}}">
+               <text class="iconfont icon-guishudi"></text>
+               {{MsgCity}}
+            </view>
+            <block wx:if="{{AppLoveData.randomWord}}">
+               <view class="RandomQuote" bindtap="getRandomQuote">
+                  <text class="iconfont icon-gengduo1"></text>
+                  随机一言
+               </view>
+            </block>
+         </view>
+         <view class="Flex-Layout">
+            <!-- <button class="GreyBtn" type="default" bindtap="hideModal">取消</button> -->
+            <button class="Submit" type="primary" bindtap="submitMessage">发送</button>
+         </view>
+      </view>
+   </view>
+</view>

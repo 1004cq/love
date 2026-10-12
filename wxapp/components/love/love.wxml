@@ -1,0 +1,27 @@
+<view class="LGSwiper-container {{BackgroundMask == 1 ? 'BackgroundMask' : ''}}">
+  <view class="avatar">
+      <view class="boy_aiv">
+        <image class="boy" mode="widthFix" wx:if="{{likeInfo.if_aiv == 0}}" src="{{likeInfo.boyimg}}"></image>
+        <image class="boy" mode="widthFix" wx:else="{{likeInfo.if_aiv == 1}}" src="{{likeInfo.diyb_url}}"></image>
+        <view class="aiv_text">{{likeInfo.boy}}</view>
+      </view>
+      <!-- 中间爱心图标 -->
+      <view class="love_gif">
+        <image class="love" src="{{love_gif}}"></image>
+      </view>
+      <view class="girl_aiv">
+        <image class="girl" mode="widthFix" wx:if="{{likeInfo.if_aiv == 0}}" src="{{likeInfo.girlimg}}"></image>
+        <image class="girl" mode="widthFix" wx:if="{{likeInfo.if_aiv == 1}}" src="{{likeInfo.diyg_url}}"></image>
+        <view class="aiv_text">{{likeInfo.girl}}</view>
+      </view>
+    </view>
+  <swiper class="LGSwiper-swiper" autoplay="{{LGSwiperAutoplay}}" interval="3000" circular="true" current="{{LGSwiperCurIndex}}" bindchange="onLGSwiperChange" style="height:{{likeInfo.swiperHeight}}rpx">
+    <swiper-item wx:for="{{LGSwiperData}}" wx:key="index">
+      <image class="LGSwiper-image" src="{{item.url}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+
+  <view class="LGSwiper-indicator">
+    <view wx:for="{{LGSwiperData}}" wx:key="index" class="LGSwiper-indicator-item {{LGSwiperCurIndex === index ? 'active' : ''}}" data-index="{{index}}" bindtap="onLGIndicatorTap"></view>
+  </view>
+</view>

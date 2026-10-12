@@ -1,0 +1,58 @@
+{
+   "pages": [
+      "pages/index/index",
+      "pages/little/index",
+      "pages/leaving/index",
+      "pages/loveImg/index",
+      "pages/list/index",
+      "pages/xqy/index",
+      "pages/PhtotList/index",
+      "pages/detail/detail"
+   ],
+   "requiredBackgroundModes": [
+      "audio"
+   ],
+   "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "Weixin",
+      "navigationBarTextStyle": "black",
+      "enableShareAppMessage": true,
+      "enableShareTimeline": true,
+      "navigationStyle": "custom"
+   },
+   "tabBar": {
+      "custom": true,
+      "list": [
+         {
+            "pagePath": "pages/little/index",
+            "text": "文章"
+         },
+         {
+            "pagePath": "pages/leaving/index",
+            "text": "留言"
+         },
+         {
+            "pagePath": "pages/index/index"
+         },
+         {
+            "pagePath": "pages/loveImg/index",
+            "text": "相册"
+         },
+         {
+            "pagePath": "pages/list/index",
+            "text": "列表"
+         }
+      ]
+   },
+   "usingComponents": {
+      "navBar": "/components/navBar/navBar",
+      "love": "/components/love/love",
+      "info": "/components/info/info",
+      "LGNavBar": "/components/LGNavBar/LGNavBar",
+      "notification": "/components/notification/notification",
+      "loading": "/components/loading/loading"
+   },
+   "style": "v2",
+   "sitemapLocation": "sitemap.json"
+}

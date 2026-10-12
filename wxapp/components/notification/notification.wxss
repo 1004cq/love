@@ -1,0 +1,27 @@
+@import "../../static/iconfont.wxss";
+
+.notification-container {
+   display: flex;
+   align-items: center;
+   position: fixed;
+   top: 110px;
+   left: 50%;
+   transform: translateX(-50%);
+   min-width: 90%;
+   padding: 15px 20px;
+   border-radius: 8px;
+   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+   font-size: 14px;
+   color: #fff;
+   z-index: 1000;
+   backdrop-filter: blur(20px);
+   -webkit-backdrop-filter: blur(20px);
+ }
+
+ .iconfont.mr-sm{
+    margin-right: 10rpx;
+ }
+
+.message {
+  flex: 1;
+}

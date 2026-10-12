@@ -1,0 +1,39 @@
+@import "../ColorUI/main.wxss";
+@import "../ColorUI/icon.wxss";
+@import "../static/iconfont.wxss";
+
+.margin-bottom-xl {
+   margin-bottom: 0rpx;
+}
+.cu-bar.tabbar {
+  margin: 0 24rpx 18rpx;
+  width: calc(100% - 48rpx);
+  min-height: 104rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, .94) !important;
+  box-shadow: 0 14rpx 50rpx rgba(59, 44, 84, .14);
+  overflow: hidden;
+}
+.active{
+   color: #ff6688;
+ }
+ .default{
+   color: #9c9e9d;
+ }
+
+.fontIconSize{
+  font-size: 50rpx;
+}
+
+.fontIconSize.Font-min{
+  font-size: 42rpx;
+}
+
+.fontIconSize.Font-mdie{
+   font-size: 48rpx;
+ }
+
+.fontIconSize.Font-max{
+  font-size: 52rpx;
+}
+ 

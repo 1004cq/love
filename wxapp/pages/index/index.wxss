@@ -1,0 +1,223 @@
+.wrap {
+  text-align: center;
+}
+
+.ceshi {
+  padding: 20rpx 50rpx;
+  background: pink;
+  border-radius: 20rpx;
+  display: inline-block;
+  color: #fff;
+  margin-top: 50rpx;
+}
+
+.lxy-nav-bar__button {
+  opacity: 0;
+}
+
+.tian {
+   font-size: 80rpx;
+   color: rgb(243, 110, 87);
+   margin: 0 10rpx;
+   font-family: 'Impact' !important;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   line-height: 1;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   transform: translateY(13rpx);
+ }
+
+.ink {
+  display: inline-block;
+  font-size: 70rpx !important;
+  margin-right: 10rpx;
+}
+
+.flex_x {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.loveDayCard {
+  margin: 30rpx auto;
+  border-radius: 10rpx;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  color: #7b7b7b;
+  position: relative;
+}
+
+.loveDayCard.Anniversary::before,.loveDayCard.CountDown::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 15rpx;
+  background: -webkit-linear-gradient(0deg, #ffffff,#61aaff);background: linear-gradient(0deg, #ffffff,#61aaff);
+  width: 10rpx;
+  height: 80%;
+  transform: translate(-50%,-50%);
+  border-radius: 50rpx;
+}
+
+.loveDayCard.CountDown::before{
+  background: -webkit-linear-gradient(180deg, #f499be,#ffffff);background: linear-gradient(180deg, #f499be,#ffffff);
+}
+
+.loveDayCard.CountDown .left_Text{
+  color: #f499be;
+}
+
+.loveDayCard.Anniversary .left_Text{
+  color: #61aaff;
+}
+
+
+.loveDayCard .flex_x {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 34rpx;
+}
+
+.loveDayCard .left_Text {
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #565656;
+}
+
+.loveDayCard .Lday {
+  width: 30%;
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  letter-spacing: 1rpx;
+  text-align: right;
+}
+
+.loveDayCard .Ldate {
+  text-align: right;
+  margin-top: 10rpx;
+}
+
+.time {
+  font-size: 35rpx;
+  letter-spacing: 4rpx;
+  padding: 10rpx 0 10rpx;
+}
+
+
+.writ {
+  color: rgb(255, 255, 255);
+}
+
+.writ_ti {
+  color: #d3d3d3;
+}
+
+.cont_text {
+  background-color: var(--ghostWhite);
+  color: #999;
+  padding: 23rpx;
+  margin: 20rpx 0;
+  border-radius: 10rpx;
+}
+
+.xianzhi {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.cu-avatar-group {
+  margin-top: 20rpx;
+}
+
+
+/* 遮罩层 */
+.popup-mask {
+   position: fixed;
+   top: 0;
+   left: 0;
+   background-color: rgb(236 236 236 / 62%);
+   display: block;
+   backdrop-filter: blur(20px);
+   width: 100%;
+   height: 100%;
+   animation-duration: 0.3s;
+   animation-timing-function: ease-out;
+   z-index: 100000;
+ }
+ 
+ .popup-content {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 90%;
+   padding: 30rpx 40rpx;
+   background: white;
+   border-radius: 10px;
+   opacity: 0;
+   animation-duration: 0.3s;
+   animation-timing-function: ease-out;
+   display: block;
+   z-index: 1000001;
+ }
+ 
+ .popup-content .Closebtn {
+   position: absolute;
+   top: -23rpx;
+   right: -10rpx;
+   font-size: 46rpx;
+   background: #fff;
+   padding: 5rpx;
+   border-radius: 100rpx;
+ }
+ 
+ .popup-content .DayTitle {
+   font-size: 34rpx;
+   letter-spacing: 2rpx;
+   color: rgb(97, 97, 97);
+ }
+ 
+ .popup-content .FooterCont{
+   border-top: 1rpx solid rgb(228, 228, 228);
+   margin-top: 20rpx;
+   padding-top: 20rpx;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   color: rgb(133, 133, 133);
+ }
+ 
+ .popup-content .Closebtn {
+   position: absolute;
+   top: -23rpx;
+   right: -10rpx;
+   font-size: 46rpx;
+   background: #fff;
+   padding: 5rpx;
+   border-radius: 100rpx;
+ }
+ 
+ .popup-content .DayTitle {
+   font-size: 34rpx;
+   letter-spacing: 2rpx;
+   color: rgb(97, 97, 97);
+ }
+ 
+ .popup-content .FooterCont{
+   border-top: 1rpx solid rgb(228, 228, 228);
+   margin-top: 20rpx;
+   padding-top: 20rpx;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   color: rgb(133, 133, 133);
+ }
+ 

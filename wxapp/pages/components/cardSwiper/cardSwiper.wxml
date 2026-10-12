@@ -1,0 +1,9 @@
+<notification id="notification"></notification>
+<view class="card-swiper">
+  <view wx:for="{{swiperData}}" wx:key="index" data-index="{{index}}" data-image="{{item}}"  class="{{'card-swiper-item curdistance' + (swiperCurIndex + index) +  (!!item.slideClass? item.slideClass: '')}}"  catchtouchstart="touchCard.start" catchtouchmove="touchCard.move" catchtouchend="touchCard.end" catchtouchcancel="touchCard.cancel">
+   <image src="{{item.url}}" class="card-swiper-ItemPhoto" mode="aspectFill" lazy-load />
+    <view class="counter">
+      {{ index + 1 }} / {{ swiperData.length }}
+    </view>
+  </view>
+</view>

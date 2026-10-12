@@ -1,0 +1,6 @@
+{
+   "usingComponents": {
+      "CardSwiper": "../components/cardSwiper/cardSwiper"
+    },
+   "navigationBarTextStyle": "white"
+}

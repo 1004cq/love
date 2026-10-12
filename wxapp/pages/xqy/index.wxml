@@ -1,0 +1,64 @@
+<View class='nav'>
+   <navBar background='transparent' back="{{true}}" home="{{true}}" iconTheme='white' bindback="handlerGobackClick" bindhome="handlerGohomeClick"></navBar>
+</View>
+
+<loading isLoading="{{isLoading}}" catchtouchmove="true"></loading>
+
+<love></love>
+
+<view class="Page_mian">
+   <block wx:if="{{TopRefresh}}">
+      <view class="TopRefresh" bindtap="RefreshStorage">
+         <text class="icon-cuowu"></text>
+      </view>
+   </block>
+
+   <view class="flex">
+      <view class="flex_1 nav_url margin-xs shadow-blur">
+         <view class="writ_ti"><text class="writ">{{xqytitle}}</text></view>
+      </view>
+   </view>
+   <view class="card_Article">
+      <view class="cu-card dynamic bghui">
+         <view class="cu-item pagell mar">
+            <view class="cu-list menu-avatar">
+               <view class="cu-item">
+                  <block wx:if="{{AppLoveData.if_aiv == 0}}">
+                     <view class="cu-avatar round lg" wx:if="{{xqyname == AppLoveData.boy}}" style="background-image:url({{AppLoveData.boyimg}});"></view>
+                     <view class="cu-avatar round lg" wx:else="" style="background-image:url({{AppLoveData.girlimg}});"></view>
+                  </block>
+                  <block wx:else="{{AppLoveData.if_aiv == 1}}">
+                     <view class="cu-avatar round lg" wx:if="{{xqyname == AppLoveData.boy}}" style="background-image:url({{AppLoveData.diyb_url}});"></view>
+                     <view class="cu-avatar round lg" wx:else="" style="background-image:url({{AppLoveData.diyg_url}});"></view>
+                  </block>
+                  <view class="content flex-sub">
+                     <view class="adminNameStyle">{{xqyname}}</view>
+                     <view class="text-gray margin-top-xs text-sm flex justify-between">
+                        {{xqytime}}
+                     </view>
+                  </view>
+               </view>
+            </view>
+
+         </view>
+      </view>
+      <view class="padding-10">
+         <view class=" content">
+            <!-- <view class="text-center shadow-blur pad">
+               <text class="cuIcon-edit"></text>
+               Content
+
+            </view> -->
+
+            <!-- <template is="wxParse" data="{{wxParseData:WxParseListArr[index]}}" /> -->
+            <import src="../wxParse/wxParse.wxml" />
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+
+            <view class="MusicPlayPO" wx:if="{{Playersign}}" bindtap="MusicSP">
+               <image class="cover {{Playersign?'CoverAnt':''}}" src="{{MusicCover}}" mode="aspectFit"/>
+               <image class="BtnStop" src="../../images/{{Playersign?'stop.svg':'play.svg'}}" mode="aspectFit"/>
+            </view>
+         </view>
+      </view>
+   </view>
+</view>
