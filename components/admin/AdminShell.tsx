@@ -11,12 +11,14 @@ import {
   LogOut,
   MessageCircleMore,
   Notebook,
+  Settings2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/admin/dashboard", label: "后台首页", icon: LayoutDashboard },
+  { href: "/admin/settings", label: "站点设置", icon: Settings2 },
   { href: "/", label: "前台首页", icon: Home },
   { href: "/little", label: "点点滴滴", icon: Notebook },
   { href: "/leaving", label: "祝福留言", icon: MessageCircleMore },
@@ -46,7 +48,9 @@ export function AdminShell({
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-script text-2xl text-blush">LG_NewUi</p>
-          <h1 className="mt-1 font-display text-3xl tracking-tight">后台首页</h1>
+          <h1 className="mt-1 font-display text-3xl tracking-tight">
+            {pathname.startsWith("/admin/settings") ? "站点设置" : "后台首页"}
+          </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             你好，{displayName}。小手一牵 岁岁年年～
           </p>
@@ -67,10 +71,12 @@ export function AdminShell({
           const Icon = link.icon;
           const active =
             link.href === "/admin/dashboard"
-              ? pathname.startsWith("/admin")
-              : link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
+              ? pathname === "/admin/dashboard"
+              : link.href === "/admin/settings"
+                ? pathname.startsWith("/admin/settings")
+                : link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
           return (
             <Link
               key={link.href}

@@ -31,6 +31,7 @@ npm run dev
 
 - 站点：http://localhost:3000
 - 后台：http://localhost:3000/admin
+- 站点设置（改头像/昵称/口号/四入口卡）：http://localhost:3000/admin/settings
 
 ### 默认管理员（对齐 PHP login 种子）
 
@@ -40,6 +41,8 @@ npm run dev
 | user123 | love123 |
 
 可在 `.env` 修改后执行 `npm run db:seed`。
+
+头像支持：上传本地图片，或填写图片 URL / QQ 号（自动转 qlogo）。
 
 ## 技术栈
 

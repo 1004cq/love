@@ -1,17 +1,28 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SoftCard } from "@/components/SoftCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LG_BOY_AVATAR, LG_GIRL_AVATAR } from "@/lib/lg-assets";
 
 export function AdminPanel({
   initialStartAt,
+  boy,
+  girl,
+  boyAvatar,
+  girlAvatar,
   stats,
 }: {
   initialStartAt: string;
+  boy: string;
+  girl: string;
+  boyAvatar?: string | null;
+  girlAvatar?: string | null;
   stats: {
     photos: number;
     diaries: number;
@@ -55,8 +66,20 @@ export function AdminPanel({
         基本设置
       </h2>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-        调整 Love Day 起点（对齐 PHP `text.startTime`）。
+        快速改日期；头像 / 昵称 / 口号请到站点设置。
       </p>
+
+      <div className="mt-5 flex items-center justify-center gap-4">
+        <CoupleMini name={boy} avatar={boyAvatar || LG_BOY_AVATAR} />
+        <span className="text-blush">♥</span>
+        <CoupleMini name={girl} avatar={girlAvatar || LG_GIRL_AVATAR} />
+      </div>
+
+      <div className="mt-5 text-center">
+        <Button asChild className="rounded-full">
+          <Link href="/admin/settings">修改头像与站点文案</Link>
+        </Button>
+      </div>
 
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
@@ -93,5 +116,16 @@ export function AdminPanel({
       {message && <p className="mt-3 text-sm text-sage">{message}</p>}
       {error && <p className="mt-3 text-sm text-destructive">{error}</p>}
     </SoftCard>
+  );
+}
+
+function CoupleMini({ name, avatar }: { name: string; avatar: string }) {
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-white shadow-soft">
+        <Image src={avatar} alt={name} fill className="object-cover" sizes="56px" />
+      </div>
+      <p className="max-w-[5.5rem] truncate text-xs text-muted-foreground">{name}</p>
+    </div>
   );
 }

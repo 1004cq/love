@@ -175,6 +175,10 @@ export default async function AdminDashboardPage() {
 
             <AdminPanel
               initialStartAt={site.startTime.toISOString()}
+              boy={site.boy}
+              girl={site.girl}
+              boyAvatar={site.boyAvatar}
+              girlAvatar={site.girlAvatar}
               stats={{
                 photos: photoCount,
                 diaries: diaryCount,
