@@ -38,6 +38,13 @@ LG_DB_NAME=你的数据库名
 LG_SECURITY_CODE=至少8位的后台安全码
 ```
 
+## 性能优化（网页）
+
+- Apache：`.htaccess` 开启文本压缩、静态资源与 `api/*.json` 短期缓存。
+- PHP：去掉重复的 `text` 表查询；HTML 启用 gzip 缓冲；动态接口 `Cache-Control: no-store`。
+- 前端：合并 Google Fonts 请求、按页面裁剪 CSS/JS、去掉重复 lazyload、图片 `decoding/loading` 优化。
+- 健康检查：`/api/health.php` 增加数据库探测与 `duration_ms`。
+
 ## 本次升级内容
 
 - 适配 PHP 8.2–8.5，修复旧版登录语句、旧邮件组件 `each()` 与 `utf8_encode()` 兼容问题。

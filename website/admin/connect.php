@@ -20,15 +20,12 @@ $PublicSendingSwitch = $MailSend_arr['SendingSwitch'] ?? 0;
 $PublicLoginMailSwitch = $MailSend_arr['LoginMailSwitch'] ?? 0;
 $PublicLoginSendlMinut = intval($MailSend_arr['LoginSendlMinute'] ?? 10);
 
-$GlobalInformation = "select title FROM text";
-$GlobalInformation_res = mysqli_query($connect, $GlobalInformation);
-$GlobalInformation_arr = $GlobalInformation_res ? (mysqli_fetch_array($GlobalInformation_res) ?: []) : [];
-$LoveTitle = $GlobalInformation_arr['title'] ?? 'LGNewUI';
-
+// Single text query (was duplicated: title-only then select *)
 $sql = "select * from text";
 $result = mysqli_query($connect, $sql);
 $text = $result ? (mysqli_fetch_array($result) ?: []) : [];
 $GLOBALS['WebQueryResult'] = $text;
+$LoveTitle = $text['title'] ?? 'LGNewUI';
 
 $AvatarFrames_sql = "select * from CoupleAvatarFrames";
 $AvatarFrames_result = mysqli_query($connect, $AvatarFrames_sql);

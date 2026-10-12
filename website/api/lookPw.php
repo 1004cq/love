@@ -8,8 +8,10 @@
  * Copyright (c) 2022-2024 by Ki All Rights Reserved.
  */
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: GET, POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Content-Type: application/json; charset=utf-8");
 
 @$Id = $_GET['id'];
 @$checkPw = $_GET['encrypCode'];

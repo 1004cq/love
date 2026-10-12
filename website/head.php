@@ -51,11 +51,33 @@ include("ipjc.php");
 include_once "ip.php";
 error_reporting(0);
 
+if (function_exists('lg_enable_compression')) {
+    lg_enable_compression();
+}
+if (!headers_sent()) {
+    // HTML is personalized / session-aware — avoid shared caches
+    header('Cache-Control: private, no-cache, must-revalidate');
+}
+
 $sqlDiy = "select * from diySet";
 $resultDiy = mysqli_query($connect, $sqlDiy);
 if (mysqli_num_rows($resultDiy)) {
     $diy = mysqli_fetch_array($resultDiy);
 }
+
+$lgPage = function_exists('lg_current_page') ? lg_current_page() : 'index';
+$lgPjaxOn = isset($diy['Pjaxkg']) && (string) $diy['Pjaxkg'] === '1';
+$lgNeedBotui = $lgPjaxOn || $lgPage === 'about';
+$lgNeedPlyr = $lgPjaxOn || in_array($lgPage, ['page', 'little', 'index', 'imglist'], true);
+$lgNeedMasonry = $lgPjaxOn || in_array($lgPage, ['loveImg', 'imglist'], true);
+$lgNeedHighlight = $lgPjaxOn || in_array($lgPage, ['page', 'little'], true);
+$lgNeedLeavingCss = $lgPjaxOn || in_array($lgPage, ['leaving', 'index'], true);
+$lgNeedLittleCss = $lgPjaxOn || in_array($lgPage, ['little', 'page', 'index'], true);
+$lgNeedLoveImgCss = $lgPjaxOn || in_array($lgPage, ['loveImg', 'imglist'], true);
+$lgNeedListCss = $lgPjaxOn || $lgPage === 'list';
+$lgNeedAboutCss = $lgPjaxOn || $lgPage === 'about';
+$lgNeedOwO = $lgPjaxOn || $lgPage === 'leaving';
+
 
 if ($diy['StationMaintenanceSwitch']) {
     define('Maintain', true);
@@ -262,40 +284,67 @@ if ($open_pw) {
 
 <link rel="shortcut icon" href="/favicon.ico" />
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<link href="https://fonts.googleapis.com/css?family=Concert+One|Pacifico" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../Style/css/leaving.css?=v<?php echo $versionCode ?>">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://q1.qlogo.cn">
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Noto+Serif+SC:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../Style/css/index.css?=v<?php echo $versionCode ?>">
+<?php if ($lgNeedLeavingCss): ?>
+<link rel="stylesheet" href="../Style/css/leaving.css?=v<?php echo $versionCode ?>">
+<?php endif; ?>
+<?php if ($lgNeedLittleCss): ?>
 <link rel="stylesheet" href="../Style/css/little.css?=v<?php echo $versionCode ?>">
+<?php endif; ?>
+<?php if ($lgNeedAboutCss): ?>
 <link rel="stylesheet" href="../Style/css/about.css?=v<?php echo $versionCode ?>">
+<?php endif; ?>
+<?php if ($lgNeedBotui): ?>
 <link rel="stylesheet" href="../Botui/botui.min.css?=v<?php echo $versionCode ?>">
 <link rel="stylesheet" href="../Botui/botui-theme-default.css?=v<?php echo $versionCode ?>">
+<?php endif; ?>
+<?php if ($lgNeedLoveImgCss): ?>
 <link rel="stylesheet" href="../Style/css/loveImg.css?=v<?php echo $versionCode ?>">
+<?php endif; ?>
+<?php if ($lgNeedListCss): ?>
 <link rel="stylesheet" href="../Style/css/list.css?=v<?php echo $versionCode ?>">
+<?php endif; ?>
 <link rel="stylesheet" href="../Style/Font/font_list/iconfont.css?=v<?php echo $versionCode ?>">
 <link rel="stylesheet" href="../Style/toastr/toastr.css?=v<?php echo $versionCode ?>">
 <link rel="stylesheet" href="../Style/css/loadinglike.css?=v<?php echo $versionCode ?>">
 <link rel="stylesheet" href="../Style/static/css/aos.css?=v<?php echo $versionCode ?>">
+<?php if ($lgNeedPlyr): ?>
 <link rel="stylesheet" href="../Style/css/plyr.css?=v<?php echo $versionCode ?>">
+<?php endif; ?>
 <link rel="stylesheet" href="../icon/iconfont.css?=v<?php echo $versionCode ?>">
 <link rel="stylesheet" href="../Style/css/kicode.css?=v<?php echo $versionCode ?>">
 <link rel="stylesheet" href="/Style/css/modern-2026.css?v=<?php echo $versionCode ?>">
 
-<script src="../Style/Font/font_leav/iconfont.js"></script>
-<script src="../Style/Font/OsBr/OsBr.js"></script>
-<script src="../Botui/botui.min.js"></script>
+<script src="../Style/Font/font_leav/iconfont.js" defer></script>
+<script src="../Style/Font/OsBr/OsBr.js" defer></script>
+<?php if ($lgNeedBotui): ?>
 <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="../Botui/botui.min.js"></script>
+<?php endif; ?>
 <script src="../Style/jquery/jquery.min.js"></script>
+<?php if ($lgPjaxOn): ?>
 <script src="../Style/js/jquery.pjax.js" type="text/javascript"></script>
-<script src="../Style/js/plyr.js"></script>
-<script src="../Style/js/lazyload.js"></script>
-<script src="../Style/static/js/aos.js"></script>
-<script src="../Style/js/highlight.min.js"></script>
+<?php endif; ?>
+<?php if ($lgNeedPlyr): ?>
+<script src="../Style/js/plyr.js" defer></script>
+<?php endif; ?>
 <script src="../Style/js/lazyload.min.js"></script>
-<script src="../Style/js/masonry.pkgd.min.js"></script>
+<script src="../Style/static/js/aos.js"></script>
+<?php if ($lgNeedHighlight): ?>
+<script src="../Style/js/highlight.min.js" defer></script>
+<?php endif; ?>
+<?php if ($lgNeedMasonry): ?>
+<script src="../Style/js/masonry.pkgd.min.js" defer></script>
+<?php endif; ?>
 <script src="../Style/js/loading.js?=v<?php echo $versionCode ?>"></script>
+<?php if ($lgNeedOwO): ?>
 <script src="../Style/js/LGNewUiOwO.js?=v<?php echo $versionCode ?>"></script>
+<?php endif; ?>
+<script src="/Style/js/perf-2026.js?v=<?php echo $versionCode ?>" defer></script>
 
 
 <?php

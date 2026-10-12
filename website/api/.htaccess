@@ -1,0 +1,15 @@
+# Public read-only JSON snapshots for mini program / web
+<IfModule mod_headers.c>
+  <FilesMatch "\.(json)$">
+    Header set Cache-Control "public, max-age=120, stale-while-revalidate=60"
+    Header set Access-Control-Allow-Origin "*"
+    Header set Content-Type "application/json; charset=utf-8"
+  </FilesMatch>
+</IfModule>
+
+# Sensitive / dynamic endpoints must not be cached by intermediaries
+<FilesMatch "(?i)^(lookPw|select_photo|LGNewUiApiV3|health)\.php$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-store"
+  </IfModule>
+</FilesMatch>
