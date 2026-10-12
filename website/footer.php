@@ -569,7 +569,6 @@
 <?php endif ?>
 
 <script src="/Style/js/i18n.js?v=<?php echo $versionCode ?>"></script>
-<script src="/Style/js/theme-2026.js?v=<?php echo $versionCode ?>"></script>
 
 
 <?php

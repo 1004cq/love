@@ -29,7 +29,6 @@ if (@isset($_SESSION['loginadmin']) && @$_SESSION['loginadmin'] <> '') {
     <link rel="stylesheet" href="/Style/toastr/toastr.css">
     <link rel="stylesheet" href="/Style/login/style.css">
     <link rel="stylesheet" href="/Style/login/remixicon.css">
-    <link rel="stylesheet" href="/Style/css/modern-2026.css?v=<?php echo $versionCode ?>">
 </head>
 
 
@@ -228,8 +227,6 @@ if (@isset($_SESSION['loginadmin']) && @$_SESSION['loginadmin'] <> '') {
         })
     }
 </script>
-<script src="/Style/js/theme-2026.js?v=<?php echo $versionCode ?>"></script>
-
 </body>
 
 </html>

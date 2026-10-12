@@ -48,7 +48,6 @@ include_once 'ajax.php';
 <script src="../Style/js/clipboard.min.js"></script>
 <!-- App js -->
 <script src="/admin/assets/js/app.min.js"></script>
-<script src="/Style/js/theme-2026.js?v=<?php echo $versionCode ?>"></script>
 
 <script>
     $(function () {
