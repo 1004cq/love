@@ -1,9 +1,12 @@
 <?php
 session_start();
 include_once 'Nav.php';
+require_once __DIR__ . '/VisitStats.php';
 
 $Behavior_sql = "select * from Behavior order by id desc limit 6";
 $resBehavior = mysqli_query($connect, $Behavior_sql);
+$visitStats = lg_visit_dashboard_stats($connect);
+$recentVisits = lg_visit_recent($connect, 12);
 ?>
 <div class="center_alert" style="text-align: center">
     <?php if ($login['user'] == $default_info['admin']) { ?>
@@ -24,6 +27,84 @@ $resBehavior = mysqli_query($connect, $Behavior_sql);
             <strong>Warning - </strong> 当前密码为默认密码 请尽快修改！
         </div>
     <?php } ?>
+</div>
+
+<div class="row">
+    <div class="col-md-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted font-weight-normal mt-0 text-truncate">今日访问人数</h5>
+                <h3 class="my-2 py-1"><?php echo (int) $visitStats['today']; ?><i>人</i></h3>
+                <p class="mb-0 text-muted"><small>今日浏览 <?php echo (int) $visitStats['today_pv']; ?> 次</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted font-weight-normal mt-0 text-truncate">昨日访问人数</h5>
+                <h3 class="my-2 py-1"><?php echo (int) $visitStats['yesterday']; ?><i>人</i></h3>
+                <p class="mb-0 text-muted"><small>昨日浏览 <?php echo (int) $visitStats['yesterday_pv']; ?> 次</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted font-weight-normal mt-0 text-truncate">总访问人数</h5>
+                <h3 class="my-2 py-1"><?php echo (int) $visitStats['total']; ?><i>人</i></h3>
+                <p class="mb-0 text-muted"><small>累计浏览 <?php echo (int) $visitStats['total_pv']; ?> 次</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="header-title mb-0 size_18">最近访问（IP / 国家）</h4>
+                    <a href="/admin/VisitLog.php" class="btn btn-sm btn-outline-primary">查看全部</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-centered mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>时间</th>
+                                <th>访问 IP</th>
+                                <th>国家/地区</th>
+                                <th>归属地</th>
+                                <th>页面</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!$recentVisits): ?>
+                                <tr>
+                                    <td colspan="5" class="text-muted">暂无访问记录（访客打开前台页面后会自动统计）</td>
+                                </tr>
+                            <?php endif; ?>
+                            <?php foreach ($recentVisits as $visit): ?>
+                                <tr>
+                                    <td>
+                                        <small class="text-muted">
+                                            <?php echo htmlspecialchars(date('Y-m-d H:i:s', (int) $visit['visit_time']), ENT_QUOTES, 'UTF-8'); ?>
+                                        </small>
+                                    </td>
+                                    <td><code><?php echo htmlspecialchars((string) $visit['ip'], ENT_QUOTES, 'UTF-8'); ?></code></td>
+                                    <td><?php echo htmlspecialchars((string) ($visit['country'] ?: '未知'), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php echo htmlspecialchars((string) ($visit['region'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td class="text-truncate" style="max-width: 220px;">
+                                        <?php echo htmlspecialchars((string) $visit['page'], ENT_QUOTES, 'UTF-8'); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">

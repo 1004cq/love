@@ -114,9 +114,21 @@ function get_ips($ip)
     echo Get_City($ip);
 }
 
-//IP归属地获取 B （返回值模式）
-function Get_City($ip)
+/**
+ * Structured geo lookup for an IP.
+ * @return array{country:string,region:string,label:string}
+ */
+function Get_CityInfo($ip)
 {
+    static $cache = [];
+    $ip = trim((string) $ip);
+    if ($ip === '') {
+        return ['country' => '未知', 'region' => '', 'label' => '未知'];
+    }
+    if (isset($cache[$ip])) {
+        return $cache[$ip];
+    }
+
     $API_URL = 'https://api.nsmao.net/api/ipip/query';
     $get_post_data = array(
         'ip' => $ip,
@@ -124,14 +136,35 @@ function Get_City($ip)
     @$resdata = api::send($API_URL, $get_post_data, 'GET', false, '');
     @$CityArr = json_decode($resdata, true);
     if (@$CityArr['code'] == 200) {
-        if ((@$CityArr['data']['province'] == @$CityArr['data']['city']) ||  @$CityArr['data']['city'] == '') {
-            return @$CityArr['data']['country'] . " · " . @$CityArr['data']['province'];
-        } else {
-            return @$CityArr['data']['province'] . " · " . @$CityArr['data']['city'];
+        $country = trim((string) (@$CityArr['data']['country'] ?? ''));
+        $province = trim((string) (@$CityArr['data']['province'] ?? ''));
+        $city = trim((string) (@$CityArr['data']['city'] ?? ''));
+        if ($country === '') {
+            $country = '未知';
         }
+        if ($province === $city || $city === '') {
+            $region = $province;
+            $label = $country . ($province !== '' ? ' · ' . $province : '');
+        } else {
+            $region = $province . ' · ' . $city;
+            $label = $region;
+        }
+        $info = [
+            'country' => $country,
+            'region' => $region,
+            'label' => $label !== '' ? $label : $country,
+        ];
     } else {
-        return "未知";
+        $info = ['country' => '未知', 'region' => '', 'label' => '未知'];
     }
+    $cache[$ip] = $info;
+    return $info;
+}
+
+//IP归属地获取 B （返回值模式）
+function Get_City($ip)
+{
+    return Get_CityInfo($ip)['label'];
 }
 
 function Get_QQData($qq)
