@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '0');
+require_once __DIR__ . '/bootstrap.php';
 header("Content-Type:text/html; charset=utf-8");
 include_once __DIR__.'/Config_DB.php';
 mysqli_report(MYSQLI_REPORT_OFF);
