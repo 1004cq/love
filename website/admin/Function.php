@@ -115,15 +115,22 @@ function get_ips($ip)
 }
 
 /**
- * Structured geo lookup for an IP.
- * @return array{country:string,region:string,label:string}
+ * Structured geo lookup for an IP (country / province / city).
+ * @return array{country:string,province:string,city:string,region:string,label:string}
  */
 function Get_CityInfo($ip)
 {
     static $cache = [];
     $ip = trim((string) $ip);
+    $empty = [
+        'country' => '未知',
+        'province' => '',
+        'city' => '',
+        'region' => '',
+        'label' => '未知',
+    ];
     if ($ip === '') {
-        return ['country' => '未知', 'region' => '', 'label' => '未知'];
+        return $empty;
     }
     if (isset($cache[$ip])) {
         return $cache[$ip];
@@ -139,23 +146,67 @@ function Get_CityInfo($ip)
         $country = trim((string) (@$CityArr['data']['country'] ?? ''));
         $province = trim((string) (@$CityArr['data']['province'] ?? ''));
         $city = trim((string) (@$CityArr['data']['city'] ?? ''));
+        // Some providers put district in "area" / "district"
+        $district = trim((string) (@$CityArr['data']['area'] ?? $CityArr['data']['district'] ?? ''));
+
         if ($country === '') {
             $country = '未知';
         }
-        if ($province === $city || $city === '') {
-            $region = $province;
-            $label = $country . ($province !== '' ? ' · ' . $province : '');
-        } else {
-            $region = $province . ' · ' . $city;
-            $label = $region;
+        // Normalize municipality / duplicate values (e.g. 北京 · 北京)
+        if ($city === '' && $province !== '') {
+            $city = $province;
         }
+        if ($city !== '' && $province === '') {
+            $province = $city;
+        }
+
+        $parts = [];
+        if ($country !== '' && $country !== '未知') {
+            $parts[] = $country;
+        }
+        if ($province !== '' && $province !== $country) {
+            $parts[] = $province;
+        }
+        if ($city !== '' && $city !== $province) {
+            $parts[] = $city;
+        } elseif ($city !== '' && count($parts) < 2) {
+            // Keep city visible even for municipalities
+            if (!in_array($city, $parts, true)) {
+                $parts[] = $city;
+            }
+        }
+        if ($district !== '' && $district !== $city && $district !== $province) {
+            $parts[] = $district;
+        }
+
+        $regionParts = [];
+        if ($province !== '') {
+            $regionParts[] = $province;
+        }
+        if ($city !== '' && $city !== $province) {
+            $regionParts[] = $city;
+        } elseif ($city !== '' && $province === '') {
+            $regionParts[] = $city;
+        }
+        if ($district !== '' && $district !== $city) {
+            $regionParts[] = $district;
+        }
+
+        $region = implode(' · ', $regionParts);
+        $label = implode(' · ', $parts);
+        if ($label === '') {
+            $label = $country !== '' ? $country : '未知';
+        }
+
         $info = [
             'country' => $country,
+            'province' => $province,
+            'city' => $city !== '' ? $city : ($province !== '' ? $province : ''),
             'region' => $region,
-            'label' => $label !== '' ? $label : $country,
+            'label' => $label,
         ];
     } else {
-        $info = ['country' => '未知', 'region' => '', 'label' => '未知'];
+        $info = $empty;
     }
     $cache[$ip] = $info;
     return $info;

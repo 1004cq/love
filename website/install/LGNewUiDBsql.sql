@@ -106,7 +106,9 @@ CREATE TABLE `VisitLog` (
   `id` int(11) NOT NULL,
   `ip` varchar(64) NOT NULL COMMENT '访问IP',
   `country` varchar(64) NOT NULL COMMENT '国家/地区',
-  `region` varchar(128) NOT NULL COMMENT '省市区',
+  `province` varchar(64) NOT NULL COMMENT '省份',
+  `city` varchar(64) NOT NULL COMMENT '城市（市级）',
+  `region` varchar(128) NOT NULL COMMENT '省市区完整归属地',
   `page` varchar(255) NOT NULL COMMENT '访问路径',
   `method` varchar(16) NOT NULL DEFAULT 'GET',
   `user_agent` varchar(512) NOT NULL DEFAULT '',
@@ -532,7 +534,8 @@ ALTER TABLE `Behavior`
 ALTER TABLE `VisitLog`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_visit_date` (`visit_date`),
-  ADD KEY `idx_ip_date` (`ip`,`visit_date`);
+  ADD KEY `idx_ip_date` (`ip`,`visit_date`),
+  ADD KEY `idx_city` (`city`);
 
 --
 -- 表的索引 `CloudStorageConfig`

@@ -64,7 +64,7 @@ $recentVisits = lg_visit_recent($connect, 12);
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="header-title mb-0 size_18">最近访问（IP / 国家）</h4>
+                    <h4 class="header-title mb-0 size_18">最近访问（IP / 国家 / 省市）</h4>
                     <a href="/admin/VisitLog.php" class="btn btn-sm btn-outline-primary">查看全部</a>
                 </div>
                 <div class="table-responsive">
@@ -73,15 +73,16 @@ $recentVisits = lg_visit_recent($connect, 12);
                             <tr>
                                 <th>时间</th>
                                 <th>访问 IP</th>
-                                <th>国家/地区</th>
-                                <th>归属地</th>
+                                <th>国家</th>
+                                <th>省份</th>
+                                <th>城市</th>
                                 <th>页面</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (!$recentVisits): ?>
                                 <tr>
-                                    <td colspan="5" class="text-muted">暂无访问记录（访客打开前台页面后会自动统计）</td>
+                                    <td colspan="6" class="text-muted">暂无访问记录（访客打开前台页面后会自动统计）</td>
                                 </tr>
                             <?php endif; ?>
                             <?php foreach ($recentVisits as $visit): ?>
@@ -93,7 +94,8 @@ $recentVisits = lg_visit_recent($connect, 12);
                                     </td>
                                     <td><code><?php echo htmlspecialchars((string) $visit['ip'], ENT_QUOTES, 'UTF-8'); ?></code></td>
                                     <td><?php echo htmlspecialchars((string) ($visit['country'] ?: '未知'), ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td><?php echo htmlspecialchars((string) ($visit['region'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php echo htmlspecialchars((string) ($visit['province'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php echo htmlspecialchars((string) ($visit['city'] ?: '-'), ENT_QUOTES, 'UTF-8'); ?></td>
                                     <td class="text-truncate" style="max-width: 220px;">
                                         <?php echo htmlspecialchars((string) $visit['page'], ENT_QUOTES, 'UTF-8'); ?>
                                     </td>

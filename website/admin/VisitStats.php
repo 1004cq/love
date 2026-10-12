@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /**
- * Public visit analytics helpers (UV by IP + recent IP/country list).
+ * Public visit analytics helpers (UV by IP + recent IP/country/city list).
  */
 function lg_visit_ensure_table(mysqli $connect): bool
 {
@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS `VisitLog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(64) NOT NULL,
   `country` varchar(64) NOT NULL DEFAULT '',
+  `province` varchar(64) NOT NULL DEFAULT '',
+  `city` varchar(64) NOT NULL DEFAULT '',
   `region` varchar(128) NOT NULL DEFAULT '',
   `page` varchar(255) NOT NULL DEFAULT '',
   `method` varchar(16) NOT NULL DEFAULT 'GET',
@@ -25,12 +27,31 @@ CREATE TABLE IF NOT EXISTS `VisitLog` (
   `visit_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_visit_date` (`visit_date`),
-  KEY `idx_ip_date` (`ip`, `visit_date`)
+  KEY `idx_ip_date` (`ip`, `visit_date`),
+  KEY `idx_city` (`city`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 SQL;
 
-    $ready = (bool) mysqli_query($connect, $sql);
-    return $ready;
+    if (!mysqli_query($connect, $sql)) {
+        $ready = false;
+        return false;
+    }
+
+    // Migrate older VisitLog installs that lack province/city columns.
+    $cols = [];
+    $res = mysqli_query($connect, 'SHOW COLUMNS FROM VisitLog');
+    while ($res && ($row = mysqli_fetch_assoc($res))) {
+        $cols[strtolower((string) $row['Field'])] = true;
+    }
+    if (!isset($cols['province'])) {
+        mysqli_query($connect, "ALTER TABLE `VisitLog` ADD COLUMN `province` varchar(64) NOT NULL DEFAULT '' AFTER `country`");
+    }
+    if (!isset($cols['city'])) {
+        mysqli_query($connect, "ALTER TABLE `VisitLog` ADD COLUMN `city` varchar(64) NOT NULL DEFAULT '' AFTER `province`");
+    }
+
+    $ready = true;
+    return true;
 }
 
 function lg_visit_should_skip(): bool
@@ -56,14 +77,19 @@ function lg_visit_record(mysqli $connect, string $ip, array $geo, string $page, 
 
     $stmt = mysqli_prepare(
         $connect,
-        'INSERT INTO VisitLog (ip, country, region, page, method, user_agent, referer, visit_date, visit_time) VALUES (?,?,?,?,?,?,?,?,?)'
+        'INSERT INTO VisitLog (ip, country, province, city, region, page, method, user_agent, referer, visit_date, visit_time) VALUES (?,?,?,?,?,?,?,?,?,?,?)'
     );
     if (!$stmt) {
         return false;
     }
 
     $country = mb_substr((string) ($geo['country'] ?? '未知'), 0, 64);
+    $province = mb_substr((string) ($geo['province'] ?? ''), 0, 64);
+    $city = mb_substr((string) ($geo['city'] ?? ''), 0, 64);
     $region = mb_substr((string) ($geo['region'] ?? ''), 0, 128);
+    if ($region === '' && ($province !== '' || $city !== '')) {
+        $region = trim($province . ($city !== '' && $city !== $province ? ' · ' . $city : ''), ' ·');
+    }
     $page = mb_substr($page, 0, 255);
     $method = mb_substr($method !== '' ? $method : 'GET', 0, 16);
     $ua = mb_substr($ua, 0, 512);
@@ -73,9 +99,11 @@ function lg_visit_record(mysqli $connect, string $ip, array $geo, string $page, 
 
     mysqli_stmt_bind_param(
         $stmt,
-        'ssssssssi',
+        'ssssssssssi',
         $ip,
         $country,
+        $province,
+        $city,
         $region,
         $page,
         $method,
@@ -145,11 +173,24 @@ function lg_visit_recent(mysqli $connect, int $limit = 50): array
     $limit = max(1, min(200, $limit));
     $res = mysqli_query(
         $connect,
-        "SELECT id, ip, country, region, page, method, user_agent, referer, visit_date, visit_time
+        "SELECT id, ip, country, province, city, region, page, method, user_agent, referer, visit_date, visit_time
          FROM VisitLog ORDER BY id DESC LIMIT {$limit}"
     );
     $rows = [];
     while ($res && ($row = mysqli_fetch_assoc($res))) {
+        // Backfill city display for older rows without province/city columns populated.
+        if (($row['city'] ?? '') === '' && ($row['region'] ?? '') !== '') {
+            $parts = preg_split('/\s*·\s*/u', (string) $row['region']) ?: [];
+            if (count($parts) >= 2) {
+                $row['province'] = $row['province'] !== '' ? $row['province'] : $parts[0];
+                $row['city'] = $parts[count($parts) - 1];
+            } elseif (count($parts) === 1) {
+                $row['city'] = $parts[0];
+                if (($row['province'] ?? '') === '') {
+                    $row['province'] = $parts[0];
+                }
+            }
+        }
         $rows[] = $row;
     }
     return $rows;
