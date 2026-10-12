@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { jsonError, jsonOk, unauthorized } from "@/lib/api";
+import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { saveUploadedImage } from "@/lib/upload";
 
 const createSchema = z.object({
@@ -41,6 +42,11 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const session = await getSession();
   if (!session) return unauthorized();
+
+  const limited = rateLimit(clientKey(request, "diary-write"), 60, 60 * 60 * 1000);
+  if (!limited.ok) {
+    return jsonError(`操作过于频繁，请 ${limited.retryAfterSec} 秒后再试`, 429);
+  }
 
   try {
     const contentType = request.headers.get("content-type") || "";

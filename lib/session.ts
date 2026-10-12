@@ -10,7 +10,21 @@ export type SessionUser = {
 };
 
 function getSecret() {
-  const secret = process.env.AUTH_SECRET || "couple-space-dev-secret-change-me";
+  const secret = process.env.AUTH_SECRET;
+  const fallback = "couple-space-dev-secret-change-me";
+
+  if (process.env.NODE_ENV === "production") {
+    if (!secret || secret === fallback || secret.length < 32) {
+      throw new Error(
+        "AUTH_SECRET must be set to a random string (≥32 chars) in production"
+      );
+    }
+    return new TextEncoder().encode(secret);
+  }
+
+  if (!secret || secret === "replace-with-a-long-random-string") {
+    return new TextEncoder().encode(fallback);
+  }
   return new TextEncoder().encode(secret);
 }
 
@@ -22,7 +36,7 @@ export async function createSessionToken(user: SessionUser) {
   })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("30d")
+    .setExpirationTime("7d")
     .sign(getSecret());
 }
 
@@ -56,7 +70,7 @@ export function setSessionCookie(response: NextResponse, token: string) {
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: 60 * 60 * 24 * 7,
   });
 }
 

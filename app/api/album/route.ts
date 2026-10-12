@@ -1,10 +1,10 @@
 import { unlink } from "fs/promises";
-import path from "path";
 import { NextRequest } from "next/server";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { jsonError, jsonOk, unauthorized } from "@/lib/api";
-import { saveUploadedImage } from "@/lib/upload";
+import { clientKey, rateLimit } from "@/lib/rate-limit";
+import { resolveUploadFsPath, saveUploadedImage } from "@/lib/upload";
 
 export async function GET() {
   const photos = await prisma.albumPhoto.findMany({
@@ -23,10 +23,16 @@ export async function POST(request: NextRequest) {
   const session = await getSession();
   if (!session) return unauthorized();
 
+  const limited = rateLimit(clientKey(request, "upload"), 30, 60 * 60 * 1000);
+  if (!limited.ok) {
+    return jsonError(`上传过于频繁，请 ${limited.retryAfterSec} 秒后再试`, 429);
+  }
+
   try {
     const form = await request.formData();
     const file = form.get("file");
-    const caption = String(form.get("caption") || "").trim() || null;
+    const captionRaw = String(form.get("caption") || "").trim();
+    const caption = captionRaw ? captionRaw.slice(0, 200) : null;
 
     if (!(file instanceof File)) {
       return jsonError("请选择图片");
@@ -65,9 +71,10 @@ export async function DELETE(request: NextRequest) {
 
   await prisma.albumPhoto.delete({ where: { id } });
 
-  if (photo.url.startsWith("/uploads/")) {
+  const fsPath = resolveUploadFsPath(photo.url);
+  if (fsPath) {
     try {
-      await unlink(path.join(process.cwd(), "public", photo.url));
+      await unlink(fsPath);
     } catch {
       // ignore missing file
     }

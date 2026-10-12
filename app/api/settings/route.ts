@@ -4,6 +4,7 @@ import { getSession } from "@/lib/auth";
 import { resolveAvatarInput } from "@/lib/avatar";
 import { jsonError, jsonOk, unauthorized } from "@/lib/api";
 import { prisma } from "@/lib/prisma";
+import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { getSiteConfig } from "@/lib/site";
 import { saveUploadedImage } from "@/lib/upload";
 
@@ -70,18 +71,22 @@ export async function PATCH(request: NextRequest) {
       });
     }
 
-    const boyAvatar =
-      body.boyAvatar === undefined
-        ? undefined
-        : body.boyAvatar
-          ? resolveAvatarInput(body.boyAvatar)
-          : null;
-    const girlAvatar =
-      body.girlAvatar === undefined
-        ? undefined
-        : body.girlAvatar
+    let boyAvatar: string | null | undefined = undefined;
+    let girlAvatar: string | null | undefined = undefined;
+    try {
+      if (body.boyAvatar !== undefined) {
+        boyAvatar = body.boyAvatar ? resolveAvatarInput(body.boyAvatar) : null;
+      }
+      if (body.girlAvatar !== undefined) {
+        girlAvatar = body.girlAvatar
           ? resolveAvatarInput(body.girlAvatar)
           : null;
+      }
+    } catch (error) {
+      return jsonError(
+        error instanceof Error ? error.message : "头像地址不合法"
+      );
+    }
 
     const site = await prisma.siteConfig.upsert({
       where: { id: 1 },
@@ -158,6 +163,11 @@ export async function PATCH(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const session = await getSession();
   if (!session) return unauthorized();
+
+  const limited = rateLimit(clientKey(request, "avatar-upload"), 20, 60 * 60 * 1000);
+  if (!limited.ok) {
+    return jsonError(`上传过于频繁，请 ${limited.retryAfterSec} 秒后再试`, 429);
+  }
 
   try {
     const form = await request.formData();

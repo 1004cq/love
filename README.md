@@ -54,6 +54,15 @@ npm run dev
 - 数据库：Prisma + SQLite（简单够用）
 - 部署：Vercel（一键上线）
 
+## 安全说明（相对 PHP 版加固点）
+
+- 会话：HttpOnly + SameSite=Lax + 生产 Secure；JWT 默认 7 天
+- 生产必须配置强 `AUTH_SECRET`（≥32）
+- 登录 / 上传接口有简易频率限制
+- 上传按文件魔数校验，仅 JPG/PNG/GIF/WEBP（拒绝 SVG/HTML）
+- 头像外链仅 https；本地路径限制 `/uploads`、`/lg`
+- 全局安全响应头 + `/uploads` 沙箱 CSP
+
 ## 未迁入第一版（PHP 有、本版后置）
 
 云存储全家桶、SMTP 邮件、微信小程序、IP 拉黑、文章/相册密码门完整链路、三套底栏模板 DIY。
