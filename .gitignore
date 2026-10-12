@@ -1,23 +1,13 @@
-# PHP / Composer
-website/vendor/
+# Runtime / install (keep vendor committed for full extract)
 website/install/install.lock
 website/admin/Config_DB.php
 website/Lovefolder/*
 !website/Lovefolder/.gitkeep
-
-# Next.js leftovers (removed rewrite)
-node_modules/
-.next/
-out/
-prisma/
-*.db
-*.db-journal
-next-env.d.ts
-.env
-.env.*
 
 # OS / IDE
 .DS_Store
 .idea/
 .vscode/
 *.log
+.env
+.env.*
