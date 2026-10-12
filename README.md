@@ -19,6 +19,10 @@ PHP 情侣小站（LGNewUI），含网页端与微信小程序端。
 - 控制台联系方式已清空
 - 数据库配置请复制 `website/admin/Config_DB.example.php` → `Config_DB.php`（已 gitignore；不在 `love.zip` 中）
 
+## 网页端语言
+
+右下角可切换中文 / English（保存在浏览器本地，仅翻译界面文案，不改动用户内容）。
+
 ## 部署
 
 1. 将 `website/` 上传到站点根目录（PHP 8.2–8.5 + MySQL）

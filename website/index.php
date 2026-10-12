@@ -76,10 +76,10 @@
                 aos-duration="1000" <?php } ?>>
                 <div class="time">
                     <span id="span_dt_dt"><?php echo $text['loveDayTitle'] ?></span>
-                    <b id="tian"></b>天
-                    <b id="shi"></b>时
-                    <b id="fen"></b>分
-                    <b id="miao"></b>秒
+                    <b id="tian"></b><span data-i18n="day">天</span>
+                    <b id="shi"></b><span data-i18n="hour">时</span>
+                    <b id="fen"></b><span data-i18n="minute">分</span>
+                    <b id="miao"></b><span data-i18n="second">秒</span>
                 </div>
             </div>
 
@@ -138,7 +138,7 @@
                 <div class="central">
                     <div class="ltps shadow-blur">
                         <span class="hen"></span>
-                        最新留言
+                        <span data-i18n="latest_messages">最新留言</span>
                     </div>
                 </div>
                 <div class="ios_page central maxW95">

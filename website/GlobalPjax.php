@@ -137,6 +137,8 @@
         $('body').addClass('loaded');
         IsCurrentURL();
             var currentSiteUrl = window.location.href;
-    
+        if (window.LGI18n && typeof window.LGI18n.apply === 'function') {
+            window.LGI18n.apply(window.LGI18n.getLang());
+        }
     });
 </script>

@@ -80,15 +80,15 @@ while ($stmt->fetch()) {
             <div class="central ContentCentered">
                 <div class="ltps lyips shadow-blur"
                     style="justify-content: center;align-items: baseline;border-radius: 10rem;">
-                    祝福留言共<b class="nub_con">
+                    <span data-i18n="messages_count_prefix">祝福留言共</span><b class="nub_con">
                         <?php echo $shu ?>
-                    </b>条 当前显示 <b class="nub_con">
+                    </b><span data-i18n="messages_count_mid">条 当前显示</span> <b class="nub_con">
                         <?php if ($shu > count($lyarr)) {
                             echo count($lyarr);
                         } else {
                             echo $shu;
                         } ?>
-                    </b>条
+                    </b><span data-i18n="messages_count_suffix">条</span>
                 </div>
             </div>
             <?php if (count($lyarr) <= 0) {
@@ -184,7 +184,7 @@ while ($stmt->fetch()) {
                                     <input type="checkbox" name="anonymous" id="anonymous" data-switch="success" value="0"
                                         onclick="openAnonymous(this)">
                                     <label style="display:block;" for="anonymous" data-on-label="匿名"
-                                        data-off-label="QQ"></label>
+                                        data-off-label="QQ" data-i18n-on="anonymous"></label>
                                 </div>
                                 <div class="see_city">
                                     <img src="https://q1.qlogo.cn/g?b=qq&nk=1234567&s=100" alt="" class="avatar">
@@ -200,12 +200,12 @@ while ($stmt->fetch()) {
                                     </span>
                                 </div>
                                 <div class="inputbox">
-                                    <input id="QQ" type="text" name="qq" placeholder="请输入你的QQ" class="rig">
-                                    <input id="nickname" type="text" name="name" placeholder="昵称" class="let">
+                                    <input id="QQ" type="text" name="qq" placeholder="请输入你的QQ" class="rig" data-i18n-placeholder="placeholder_qq">
+                                    <input id="nickname" type="text" name="name" placeholder="昵称" class="let" data-i18n-placeholder="placeholder_nickname">
                                 </div>
 
                                 <div class="textareaRow">
-                                    <textarea name="text" id="wenben" rows="8" placeholder="请输入留言内容..."></textarea>
+                                    <textarea name="text" id="wenben" rows="8" placeholder="请输入留言内容..." data-i18n-placeholder="placeholder_message"></textarea>
                                     <?php if ($randomWord): ?>
                                         <div class="RandomContentBtn">
                                             <span class="RCB_Style shadow-blur">
@@ -218,7 +218,7 @@ while ($stmt->fetch()) {
                                                         d="M891.5 338.4c0.4-9.7-3.1-19.5-10.5-26.9l-84-84c-14.1-14.1-36.9-14.1-50.9 0-14.1 14.1-14.1 36.9 0 50.9l26.7 26.7c-80.2 2-146.7 24.7-203.1 69.1-51.1 40.3-87.1 92.7-121.8 143.4C380.7 615.5 322.8 700 168.5 700c-19.9 0-36 16.1-36 36s16.1 36 36 36c86.1 0 156.9-22.8 216.3-69.6 51.4-40.5 87.5-93.1 122.4-144 65.5-95.4 122.2-178.1 268.2-181.3L747 405.5c-14.1 14.1-14.1 36.9 0 50.9 7 7 16.2 10.5 25.5 10.5s18.4-3.5 25.5-10.5l84-84c9.2-9.2 12.4-22.2 9.5-34z"
                                                         p-id="4610"></path>
                                                 </svg>
-                                                随机一言</span>
+                                                <span data-i18n="random_quote">随机一言</span></span>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -236,7 +236,7 @@ while ($stmt->fetch()) {
                                 <div class="input-sub">
                                     <input name="city" value="<?php echo $MsgUserIpCity ?>" type="hidden">
                                     <input name="ip" value="<?php echo $ip_if ?>" type="hidden">
-                                    <button type="button" id="leavingPost" class="tijiao shadow-blur">提交留言
+                                    <button type="button" id="leavingPost" class="tijiao shadow-blur" data-i18n="submit_message">提交留言
                                     </button>
                                 </div>
                             </form>
@@ -428,7 +428,10 @@ while ($stmt->fetch()) {
                         return false;
                     }
 
-                    $('#leavingPost').text('留言提交中...');
+                    var _i18n = function(key, fallback) {
+                        return (window.LGI18n && window.LGI18n.t) ? window.LGI18n.t(key) : fallback;
+                    };
+                    $('#leavingPost').text(_i18n('submitting', '留言提交中...'));
                     $("#leavingPost").attr("disabled", "disabled");
 
                     $.ajax({
@@ -443,7 +446,7 @@ while ($stmt->fetch()) {
                         success: function(res) {
                             setInterval(() => {
                                 $('#leavingPost').removeAttr("disabled");
-                                $('#leavingPost').text('提交留言');
+                                $('#leavingPost').text(_i18n('submit_message', '提交留言'));
                             }, 5000);
                             if (res.Status) {
                                 updatedText = res.MsgHtml;
@@ -458,7 +461,7 @@ while ($stmt->fetch()) {
                                 } else if (res.sign == 3) {
                                     toastr["success"](res.message, "<?php echo $title ?>");
                                 }
-                                $('#leavingPost').text('留言成功');
+                                $('#leavingPost').text(_i18n('submit_ok', '留言成功'));
 
                                 $(".close").trigger("click");
                                 $("html,body").animate({
@@ -471,7 +474,7 @@ while ($stmt->fetch()) {
                                 qq, name, text, ip, city = ''
                             } else {
                                 toastr["error"](res.message, "<?php echo $title ?>");
-                                $('#leavingPost').text('留言失败！');
+                                $('#leavingPost').text(_i18n('submit_fail', '留言失败！'));
                             }
                         },
                         error: function(err) {

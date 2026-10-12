@@ -482,12 +482,12 @@
         <div class="tab_icon">
             <a class="tab_ic" href="little.php">
                 <span class="iconfont icon_sm mar_0">&#xe615;</span>
-                <b>文章</b>
+                <b data-i18n="nav_articles">文章</b>
             </a>
 
             <a class="tab_ic" href="leaving.php">
                 <span class="iconfont icon_sm mar_0">&#xe6a8;</span>
-                <b>留言</b>
+                <b data-i18n="nav_messages">留言</b>
             </a>
 
             <a class="tab_ic por" href="index.php">
@@ -496,12 +496,12 @@
 
             <a class="tab_ic" href="loveImg.php">
                 <span class="iconfont icon_sm mar_0">&#xe60b;</span>
-                <b>相册</b>
+                <b data-i18n="nav_album">相册</b>
             </a>
 
             <a class="tab_ic" href="list.php">
                 <span class="iconfont icon_sm mar_0">&#xe65e;</span>
-                <b>清单</b>
+                <b data-i18n="nav_list">清单</b>
             </a>
         </div>
     </div>
@@ -568,6 +568,7 @@
 
 <?php endif ?>
 
+<script src="/Style/js/i18n.js?v=<?php echo $versionCode ?>"></script>
 <script src="/Style/js/theme-2026.js?v=<?php echo $versionCode ?>"></script>
 
 

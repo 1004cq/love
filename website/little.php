@@ -41,7 +41,7 @@ $sortedArticles = sortArticlesByTime($articles_list);
                 <div class="central">
                     <div class="ltps shadow-blur">
                         <span class="hen"></span>
-                        文章列表
+                        <span data-i18n="article_list">文章列表</span>
                     </div>
                 </div>
                 <?php if ($data_row <= 0) {
